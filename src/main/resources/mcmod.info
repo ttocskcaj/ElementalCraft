@@ -1,0 +1,16 @@
+[
+{
+  "modid": "elementalcraft",
+  "name": "ElementalCraft",
+  "description": "Elemental magic meets technology.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "elementalcraft.ttocskcaj.com",
+  "updateUrl": "",
+  "authorList": ["ttocskcaj", "mikkie423"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

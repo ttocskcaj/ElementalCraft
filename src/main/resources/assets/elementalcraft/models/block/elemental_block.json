@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "elementalcraft:blocks/elemental_block_down",
+    "up": "elementalcraft:blocks/elemental_block_up",
+    "north": "elementalcraft:blocks/elemental_block_north",
+    "east": "elementalcraft:blocks/elemental_block_east",
+    "south": "elementalcraft:blocks/elemental_block_south",
+    "west": "elementalcraft:blocks/elemental_block_west",
+    "particle": "elementalcraft:blocks/elemental_block_up"
+  }
+}
