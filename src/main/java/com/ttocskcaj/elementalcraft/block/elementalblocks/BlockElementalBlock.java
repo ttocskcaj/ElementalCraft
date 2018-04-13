@@ -1,4 +1,4 @@
-package com.ttocskcaj.elementalcraft.block.elementalblock;
+package com.ttocskcaj.elementalcraft.block.elementalblocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
