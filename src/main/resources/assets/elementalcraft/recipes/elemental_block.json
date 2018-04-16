@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "elementalcraft:elemental_block"
+  },
+  "pattern": [
+    "aaa",
+    "aaa",
+    "aaa"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "a": {
+      "item": "elementalcraft:elemental_fragment"
+    }
+  }
+}

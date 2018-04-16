@@ -7,11 +7,12 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemElementalFragment extends Item {
-    public ItemElementalFragment() {
-        setRegistryName("elemental_fragment");
-        setUnlocalizedName("elemental_fragment");
+public class ItemRingOfTheElements extends Item {
+    public ItemRingOfTheElements() {
+        setRegistryName("ring_of_the_elements");
+        setUnlocalizedName("ring_of_the_elements");
         setCreativeTab(ElementalCraft.creativeTab);
+
     }
 
     @SideOnly(Side.CLIENT)

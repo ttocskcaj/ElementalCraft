@@ -1,9 +1,9 @@
 package com.ttocskcaj.elementalcraft.block.elementalblocks;
 
+import com.ttocskcaj.elementalcraft.ElementalCraft;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraftforge.client.model.ModelLoader;
@@ -16,7 +16,7 @@ public class BlockElementalWaterBlock extends Block {
         super(Material.ROCK);
         setUnlocalizedName("elemental_water_block");
         setRegistryName("elemental_water_block");
-        setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+        setCreativeTab(ElementalCraft.creativeTab);
     }
 
     @SideOnly(Side.CLIENT)

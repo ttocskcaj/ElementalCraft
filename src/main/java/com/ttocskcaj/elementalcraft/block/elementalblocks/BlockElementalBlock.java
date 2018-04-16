@@ -1,5 +1,6 @@
 package com.ttocskcaj.elementalcraft.block.elementalblocks;
 
+import com.ttocskcaj.elementalcraft.ElementalCraft;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -16,7 +17,7 @@ public class BlockElementalBlock extends Block {
         super(Material.ROCK);
         setUnlocalizedName("elemental_block");
         setRegistryName("elemental_block");
-        setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+        setCreativeTab(ElementalCraft.creativeTab);
     }
 
     @SideOnly(Side.CLIENT)

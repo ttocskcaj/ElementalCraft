@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "elementalcraft:crescentwand"
+  },
+  "pattern": [
+    "gfg",
+    "f f",
+    "gfg"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "g": {
+      "item": "minecraft:gold_nugget"
+    },
+    "f": {
+      "item": "elementalcraft:elemental_fragment"
+    }
+  }
+}

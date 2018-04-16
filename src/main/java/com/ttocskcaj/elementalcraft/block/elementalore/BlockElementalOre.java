@@ -1,9 +1,9 @@
 package com.ttocskcaj.elementalcraft.block.elementalore;
 
+import com.ttocskcaj.elementalcraft.ElementalCraft;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraftforge.client.model.ModelLoader;
@@ -16,7 +16,10 @@ public class BlockElementalOre extends Block {
         super(Material.ROCK);
         setUnlocalizedName("elemental_ore");
         setRegistryName("elemental_ore");
-        setCreativeTab(CreativeTabs.MATERIALS);
+        setCreativeTab(ElementalCraft.creativeTab);
+        setHardness(4f);
+        setResistance(5f);
+        setHarvestLevel("pickaxe", 2);
     }
 
     @SideOnly(Side.CLIENT)

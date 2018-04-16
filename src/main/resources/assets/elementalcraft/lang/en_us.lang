@@ -1,0 +1,13 @@
+item.elemental_fragment.name=Elemental Fragment
+item.crescentwand.name=CrescentWand
+item.ring_of_the_elements.name=Ring of the Elements
+
+itemGroup.elementalcraft = ElementalCraft
+
+tile.elemental_ore.name=Elemental Ore
+tile.elemental_block.name=Elemental Block
+
+tile.elemental_air_block.name=Elemental Air Block
+tile.elemental_earth_block.name=Elemental Earth Block
+tile.elemental_fire_block.name=Elemental Fire Block
+tile.elemental_water_block.name=Elemental Water Block
