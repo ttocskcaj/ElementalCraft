@@ -3,7 +3,7 @@ package com.ttocskcaj.elementalcraft.command;
 import com.google.common.collect.Lists;
 import com.sun.istack.internal.Nullable;
 import com.ttocskcaj.elementalcraft.ElementalCraft;
-import com.ttocskcaj.elementalcraft.dimension.TeleporterEP;
+import com.ttocskcaj.elementalcraft.world.TeleporterEP;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;

@@ -37,7 +37,6 @@ public class ElementalCraft {
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
-        logger.info("Initializing...");
         proxy.init();
     }
 

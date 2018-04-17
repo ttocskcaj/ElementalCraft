@@ -25,18 +25,19 @@ public abstract class BiomeElemental extends Biome {
         ElementalPlaneBiomeDecorator biomeDecorator = new ElementalPlaneBiomeDecorator();
 
         biomeDecorator.waterlilyPerChunk = 0;
-        biomeDecorator.treesPerChunk = 12;
+        biomeDecorator.treesPerChunk = 0;
         biomeDecorator.extraTreeChance = 0F;
         biomeDecorator.flowersPerChunk = 0;
         biomeDecorator.grassPerChunk = 0;
-        biomeDecorator.deadBushPerChunk = 20;
-        biomeDecorator.mushroomsPerChunk = 3;
+        biomeDecorator.deadBushPerChunk = 0;
+        biomeDecorator.mushroomsPerChunk = 0;
         biomeDecorator.reedsPerChunk = 0;
+
         biomeDecorator.cactiPerChunk = 0;
-        biomeDecorator.gravelPatchesPerChunk = 2;
+        biomeDecorator.gravelPatchesPerChunk = 0;
         biomeDecorator.sandPatchesPerChunk = 0;
         biomeDecorator.clayPerChunk = 0;
-        biomeDecorator.bigMushroomsPerChunk = 1;
+        biomeDecorator.bigMushroomsPerChunk = 0;
         biomeDecorator.generateFalls = false;
         return getModdedBiomeDecorator(biomeDecorator);
     }

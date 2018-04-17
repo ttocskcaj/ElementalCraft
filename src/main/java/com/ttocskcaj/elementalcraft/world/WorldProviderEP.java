@@ -1,4 +1,4 @@
-package com.ttocskcaj.elementalcraft.dimension;
+package com.ttocskcaj.elementalcraft.world;
 
 import com.ttocskcaj.elementalcraft.init.ModBiomes;
 import com.ttocskcaj.elementalcraft.init.ModDimensions;
@@ -19,25 +19,22 @@ public class WorldProviderEP extends WorldProvider {
 
     @Override
     public ChunkGeneratorEP createChunkGenerator() {
-        System.out.println("Creating chunk generator");
         return new ChunkGeneratorEP(world, world.getSeed());
     }
 
     @Override
-    public boolean canDoRainSnowIce(Chunk chunk)
-    {
+    public boolean canDoRainSnowIce(Chunk chunk) {
         return false;
     }
 
     @Override
-    public boolean canSnowAt(BlockPos pos, boolean checkLight)
-    {
+    public boolean canSnowAt(BlockPos pos, boolean checkLight) {
         return false;
     }
 
     @Override
     public BiomeProvider getBiomeProvider() {
-        return new BiomeProviderSingle(ModBiomes.BIOME_FIRE);
+        return new BiomeProviderEP(world);
     }
 
     @Nullable

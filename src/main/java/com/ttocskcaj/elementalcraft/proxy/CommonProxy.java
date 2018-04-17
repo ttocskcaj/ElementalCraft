@@ -1,5 +1,6 @@
 package com.ttocskcaj.elementalcraft.proxy;
 
+import com.ttocskcaj.elementalcraft.ElementalCraft;
 import com.ttocskcaj.elementalcraft.world.TerrainEventHandler;
 import com.ttocskcaj.elementalcraft.world.WorldTypeEP;
 import com.ttocskcaj.elementalcraft.init.ModBiomes;
@@ -13,8 +14,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.Biome;
-import net.minecraftforge.common.BiomeDictionary;
-import net.minecraftforge.common.BiomeManager;
+
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.event.RegistryEvent;
@@ -22,6 +22,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import java.io.File;
@@ -34,24 +35,27 @@ public class CommonProxy {
     public static WorldType elementalPlane = new WorldTypeEP();
 
     public void preInit(FMLPreInitializationEvent event) {
+        ElementalCraft.logger.info("Common preInit");
+
         File directory = event.getModConfigurationDirectory();
         config = new Configuration(new File(directory.getPath(), "elementalcraft.cfg"));
         Config.readConfig();
 
         GameRegistry.registerWorldGenerator(new ModWorldGeneration(), 3);
+//        MinecraftForge.TERRAIN_GEN_BUS.register(new TerrainEventHandler());
 
-        ModDimensions.init();
-        ModBiomes.init();
-
-        MinecraftForge.TERRAIN_GEN_BUS.register(new TerrainEventHandler());
+        registerBiomes();
 
     }
 
     public void init() {
+        ElementalCraft.logger.info("Common init");
+        ModDimensions.init();
 
     }
 
     public void postInit(FMLPostInitializationEvent event) {
+        ElementalCraft.logger.info("Common postInit");
         if (config.hasChanged()) {
             config.save();
         }
@@ -60,6 +64,7 @@ public class CommonProxy {
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
+        ElementalCraft.logger.info("Registering Items");
 
         // Magic
         event.getRegistry().register(ModItems.ITEM_RING_OF_THE_ELEMENTS);
@@ -103,6 +108,8 @@ public class CommonProxy {
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
+        ElementalCraft.logger.info("Registering Blocks");
+
         // Ores
         event.getRegistry().register(ModBlocks.AETHER_ORE);
         event.getRegistry().register(ModBlocks.BERYL_ORE);
@@ -123,18 +130,15 @@ public class CommonProxy {
 
     }
 
-    @SubscribeEvent
-    public void registerBiomes(RegistryEvent.Register<Biome> event) {
-        event.getRegistry().register(ModBiomes.BIOME_FIRE);
-        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(ModBiomes.BIOME_FIRE, 25));
-        BiomeManager.addSpawnBiome(ModBiomes.BIOME_FIRE);
-        BiomeDictionary.addTypes(ModBiomes.BIOME_FIRE, BiomeDictionary.Type.HOT, BiomeDictionary.Type.MOUNTAIN, BiomeDictionary.Type.MAGICAL);
 
-        event.getRegistry().register(ModBiomes.BIOME_EARTH);
-        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(ModBiomes.BIOME_EARTH, 25));
-        BiomeManager.addSpawnBiome(ModBiomes.BIOME_EARTH);
-        BiomeDictionary.addTypes(ModBiomes.BIOME_EARTH, BiomeDictionary.Type.LUSH, BiomeDictionary.Type.MOUNTAIN, BiomeDictionary.Type.MAGICAL);
+    public void registerBiomes() {
+        ElementalCraft.logger.info("Registering Biomes");
+        ForgeRegistries.BIOMES.register(ModBiomes.BIOME_FIRE);
+        ForgeRegistries.BIOMES.register(ModBiomes.BIOME_EARTH);
 
+
+        // Add biomes to BiomeManager and BiomeDictionary
+        ModBiomes.init();
     }
 
 }

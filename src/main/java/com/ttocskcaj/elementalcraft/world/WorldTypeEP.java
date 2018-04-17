@@ -1,4 +1,4 @@
-package com.ttocskcaj.elementalcraft.dimension;
+package com.ttocskcaj.elementalcraft.world;
 
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
@@ -12,7 +12,7 @@ public class WorldTypeEP extends WorldType {
 
     @Override
     public BiomeProvider getBiomeProvider(World world) {
-        return new BiomeProviderEP();
+        return new BiomeProviderEP(world);
     }
 
     @Override

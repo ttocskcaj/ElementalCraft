@@ -1,27 +1,40 @@
 package com.ttocskcaj.elementalcraft.biome;
 
 
-import net.minecraft.block.BlockSand;
+import com.ttocskcaj.elementalcraft.init.ModBlocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.ChunkPrimer;
+import net.minecraft.world.gen.feature.WorldGenFire;
 
 import java.util.Random;
 
 public class BiomeFire extends BiomeElemental {
 
+    private final WorldGenFire fireFeature = new WorldGenFire();
+
+    public BiomeFire() {
+        super(new Biome.BiomeProperties("Elemental Fire").setTemperature(2f).setRainDisabled().setBaseHeight(1.0F)
+                .setHeightVariation(6F));
+        setRegistryName("fire_biome");
+
+        this.topBlock = ModBlocks.RAREFIED_STONE.getDefaultState();
+        this.fillerBlock = ModBlocks.FIRE_STONE.getDefaultState();
+    }
+
+    @Override
+    public int getSkyColorByTemp(float currentTemperature) {
+        return 11751505;
+    }
+
     @Override
     public void genTerrainBlocks(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int chunkX, int chunkZ, double noiseVal) {
-        int seaLevel = worldIn.getSeaLevel();
         boolean lastBlockWasAir = true;
-        int noise = (int) (noiseVal / 3.0D + 3.0D + rand.nextDouble() * 0.25D);
         int worldX = chunkX & 15;
         int worldZ = chunkZ & 15;
-        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
 
         for (int yLevel = 255; yLevel >= 0; --yLevel) {
@@ -40,6 +53,15 @@ public class BiomeFire extends BiomeElemental {
                     // Set top layer
                     if (lastBlockWasAir) {
                         chunkPrimerIn.setBlockState(worldZ, yLevel, worldX, this.topBlock);
+
+//                        // Random lava.
+//                        if (rand.nextInt(1000) < 1) {
+//                            chunkPrimerIn.setBlockState(worldZ, yLevel + 1, worldX, Blocks.FLOWING_LAVA.getDefaultState());
+//                        }
+                        // Random Fire
+                        if (rand.nextInt(20) < 2) {
+                            chunkPrimerIn.setBlockState(worldZ, yLevel + 1, worldX, Blocks.FIRE.getDefaultState());
+                        }
                     }
 
                     // Set all other layers.
@@ -49,19 +71,11 @@ public class BiomeFire extends BiomeElemental {
 
                     lastBlockWasAir = false;
 
+                } else if (originalBlockState.getBlock() == Blocks.WATER) {
+                    chunkPrimerIn.setBlockState(worldZ, yLevel, worldX, this.topBlock);
                 }
             }
-//            System.out.println("Set block at y level " + yLevel + ": " + chunkPrimerIn.getBlockState(shiftedZ, yLevel, shiftedX));
         }
-    }
-
-    public BiomeFire() {
-        super(new Biome.BiomeProperties("Elemental Fire").setTemperature(2f).setRainDisabled().setBaseHeight(1.0F)
-                .setHeightVariation(0.2F));
-        setRegistryName("fire_biome");
-
-        this.topBlock = Blocks.NETHERRACK.getDefaultState();
-        this.fillerBlock = Blocks.NETHER_BRICK.getDefaultState();
     }
 
 

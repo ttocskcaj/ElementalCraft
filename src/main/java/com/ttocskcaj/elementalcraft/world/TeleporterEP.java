@@ -1,4 +1,4 @@
-package com.ttocskcaj.elementalcraft.dimension;
+package com.ttocskcaj.elementalcraft.world;
 
 import com.ttocskcaj.elementalcraft.util.Config;
 import net.minecraft.entity.Entity;

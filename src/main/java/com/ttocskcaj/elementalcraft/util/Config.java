@@ -39,7 +39,7 @@ public class Config {
 
     private static void initDimensionConfig(Configuration cfg) {
         cfg.addCustomCategoryComment(CATEGORY_DIMENSIONS, "Dimension configuration");
-        dimensionID = cfg.getInt("dimension_id",Config.CATEGORY_DIMENSIONS, 50, 2, 1024,"The ID for the Elemental Plane dimension.");
+        dimensionID = cfg.getInt("dimension_id",Config.CATEGORY_DIMENSIONS, 50, 2, 1024,"The ID for the Elemental Plane world.");
         dimensionSeed = cfg.getString("dimension_id",Config.CATEGORY_DIMENSIONS, "","Enter a seed for the Elemental Plane here, or leave blank to use world seed.");
     }
 }
