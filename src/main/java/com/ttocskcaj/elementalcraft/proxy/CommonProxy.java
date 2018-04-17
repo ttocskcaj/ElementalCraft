@@ -1,6 +1,7 @@
 package com.ttocskcaj.elementalcraft.proxy;
 
-import com.ttocskcaj.elementalcraft.dimension.WorldTypeEP;
+import com.ttocskcaj.elementalcraft.world.TerrainEventHandler;
+import com.ttocskcaj.elementalcraft.world.WorldTypeEP;
 import com.ttocskcaj.elementalcraft.init.ModBiomes;
 import com.ttocskcaj.elementalcraft.init.ModBlocks;
 import com.ttocskcaj.elementalcraft.init.ModDimensions;
@@ -14,6 +15,7 @@ import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeManager;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -22,7 +24,6 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-import java.awt.*;
 import java.io.File;
 
 @Mod.EventBusSubscriber
@@ -42,6 +43,8 @@ public class CommonProxy {
         ModDimensions.init();
         ModBiomes.init();
 
+        MinecraftForge.TERRAIN_GEN_BUS.register(new TerrainEventHandler());
+
     }
 
     public void init() {
@@ -54,41 +57,84 @@ public class CommonProxy {
         }
     }
 
+
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
-        /*
-            Items
-         */
-        event.getRegistry().register(ModItems.ITEM_ELEMENTAL_FRAGMENT);
-        event.getRegistry().register(ModItems.ITEM_CRESCENT_WAND);
+
+        // Magic
         event.getRegistry().register(ModItems.ITEM_RING_OF_THE_ELEMENTS);
+        event.getRegistry().register(ModItems.ITEM_PENTACLE);
+        event.getRegistry().register(ModItems.ITEM_GOLD_ATHAME);
+        event.getRegistry().register(ModItems.ITEM_WAND_CITRINE);
+
+        // Materials
+        event.getRegistry().register(ModItems.ITEM_AETHER_FRAGMENT);
+        event.getRegistry().register(ModItems.ITEM_AETHER_DUST);
+        event.getRegistry().register(ModItems.ITEM_CITRINE_GEM);
+        event.getRegistry().register(ModItems.ITEM_FLUORITE_GEM);
+        event.getRegistry().register(ModItems.ITEM_SOLIDIFIED_ENERGY_SHARD_AIR);
+        event.getRegistry().register(ModItems.ITEM_SOLIDIFIED_ENERGY_SHARD_EARTH);
+        event.getRegistry().register(ModItems.ITEM_SOLIDIFIED_ENERGY_SHARD_FIRE);
+        event.getRegistry().register(ModItems.ITEM_SOLIDIFIED_ENERGY_SHARD_WATER);
+
+        // Tools
+        event.getRegistry().register(ModItems.ITEM_CRESCENT_WAND);
+
+
         /*
-           ItemBlocks
+         *  Create ItemBlocks
          */
-        event.getRegistry().register(new ItemBlock(ModBlocks.BLOCK_ELEMENTAL_ORE).setRegistryName(ModBlocks.BLOCK_ELEMENTAL_ORE.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(ModBlocks.BLOCK_ELEMENTAL_BLOCK).setRegistryName(ModBlocks.BLOCK_ELEMENTAL_BLOCK.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(ModBlocks.BLOCK_ELEMENTAL_AIR_BLOCK).setRegistryName(ModBlocks.BLOCK_ELEMENTAL_AIR_BLOCK.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(ModBlocks.BLOCK_ELEMENTAL_EARTH_BLOCK).setRegistryName(ModBlocks.BLOCK_ELEMENTAL_EARTH_BLOCK.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(ModBlocks.BLOCK_ELEMENTAL_FIRE_BLOCK).setRegistryName(ModBlocks.BLOCK_ELEMENTAL_FIRE_BLOCK.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(ModBlocks.BLOCK_ELEMENTAL_WATER_BLOCK).setRegistryName(ModBlocks.BLOCK_ELEMENTAL_WATER_BLOCK.getRegistryName()));
+        event.getRegistry().register(new ItemBlock(ModBlocks.AETHER_ORE).setRegistryName(ModBlocks.AETHER_ORE.getRegistryName()));
+        event.getRegistry().register(new ItemBlock(ModBlocks.BERYL_ORE).setRegistryName(ModBlocks.BERYL_ORE.getRegistryName()));
+        event.getRegistry().register(new ItemBlock(ModBlocks.CITRINE_ORE).setRegistryName(ModBlocks.CITRINE_ORE.getRegistryName()));
+        event.getRegistry().register(new ItemBlock(ModBlocks.GARNET_ORE).setRegistryName(ModBlocks.GARNET_ORE.getRegistryName()));
+        event.getRegistry().register(new ItemBlock(ModBlocks.FLUORITE_ORE).setRegistryName(ModBlocks.FLUORITE_ORE.getRegistryName()));
+
+        event.getRegistry().register(new ItemBlock(ModBlocks.AETHER_BLOCK).setRegistryName(ModBlocks.AETHER_BLOCK.getRegistryName()));
+        event.getRegistry().register(new ItemBlock(ModBlocks.SOLIDIFIED_ENERGY_AIR).setRegistryName(ModBlocks.SOLIDIFIED_ENERGY_AIR.getRegistryName()));
+        event.getRegistry().register(new ItemBlock(ModBlocks.SOLIDIFIED_ENERGY_EARTH).setRegistryName(ModBlocks.SOLIDIFIED_ENERGY_EARTH.getRegistryName()));
+        event.getRegistry().register(new ItemBlock(ModBlocks.SOLIDIFIED_ENERGY_FIRE).setRegistryName(ModBlocks.SOLIDIFIED_ENERGY_FIRE.getRegistryName()));
+        event.getRegistry().register(new ItemBlock(ModBlocks.SOLIDIFIED_ENERGY_WATER).setRegistryName(ModBlocks.SOLIDIFIED_ENERGY_WATER.getRegistryName()));
+
+        event.getRegistry().register(new ItemBlock(ModBlocks.RAREFIED_STONE).setRegistryName(ModBlocks.RAREFIED_STONE.getRegistryName()));
+        event.getRegistry().register(new ItemBlock(ModBlocks.FIRE_STONE).setRegistryName(ModBlocks.FIRE_STONE.getRegistryName()));
 
     }
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
-        event.getRegistry().register(ModBlocks.BLOCK_ELEMENTAL_ORE);
-        event.getRegistry().register(ModBlocks.BLOCK_ELEMENTAL_BLOCK);
-        event.getRegistry().register(ModBlocks.BLOCK_ELEMENTAL_AIR_BLOCK);
-        event.getRegistry().register(ModBlocks.BLOCK_ELEMENTAL_EARTH_BLOCK);
-        event.getRegistry().register(ModBlocks.BLOCK_ELEMENTAL_FIRE_BLOCK);
-        event.getRegistry().register(ModBlocks.BLOCK_ELEMENTAL_WATER_BLOCK);
+        // Ores
+        event.getRegistry().register(ModBlocks.AETHER_ORE);
+        event.getRegistry().register(ModBlocks.BERYL_ORE);
+        event.getRegistry().register(ModBlocks.CITRINE_ORE);
+        event.getRegistry().register(ModBlocks.GARNET_ORE);
+        event.getRegistry().register(ModBlocks.FLUORITE_ORE);
+
+        // Energy
+        event.getRegistry().register(ModBlocks.AETHER_BLOCK);
+        event.getRegistry().register(ModBlocks.SOLIDIFIED_ENERGY_AIR);
+        event.getRegistry().register(ModBlocks.SOLIDIFIED_ENERGY_EARTH);
+        event.getRegistry().register(ModBlocks.SOLIDIFIED_ENERGY_FIRE);
+        event.getRegistry().register(ModBlocks.SOLIDIFIED_ENERGY_WATER);
+
+        // Generic
+        event.getRegistry().register(ModBlocks.RAREFIED_STONE);
+        event.getRegistry().register(ModBlocks.FIRE_STONE);
+
     }
 
     @SubscribeEvent
     public void registerBiomes(RegistryEvent.Register<Biome> event) {
         event.getRegistry().register(ModBiomes.BIOME_FIRE);
-        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(ModBiomes.BIOME_FIRE, 1));
+        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(ModBiomes.BIOME_FIRE, 25));
         BiomeManager.addSpawnBiome(ModBiomes.BIOME_FIRE);
+        BiomeDictionary.addTypes(ModBiomes.BIOME_FIRE, BiomeDictionary.Type.HOT, BiomeDictionary.Type.MOUNTAIN, BiomeDictionary.Type.MAGICAL);
+
+        event.getRegistry().register(ModBiomes.BIOME_EARTH);
+        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(ModBiomes.BIOME_EARTH, 25));
+        BiomeManager.addSpawnBiome(ModBiomes.BIOME_EARTH);
+        BiomeDictionary.addTypes(ModBiomes.BIOME_EARTH, BiomeDictionary.Type.LUSH, BiomeDictionary.Type.MOUNTAIN, BiomeDictionary.Type.MAGICAL);
+
     }
 
 }

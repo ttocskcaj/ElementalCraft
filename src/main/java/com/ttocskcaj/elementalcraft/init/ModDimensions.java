@@ -1,7 +1,7 @@
 package com.ttocskcaj.elementalcraft.init;
 
 import com.ttocskcaj.elementalcraft.ElementalCraft;
-import com.ttocskcaj.elementalcraft.dimension.WorldProviderEP;
+import com.ttocskcaj.elementalcraft.world.WorldProviderEP;
 import com.ttocskcaj.elementalcraft.util.Config;
 import net.minecraft.world.DimensionType;
 import net.minecraftforge.common.DimensionManager;

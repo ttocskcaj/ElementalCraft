@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "elementalcraft:blocks/rarefied_stone",
+    "up": "elementalcraft:blocks/rarefied_stone",
+    "north": "elementalcraft:blocks/rarefied_stone",
+    "east": "elementalcraft:blocks/rarefied_stone",
+    "south": "elementalcraft:blocks/rarefied_stone",
+    "west": "elementalcraft:blocks/rarefied_stone",
+    "particle": "elementalcraft:blocks/rarefied_stone"
+  }
+}

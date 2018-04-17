@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "elementalcraft:blocks/aether_block",
+    "up": "elementalcraft:blocks/aether_block",
+    "north": "elementalcraft:blocks/aether_block",
+    "east": "elementalcraft:blocks/aether_block",
+    "south": "elementalcraft:blocks/aether_block",
+    "west": "elementalcraft:blocks/aether_block",
+    "particle": "elementalcraft:blocks/aether_block"
+  }
+}

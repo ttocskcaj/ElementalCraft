@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "elementalcraft:blocks/beryl_ore",
+    "up": "elementalcraft:blocks/beryl_ore",
+    "north": "elementalcraft:blocks/beryl_ore",
+    "east": "elementalcraft:blocks/beryl_ore",
+    "south": "elementalcraft:blocks/beryl_ore",
+    "west": "elementalcraft:blocks/beryl_ore",
+    "particle": "elementalcraft:blocks/beryl_ore"
+  }
+}

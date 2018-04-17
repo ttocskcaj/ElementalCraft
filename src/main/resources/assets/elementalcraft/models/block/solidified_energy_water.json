@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "elementalcraft:blocks/solidified_energy_water",
+    "up": "elementalcraft:blocks/solidified_energy_water",
+    "north": "elementalcraft:blocks/solidified_energy_water",
+    "east": "elementalcraft:blocks/solidified_energy_water",
+    "south": "elementalcraft:blocks/solidified_energy_water",
+    "west": "elementalcraft:blocks/solidified_energy_water",
+    "particle": "elementalcraft:blocks/solidified_energy_water"
+  }
+}

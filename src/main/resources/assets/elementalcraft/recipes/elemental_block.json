@@ -1,6 +1,6 @@
 {
   "result": {
-    "item": "elementalcraft:elemental_block"
+    "item": "elementalcraft:aether_block"
   },
   "pattern": [
     "aaa",
@@ -10,7 +10,7 @@
   "type": "forge:ore_shaped",
   "key": {
     "a": {
-      "item": "elementalcraft:elemental_fragment"
+      "item": "elementalcraft:aether_shard"
     }
   }
 }
