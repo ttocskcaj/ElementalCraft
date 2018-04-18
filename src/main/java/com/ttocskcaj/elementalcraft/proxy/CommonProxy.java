@@ -1,8 +1,7 @@
 package com.ttocskcaj.elementalcraft.proxy;
 
 import com.ttocskcaj.elementalcraft.ElementalCraft;
-import com.ttocskcaj.elementalcraft.world.TerrainEventHandler;
-import com.ttocskcaj.elementalcraft.world.WorldTypeEP;
+import com.ttocskcaj.elementalcraft.world.fire.WorldTypeFire;
 import com.ttocskcaj.elementalcraft.init.ModBiomes;
 import com.ttocskcaj.elementalcraft.init.ModBlocks;
 import com.ttocskcaj.elementalcraft.init.ModDimensions;
@@ -15,14 +14,12 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.Biome;
 
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import java.io.File;
@@ -32,7 +29,7 @@ public class CommonProxy {
     // Config instance
     public static Configuration config;
 
-    public static WorldType elementalPlane = new WorldTypeEP();
+    public static WorldType elementalPlane = new WorldTypeFire();
 
     public void preInit(FMLPreInitializationEvent event) {
         ElementalCraft.logger.info("Common preInit");
@@ -44,7 +41,6 @@ public class CommonProxy {
         GameRegistry.registerWorldGenerator(new ModWorldGeneration(), 3);
 //        MinecraftForge.TERRAIN_GEN_BUS.register(new TerrainEventHandler());
 
-        registerBiomes();
 
     }
 
@@ -130,14 +126,11 @@ public class CommonProxy {
 
     }
 
-
-    public void registerBiomes() {
+    @SubscribeEvent
+    public static void registerBiomes(RegistryEvent.Register<Biome> event) {
         ElementalCraft.logger.info("Registering Biomes");
-        ForgeRegistries.BIOMES.register(ModBiomes.BIOME_FIRE);
-        ForgeRegistries.BIOMES.register(ModBiomes.BIOME_EARTH);
-
-
-        // Add biomes to BiomeManager and BiomeDictionary
+        event.getRegistry().register(ModBiomes.BIOME_FIRE);
+        event.getRegistry().register(ModBiomes.BIOME_EARTH);
         ModBiomes.init();
     }
 

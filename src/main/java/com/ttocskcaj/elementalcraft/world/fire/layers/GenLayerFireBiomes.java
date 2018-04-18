@@ -1,18 +1,14 @@
-package com.ttocskcaj.elementalcraft.world.layers;
+package com.ttocskcaj.elementalcraft.world.fire.layers;
 
 import com.ttocskcaj.elementalcraft.init.ModBiomes;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
 
-public class GenLayerEPBiomes extends GenLayer {
-    public GenLayerEPBiomes(long l, GenLayer genlayer) {
+public class GenLayerFireBiomes extends GenLayer {
+    public GenLayerFireBiomes(long l, GenLayer genlayer) {
         super(l);
         parent = genlayer;
-    }
-
-    public GenLayerEPBiomes(long seed) {
-        super(seed);
     }
 
     @Override
@@ -58,24 +54,28 @@ public class GenLayerEPBiomes extends GenLayer {
      */
     private int getBiomeAt(int mapX, int mapZ, int index) {
 
-        int regionX = (mapX + 4) >> 3;
-        int regionZ = (mapZ + 4) >> 3;
+//        int regionX = (mapX + 4) >> 3;
+//        int regionZ = (mapZ + 4) >> 3;
+//
+//        this.initChunkSeed(regionX, regionZ);
+//        int offset = this.nextInt(4);
+//
+//        // do we need to shuffle this better?
+//        // the current version just "rotates" the 4 key biomes
+//        switch ((index + offset) % 4) {
+////            case 0:
+////            default:
+////                return Biome.getIdForBiome(ModBiomes.BIOME_FIRE);
+////            case 1:
+////                return Biome.getIdForBiome(ModBiomes.BIOME_EARTH);
+////            case 2:
+////                return Biome.getIdForBiome(ModBiomes.BIOME_FIRE);
+////            case 3:
+////                return Biome.getIdForBiome(ModBiomes.BIOME_EARTH);
+////        }
 
-        this.initChunkSeed(regionX, regionZ);
-        int offset = this.nextInt(4);
+        // Just return fire biome until more are added.
+        return Biome.getIdForBiome(ModBiomes.BIOME_FIRE);
 
-        // do we need to shuffle this better?
-        // the current version just "rotates" the 4 key biomes
-        switch ((index + offset) % 4) {
-            case 0:
-            default:
-                return Biome.getIdForBiome(ModBiomes.BIOME_FIRE);
-            case 1:
-                return Biome.getIdForBiome(ModBiomes.BIOME_EARTH);
-            case 2:
-                return Biome.getIdForBiome(ModBiomes.BIOME_FIRE);
-            case 3:
-                return Biome.getIdForBiome(ModBiomes.BIOME_EARTH);
-        }
     }
 }

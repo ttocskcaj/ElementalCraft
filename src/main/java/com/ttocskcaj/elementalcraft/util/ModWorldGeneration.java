@@ -1,11 +1,8 @@
 package com.ttocskcaj.elementalcraft.util;
 
 import com.google.common.base.Predicate;
-import com.ttocskcaj.elementalcraft.ElementalCraft;
 import com.ttocskcaj.elementalcraft.init.ModBlocks;
-import net.minecraft.block.BlockStone;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -13,7 +10,6 @@ import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
-import javax.annotation.Nullable;
 import java.util.Random;
 
 public class ModWorldGeneration implements IWorldGenerator {
@@ -26,8 +22,8 @@ public class ModWorldGeneration implements IWorldGenerator {
         if (world.provider.getDimension() == 0) {
             generateOverworld(random, chunkX, chunkZ, world, chunkGenerator, chunkProvider);
         }
-        if (world.provider.getDimension() == Config.dimensionID) {
-            generateEP(random, chunkX, chunkZ, world, chunkGenerator, chunkProvider);
+        if (world.provider.getDimension() == Config.fireDimensionID) {
+            generateFirePlane(random, chunkX, chunkZ, world, chunkGenerator, chunkProvider);
         }
     }
 
@@ -37,7 +33,7 @@ public class ModWorldGeneration implements IWorldGenerator {
 
 
 
-    private void generateEP(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
+    private void generateFirePlane(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
         //@todo filter ore by biome.
         generateOre(ModBlocks.GARNET_ORE.getDefaultState(), world, random, chunkX * 16, chunkZ * 16, 3, 255, 2 + random.nextInt(3), 36);
     }

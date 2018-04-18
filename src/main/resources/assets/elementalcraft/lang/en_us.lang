@@ -2,12 +2,20 @@ item.elemental_fragment.name=Elemental Fragment
 item.crescentwand.name=CrescentWand
 item.ring_of_the_elements.name=Ring of the Elements
 
-itemGroup.elementalcraft = ElementalCraft
+itemGroup.elementalcraft=ElementalCraft
 
 tile.aether_ore.name=Elemental Ore
 tile.aether_block.name=Elemental Block
+tile.garnet_ore.name=Garnet Ore
 
 tile.solidified_energy_air.name=Elemental Air Block
 tile.solidified_energy_earth.name=Elemental Earth Block
 tile.solidified_energy_fire.name=Elemental Fire Block
-tile.solidified_energy_air.name=Elemental Water Block
+tile.solidified_energy_water.name=Elemental Water Block
+
+tile.rarefied_stone.name=Rarefied Stone
+tile.fire_stone.name=Fire Stone
+
+
+must_enter_world=You must enter a world to teleport to!
+dimension_not_found=Could not find dimension. Please ensure ID doesn't conflict with other mods.

@@ -1,22 +1,22 @@
-package com.ttocskcaj.elementalcraft.world.layers;
+package com.ttocskcaj.elementalcraft.world.fire.layers;
 
 import com.ttocskcaj.elementalcraft.init.ModBiomes;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
 
-public class GenLayerEP extends GenLayer {
+public class GenLayerFire extends GenLayer {
     private Biome[] biomes = new Biome[]{
             ModBiomes.BIOME_EARTH,
             ModBiomes.BIOME_FIRE
     };
 
-    public GenLayerEP(long seed, GenLayer parent) {
+    public GenLayerFire(long seed, GenLayer parent) {
         super(seed);
         parent = parent;
     }
 
-    public GenLayerEP(long seed) {
+    public GenLayerFire(long seed) {
         super(seed);
     }
 

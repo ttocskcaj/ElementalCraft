@@ -3,7 +3,9 @@ package com.ttocskcaj.elementalcraft.command;
 import com.google.common.collect.Lists;
 import com.sun.istack.internal.Nullable;
 import com.ttocskcaj.elementalcraft.ElementalCraft;
+import com.ttocskcaj.elementalcraft.util.Config;
 import com.ttocskcaj.elementalcraft.world.TeleporterEP;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
@@ -27,13 +29,13 @@ public class TeleportCommand extends CommandBase {
     @Override
     @Nonnull
     public String getName() {
-        return "ectp";
+        return "ElementalCraft Teleport";
     }
 
     @Override
     @Nonnull
     public String getUsage(@Nonnull ICommandSender sender) {
-        return "ectp";
+        return "ectp <home|earth|air|fire|water>";
     }
 
     @Override
@@ -46,7 +48,33 @@ public class TeleportCommand extends CommandBase {
     public void execute(@Nonnull MinecraftServer server, @Nonnull ICommandSender sender, @Nonnull String[] args) throws CommandException {
 
         if (sender instanceof EntityPlayer) {
-            TeleporterEP.switchDimensions((EntityPlayer) sender);
+            if (args.length < 1) {
+                throw new CommandException(I18n.format("must_enter_world"), this);
+            } else {
+                int dimension = 0;
+                switch (args[0]) {
+                    case "air":
+                        dimension = Config.airDimensionID;
+                        break;
+                    case "earth":
+                        dimension = Config.earthDimensionID;
+                        break;
+                    case "fire":
+                        dimension = Config.fireDimensionID;
+                        break;
+                    case "water":
+                        dimension = Config.waterDimensionID;
+                        break;
+                    default:
+                        dimension = 0;
+                }
+                try {
+                    TeleporterEP.gotToDimension((EntityPlayer) sender, dimension);
+                } catch (IllegalArgumentException e) {
+                    throw new CommandException(I18n.format("dimension_not_found"), this);
+                }
+
+            }
         }
     }
 

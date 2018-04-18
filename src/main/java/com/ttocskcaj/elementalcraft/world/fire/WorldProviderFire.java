@@ -1,4 +1,4 @@
-package com.ttocskcaj.elementalcraft.world;
+package com.ttocskcaj.elementalcraft.world.fire;
 
 import com.ttocskcaj.elementalcraft.init.ModBiomes;
 import com.ttocskcaj.elementalcraft.init.ModDimensions;
@@ -8,18 +8,19 @@ import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.biome.BiomeProviderSingle;
 import net.minecraft.world.chunk.Chunk;
+import net.minecraftforge.fml.common.Mod;
 
 import javax.annotation.Nullable;
 
-public class WorldProviderEP extends WorldProvider {
+public class WorldProviderFire extends WorldProvider {
     @Override
     public DimensionType getDimensionType() {
-        return ModDimensions.ELEMENTAL_PLANE;
+        return ModDimensions.FIRE;
     }
 
     @Override
-    public ChunkGeneratorEP createChunkGenerator() {
-        return new ChunkGeneratorEP(world, world.getSeed());
+    public ChunkGeneratorFire createChunkGenerator() {
+        return new ChunkGeneratorFire(world, world.getSeed());
     }
 
     @Override
@@ -34,12 +35,18 @@ public class WorldProviderEP extends WorldProvider {
 
     @Override
     public BiomeProvider getBiomeProvider() {
-        return new BiomeProviderEP(world);
+        return new BiomeProviderSingle(ModBiomes.BIOME_FIRE);
     }
 
     @Nullable
     @Override
     public String getSaveFolder() {
-        return "elemental-plane";
+        return "DIM-ec-fire";
+    }
+
+    @Override
+    public float calculateCelestialAngle(long worldTime, float partialTicks) {
+        // Permanent Night
+        return 0.5F;
     }
 }

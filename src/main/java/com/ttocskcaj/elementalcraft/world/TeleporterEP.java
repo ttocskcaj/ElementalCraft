@@ -8,6 +8,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.WorldServer;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 import javax.annotation.Nonnull;
 
@@ -38,26 +39,21 @@ public class TeleporterEP extends Teleporter {
     }
 
 
-    public static void switchDimensions(EntityPlayer player) {
-        int oldDimension = player.getEntityWorld().provider.getDimension();
-        int newDimension = 0;
+    public static void gotToDimension(EntityPlayer player, int dimension) throws IllegalArgumentException {
         int x = player.getPosition().getX();
         int y = 128;
         int z = player.getPosition().getZ();
 
-        if (oldDimension == Config.dimensionID) {
-            newDimension = 0;
-        } else newDimension = 50;
         EntityPlayerMP entityPlayerMP = (EntityPlayerMP) player;
         MinecraftServer server = player.getEntityWorld().getMinecraftServer();
 
-        WorldServer worldServer = server.getWorld(newDimension);
+        WorldServer worldServer = server.getWorld(dimension);
 
         if (worldServer == null || worldServer.getMinecraftServer() == null) { //Dimension doesn't exist
-            throw new IllegalArgumentException("Dimension: " + newDimension + " doesn't exist!");
+            throw new IllegalArgumentException("Dimension: " + dimension + " doesn't exist!");
         }
 
-        worldServer.getMinecraftServer().getPlayerList().transferPlayerToDimension(entityPlayerMP, newDimension, new TeleporterEP(worldServer, x, y, z));
+        worldServer.getMinecraftServer().getPlayerList().transferPlayerToDimension(entityPlayerMP, dimension, new TeleporterEP(worldServer, x, y, z));
         player.setPositionAndUpdate(x, y, z);
     }
 
