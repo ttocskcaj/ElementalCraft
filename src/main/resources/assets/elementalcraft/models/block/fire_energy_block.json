@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "elementalcraft:blocks/fire_energy_block",
+    "up": "elementalcraft:blocks/fire_energy_block",
+    "north": "elementalcraft:blocks/fire_energy_block",
+    "east": "elementalcraft:blocks/fire_energy_block",
+    "south": "elementalcraft:blocks/fire_energy_block",
+    "west": "elementalcraft:blocks/fire_energy_block",
+    "particle": "elementalcraft:blocks/fire_energy_block"
+  }
+}

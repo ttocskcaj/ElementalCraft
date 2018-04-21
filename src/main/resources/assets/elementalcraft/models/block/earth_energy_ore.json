@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "elementalcraft:blocks/earth_energy_ore",
+    "up": "elementalcraft:blocks/earth_energy_ore",
+    "north": "elementalcraft:blocks/earth_energy_ore",
+    "east": "elementalcraft:blocks/earth_energy_ore",
+    "south": "elementalcraft:blocks/earth_energy_ore",
+    "west": "elementalcraft:blocks/earth_energy_ore",
+    "particle": "elementalcraft:blocks/earth_energy_ore"
+  }
+}

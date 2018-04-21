@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "elementalcraft:blocks/onyx_ore",
+    "up": "elementalcraft:blocks/onyx_ore",
+    "north": "elementalcraft:blocks/onyx_ore",
+    "east": "elementalcraft:blocks/onyx_ore",
+    "south": "elementalcraft:blocks/onyx_ore",
+    "west": "elementalcraft:blocks/onyx_ore",
+    "particle": "elementalcraft:blocks/onyx_ore"
+  }
+}

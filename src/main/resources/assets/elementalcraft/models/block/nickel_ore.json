@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "elementalcraft:blocks/nickel_ore",
+    "up": "elementalcraft:blocks/nickel_ore",
+    "north": "elementalcraft:blocks/nickel_ore",
+    "east": "elementalcraft:blocks/nickel_ore",
+    "south": "elementalcraft:blocks/nickel_ore",
+    "west": "elementalcraft:blocks/nickel_ore",
+    "particle": "elementalcraft:blocks/nickel_ore"
+  }
+}

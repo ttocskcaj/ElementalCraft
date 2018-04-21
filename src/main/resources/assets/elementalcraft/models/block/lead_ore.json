@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "elementalcraft:blocks/lead_ore",
+    "up": "elementalcraft:blocks/lead_ore",
+    "north": "elementalcraft:blocks/lead_ore",
+    "east": "elementalcraft:blocks/lead_ore",
+    "south": "elementalcraft:blocks/lead_ore",
+    "west": "elementalcraft:blocks/lead_ore",
+    "particle": "elementalcraft:blocks/lead_ore"
+  }
+}

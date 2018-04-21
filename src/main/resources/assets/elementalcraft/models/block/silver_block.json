@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "elementalcraft:blocks/silver_block",
+    "up": "elementalcraft:blocks/silver_block",
+    "north": "elementalcraft:blocks/silver_block",
+    "east": "elementalcraft:blocks/silver_block",
+    "south": "elementalcraft:blocks/silver_block",
+    "west": "elementalcraft:blocks/silver_block",
+    "particle": "elementalcraft:blocks/silver_block"
+  }
+}

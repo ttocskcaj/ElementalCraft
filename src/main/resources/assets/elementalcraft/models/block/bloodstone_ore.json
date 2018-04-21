@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "elementalcraft:blocks/bloodstone_ore",
+    "up": "elementalcraft:blocks/bloodstone_ore",
+    "north": "elementalcraft:blocks/bloodstone_ore",
+    "east": "elementalcraft:blocks/bloodstone_ore",
+    "south": "elementalcraft:blocks/bloodstone_ore",
+    "west": "elementalcraft:blocks/bloodstone_ore",
+    "particle": "elementalcraft:blocks/bloodstone_ore"
+  }
+}

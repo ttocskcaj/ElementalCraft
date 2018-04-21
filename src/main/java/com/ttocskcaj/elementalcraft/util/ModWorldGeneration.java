@@ -35,7 +35,10 @@ public class ModWorldGeneration implements IWorldGenerator {
 
     private void generateFirePlane(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
         //@todo filter ore by biome.
-        generateOre(ModBlocks.GARNET_ORE.getDefaultState(), world, random, chunkX * 16, chunkZ * 16, 3, 255, 2 + random.nextInt(3), 36);
+        generateOre(ModBlocks.GARNET_ORE.getDefaultState(), world, random, chunkX * 16, chunkZ * 16, 23, 35, 1 + random.nextInt(4), 5);
+        generateOre(ModBlocks.BLOODSTONE_ORE.getDefaultState(), world, random, chunkX * 16, chunkZ * 16, 30, 50, 1 + random.nextInt(4), 6);
+        generateOre(ModBlocks.EARTH_ENERGY_ORE.getDefaultState(), world, random, chunkX * 16, chunkZ * 16, 5, 255, 8 + random.nextInt(8), 2);
+        generateOre(ModBlocks.NICKEL_ORE.getDefaultState(), world, random, chunkX * 16, chunkZ * 16, 5, 20, 2 + random.nextInt(3), 12);
     }
 
 

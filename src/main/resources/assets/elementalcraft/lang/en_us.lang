@@ -1,22 +1,108 @@
-item.elemental_fragment.name=Elemental Fragment
+# Machines
+
+
+# Magic Items
 item.crescentwand.name=CrescentWand
 item.ring_of_the_elements.name=Ring of the Elements
 
-itemGroup.elementalcraft=ElementalCraft
+# Tools
 
-tile.aether_ore.name=Elemental Ore
-tile.aether_block.name=Elemental Block
+# Misc
+itemGroup.elementalcraft.name=ElementalCraft
+
+# Air Gems
+tile.citrine_ore.name=Citrine Ore
+item.citrine.name=Citrine
+tile.azurite_ore.name=Azurite Ore
+item.azurite.name=Azurite
+
+# Earth Gems
+tile.jade_ore.name=Jade Ore
+item.jade.name=Jade
+tile.fluorite_ore.name=Fluorite Ore
+item.fluorite.name=Fluorite
+tile.onyx_ore.name=Onyx Ore
+item.onyx.name=Onyx
+
+# Fire Gems
+tile.bloodstone_ore.name=Bloodstone Ore
+item.bloodstone.name=Bloodstone
 tile.garnet_ore.name=Garnet Ore
+item.garnet.name=Garnet
 
-tile.solidified_energy_air.name=Elemental Air Block
-tile.solidified_energy_earth.name=Elemental Earth Block
-tile.solidified_energy_fire.name=Elemental Fire Block
-tile.solidified_energy_water.name=Elemental Water Block
+# Water Gems
+tile.aquamarine_ore.name=Aquamarine Ore
+tile.beryl_ore.name=Beryl Ore
 
+# Elemental Energy
+tile.air_energy_block.name=Air Energy Block
+tile.earth_energy_block.name=Earth Energy Block
+tile.fire_energy_block.name=Fire Energy Block
+tile.water_energy_block.name=Water Energy Block
+tile.aether_block.name=Aether Block
+
+# Elemental Shards
+item.aether_shard.name=Aether Shard
+item.air_energy_shard.name=Air Energy Shard
+item.earth_energy_shard.name=Earth Energy Shard
+item.fire_energy_shard.name=Fire Energy Shard
+item.water_energy_shard.name=Water Energy Shard
+
+# Elemental Ores
+tile.air_energy_ore.name=Air Energy Ore
+tile.earth_energy_ore.name=Earth Energy Ore
+tile.fire_energy_ore.name=Fire Energy Ore
+tile.water_energy_ore.name=Water Energy Ore
+tile.aether_ore.name=Elemental Ore
+
+# Crushed Elemental
+tile.crushed_aether.name=Crushed Aether
+
+# Biome Blocks
 tile.rarefied_stone.name=Rarefied Stone
 tile.fire_stone.name=Fire Stone
+tile.ash_block.name=Ash Block
 tile.air_stone.name=Air Stone
+tile.water_stone.name=Water Stone
+tile.earth_stone.name=Earth Stone
+tile.fertile_dirt.name=Fertile Dirt
+tile.fertile_grass.name=Fertile Grass
+tile.salt_block.name=Salt Block
 
+# Metal Ores
+tile.lead_ore.name=Lead Ore
+tile.nickel_ore.name=Nickel Ore
+tile.silver_ore.name=Silver Ore
+tile.tin_ore.name=Tin Ore
 
+# Crushed Metals
+item.crushed_lead.name=Crushed Lead
+item.crushed_nickel.name=Crushed Nickel
+item.crushed_silver.name=Crushed Silver
+item.crushed_tin.name=Crushed Tin
+item.crushed_steel.name=Crushed Steel
+
+# Metal Ingots
+item.lead_ingot.name=Lead Ingot
+item.nickel_ingot.name=Nickel Ingot
+item.silver_ingot.name=Silver Ingot
+item.tin_ingot.name=Tin Ingot
+item.steel_ingot.name=Steel Ingot
+
+# Metal Nuggets
+item.lead_nugget.name=Lead Nugget
+item.nickel_nugget.name=Nickel Nugget
+item.silver_nugget.name=Silver Nugget
+item.tin_nugget.name=Tin Nugget
+item.steel_nugget.name=Steel Nugget
+
+# Metal Blocks
+tile.lead_block.name=Lead Block
+tile.nickel_block.name=Nickel Block
+tile.silver_block.name=Silver Block
+tile.tin_block.name=Tin Block
+tile.steel_block.name=Steel Block
+
+# Error Messages
 must_enter_world=You must enter a world to teleport to!
-dimension_not_found=Could not find dimension. Please ensure ID doesn't conflict with other mods.
+dimension_not_found=Could not find dimension. Please ensure ID in config doesn't conflict with other mods.

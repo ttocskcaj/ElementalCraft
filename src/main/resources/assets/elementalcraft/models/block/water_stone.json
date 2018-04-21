@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "elementalcraft:blocks/water_stone",
+    "up": "elementalcraft:blocks/water_stone",
+    "north": "elementalcraft:blocks/water_stone",
+    "east": "elementalcraft:blocks/water_stone",
+    "south": "elementalcraft:blocks/water_stone",
+    "west": "elementalcraft:blocks/water_stone",
+    "particle": "elementalcraft:blocks/water_stone"
+  }
+}

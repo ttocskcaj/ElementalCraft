@@ -11,6 +11,6 @@ public class ElementalCraftTab extends CreativeTabs {
 
     @Override
     public ItemStack getTabIconItem() {
-        return new ItemStack(ModItems.ITEM_CRESCENT_WAND);
+        return new ItemStack(ModItems.CRESCENT_WAND);
     }
 }

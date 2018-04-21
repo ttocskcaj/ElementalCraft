@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "elementalcraft:blocks/fertile_dirt",
+    "up": "elementalcraft:blocks/fertile_dirt",
+    "north": "elementalcraft:blocks/fertile_dirt",
+    "east": "elementalcraft:blocks/fertile_dirt",
+    "south": "elementalcraft:blocks/fertile_dirt",
+    "west": "elementalcraft:blocks/fertile_dirt",
+    "particle": "elementalcraft:blocks/fertile_dirt"
+  }
+}

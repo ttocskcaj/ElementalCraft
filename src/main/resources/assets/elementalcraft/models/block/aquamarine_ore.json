@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "elementalcraft:blocks/aquamarine_ore",
+    "up": "elementalcraft:blocks/aquamarine_ore",
+    "north": "elementalcraft:blocks/aquamarine_ore",
+    "east": "elementalcraft:blocks/aquamarine_ore",
+    "south": "elementalcraft:blocks/aquamarine_ore",
+    "west": "elementalcraft:blocks/aquamarine_ore",
+    "particle": "elementalcraft:blocks/aquamarine_ore"
+  }
+}

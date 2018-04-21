@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "elementalcraft:blocks/tin_ore",
+    "up": "elementalcraft:blocks/tin_ore",
+    "north": "elementalcraft:blocks/tin_ore",
+    "east": "elementalcraft:blocks/tin_ore",
+    "south": "elementalcraft:blocks/tin_ore",
+    "west": "elementalcraft:blocks/tin_ore",
+    "particle": "elementalcraft:blocks/tin_ore"
+  }
+}
