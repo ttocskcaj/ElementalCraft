@@ -1,4 +1,4 @@
-package com.ttocskcaj.elementalcraft.world.fire.layers;
+package com.ttocskcaj.elementalcraft.world.layers;
 
 import com.ttocskcaj.elementalcraft.init.ModBiomes;
 import net.minecraft.world.biome.Biome;

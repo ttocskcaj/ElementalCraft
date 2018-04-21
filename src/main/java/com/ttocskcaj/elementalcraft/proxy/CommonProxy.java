@@ -99,6 +99,7 @@ public class CommonProxy {
 
         event.getRegistry().register(new ItemBlock(ModBlocks.RAREFIED_STONE).setRegistryName(ModBlocks.RAREFIED_STONE.getRegistryName()));
         event.getRegistry().register(new ItemBlock(ModBlocks.FIRE_STONE).setRegistryName(ModBlocks.FIRE_STONE.getRegistryName()));
+        event.getRegistry().register(new ItemBlock(ModBlocks.AIR_STONE).setRegistryName(ModBlocks.AIR_STONE.getRegistryName()));
 
     }
 
@@ -123,6 +124,7 @@ public class CommonProxy {
         // Generic
         event.getRegistry().register(ModBlocks.RAREFIED_STONE);
         event.getRegistry().register(ModBlocks.FIRE_STONE);
+        event.getRegistry().register(ModBlocks.AIR_STONE);
 
     }
 
@@ -131,6 +133,7 @@ public class CommonProxy {
         ElementalCraft.logger.info("Registering Biomes");
         event.getRegistry().register(ModBiomes.BIOME_FIRE);
         event.getRegistry().register(ModBiomes.BIOME_EARTH);
+        event.getRegistry().register(ModBiomes.BIOME_AIR);
         ModBiomes.init();
     }
 

@@ -1,6 +1,7 @@
 package com.ttocskcaj.elementalcraft.init;
 
 import com.ttocskcaj.elementalcraft.block.energy.*;
+import com.ttocskcaj.elementalcraft.block.generic.AirStone;
 import com.ttocskcaj.elementalcraft.block.generic.FireStone;
 import com.ttocskcaj.elementalcraft.block.generic.RarefiedStone;
 import com.ttocskcaj.elementalcraft.block.ore.*;
@@ -25,6 +26,7 @@ public class ModBlocks {
     // Generic
     public static final RarefiedStone RAREFIED_STONE = new RarefiedStone();
     public static final FireStone FIRE_STONE = new FireStone();
+    public static final AirStone AIR_STONE = new AirStone();
 
 
     @SideOnly(Side.CLIENT)
@@ -46,6 +48,7 @@ public class ModBlocks {
         // Generic
         RAREFIED_STONE.initModel();
         FIRE_STONE.initModel();
+        AIR_STONE.initModel();
     }
 
 }

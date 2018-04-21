@@ -15,6 +15,7 @@ tile.solidified_energy_water.name=Elemental Water Block
 
 tile.rarefied_stone.name=Rarefied Stone
 tile.fire_stone.name=Fire Stone
+tile.air_stone.name=Air Stone
 
 
 must_enter_world=You must enter a world to teleport to!

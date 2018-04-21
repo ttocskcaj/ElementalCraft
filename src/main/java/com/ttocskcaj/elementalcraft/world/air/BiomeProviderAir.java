@@ -1,4 +1,4 @@
-package com.ttocskcaj.elementalcraft.world.fire;
+package com.ttocskcaj.elementalcraft.world.air;
 
 import com.ttocskcaj.elementalcraft.init.ModBiomes;
 import com.ttocskcaj.elementalcraft.world.layers.GenLayerFire;
@@ -11,15 +11,15 @@ import net.minecraft.world.gen.layer.GenLayerVoronoiZoom;
 import net.minecraft.world.gen.layer.GenLayerZoom;
 
 
-public class BiomeProviderFire extends BiomeProvider {
+public class BiomeProviderAir extends BiomeProvider {
 
-    public BiomeProviderFire(World world) {
+    public BiomeProviderAir(World world) {
         super(world.getWorldInfo());
         allowedBiomes.clear();
-        allowedBiomes.add(ModBiomes.BIOME_FIRE);
+        allowedBiomes.add(ModBiomes.BIOME_AIR);
 
         getBiomesToSpawnIn().clear();
-        getBiomesToSpawnIn().add(ModBiomes.BIOME_FIRE);
+        getBiomesToSpawnIn().add(ModBiomes.BIOME_AIR);
     }
 
     @Override

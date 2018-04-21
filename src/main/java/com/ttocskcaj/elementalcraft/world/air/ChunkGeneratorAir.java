@@ -1,8 +1,7 @@
-package com.ttocskcaj.elementalcraft.world.fire;
+package com.ttocskcaj.elementalcraft.world.air;
 
 
 import com.ttocskcaj.elementalcraft.init.ModBlocks;
-import com.ttocskcaj.elementalcraft.world.gen.MapGenCavesFire;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
@@ -11,43 +10,36 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldEntitySpawner;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.*;
-import net.minecraft.world.gen.feature.WorldGenLakes;
-import net.minecraft.world.gen.structure.*;
-
 
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
 
-public class ChunkGeneratorFire implements IChunkGenerator {
-    private final Random rand;
-    private NoiseGeneratorOctaves minLimitPerlinNoise;
-    private NoiseGeneratorOctaves maxLimitPerlinNoise;
-    private NoiseGeneratorOctaves mainPerlinNoise;
-    private NoiseGeneratorPerlin surfaceNoise;
-    private NoiseGeneratorOctaves scaleNoise;
-    private NoiseGeneratorOctaves depthNoise;
-    private NoiseGeneratorOctaves forestNoise;
+@SuppressWarnings("Duplicates")
+public class ChunkGeneratorAir implements IChunkGenerator {
+    private final Random rand1;
+    private final Random rand2;
+    private final NoiseGeneratorPerlin surfaceNoise;
+    private final NoiseGeneratorOctaves scaleNoise;
+    private final NoiseGeneratorOctaves forestNoise;
+    public NoiseGeneratorOctaves depthNoise;
     private final World world;
     private final boolean mapFeaturesEnabled;
     private final WorldType terrainType;
-    private final double[] heightMap;
+    private double[] heightMapTop;
+    private double[] heightMapBottom;
     private final float[] biomeWeights;
 
     private IBlockState fillBlock;
     private IBlockState oceanBlock;
 
     private double[] depthBuffer = new double[256];
-    private MapGenCavesFire caveGenerator;
-    private MapGenMineshaft mineshaftGenerator;
-    private MapGenScatteredFeature scatteredFeatureGenerator;
-    private MapGenBase ravineGenerator;
-
 
     private Biome[] biomesForGeneration;
     double[] mainNoiseRegion;
@@ -55,14 +47,13 @@ public class ChunkGeneratorFire implements IChunkGenerator {
     double[] maxLimitRegion;
     double[] depthRegion;
 
-
-    private double depthNoiseScaleX = 200.0D;
-    private double depthNoiseScaleZ = 200.0D;
+    private double depthNoiseScaleX = 1000D;
+    private double depthNoiseScaleZ = 1000D;
     private double depthNoiseScaleExponent = 0.5D;
     private int coordScale = 684;
-    private int mainNoiseScaleX = 80;
-    private int mainNoiseScaleY = 160;
-    private int mainNoiseScaleZ = 80;
+    private int mainNoiseScaleX = 200;
+    private int mainNoiseScaleY = 80;
+    private int mainNoiseScaleZ = 200;
     private int heightScale = 684;
     private int biomeDepthOffSet = 0;
     private int biomeScaleOffset = 0;
@@ -73,28 +64,26 @@ public class ChunkGeneratorFire implements IChunkGenerator {
     private float biomeDepthWeight = 1.0F;
     private float biomeScaleWeight = 1.0F;
 
-    private int seaLevel = 20;
+    private MapGenBase caveGenerator = new MapGenCaves();
 
-    public ChunkGeneratorFire(World worldIn, long seed) {
 
-        caveGenerator = new MapGenCavesFire();
-        mineshaftGenerator = new MapGenMineshaft();
-        scatteredFeatureGenerator = new MapGenScatteredFeature();
-        ravineGenerator = new MapGenRavine();
+    public ChunkGeneratorAir(World worldIn, long seed) {
+
+        caveGenerator = net.minecraftforge.event.terraingen.TerrainGen.getModdedMapGen(caveGenerator, net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.CAVE);
 
         world = worldIn;
         mapFeaturesEnabled = true;
         terrainType = worldIn.getWorldInfo().getTerrainType();
-        rand = new Random(seed);
-        minLimitPerlinNoise = new NoiseGeneratorOctaves(this.rand, 16);
-        maxLimitPerlinNoise = new NoiseGeneratorOctaves(this.rand, 16);
-        mainPerlinNoise = new NoiseGeneratorOctaves(this.rand, 8);
-        surfaceNoise = new NoiseGeneratorPerlin(this.rand, 4);
-        scaleNoise = new NoiseGeneratorOctaves(this.rand, 10);
-        depthNoise = new NoiseGeneratorOctaves(this.rand, 16);
-        forestNoise = new NoiseGeneratorOctaves(this.rand, 8);
-        heightMap = new double[825];
+        rand1 = new Random(seed);
+        rand2 = new Random(seed * 32984375 / 2342355);
+
+        heightMapTop = new double[825];
+        heightMapBottom = new double[825];
         biomeWeights = new float[25];
+
+        surfaceNoise = new NoiseGeneratorPerlin(this.rand1, 4);
+        scaleNoise = new NoiseGeneratorOctaves(this.rand1, 10);
+        forestNoise = new NoiseGeneratorOctaves(this.rand1, 8);
 
         for (int i = -2; i <= 2; ++i) {
             for (int j = -2; j <= 2; ++j) {
@@ -103,10 +92,9 @@ public class ChunkGeneratorFire implements IChunkGenerator {
             }
         }
 
-        this.fillBlock = ModBlocks.FIRE_STONE.getDefaultState();
-        this.oceanBlock = Blocks.LAVA.getDefaultState();
-        worldIn.setSeaLevel(this.seaLevel);
-
+        this.fillBlock = ModBlocks.AIR_STONE.getDefaultState();
+        this.oceanBlock = Blocks.AIR.getDefaultState();
+        worldIn.setSeaLevel(0);
     }
 
     /**
@@ -122,17 +110,15 @@ public class ChunkGeneratorFire implements IChunkGenerator {
         this.biomesForGeneration = this.world.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, chunkX * 4 - 2, chunkZ * 4 - 2, 10, 10);
 
         // Get heightmap for this chunk
-        this.generateHeightmap(chunkX * 4, 0, chunkZ * 4);
+        this.heightMapTop = generateHeightmap(chunkX * 4, 0, chunkZ * 4, this.rand1);
 
         // Divide chunk along x axis
         for (int iX = 0; iX < 4; ++iX) {
-
             int j = iX * 5;
             int k = (iX + 1) * 5;
 
             // Divide chunk along z axis
             for (int iZ = 0; iZ < 4; ++iZ) {
-
                 int i1 = (j + iZ) * 33;
                 int j1 = (j + iZ + 1) * 33;
                 int k1 = (k + iZ) * 33;
@@ -142,16 +128,16 @@ public class ChunkGeneratorFire implements IChunkGenerator {
                 // Now have a 4 x 8 x 4 subchunk to work with.
                 for (int iY = 0; iY < 32; ++iY) {
                     // Get noise values from heightmap.
-                    double d1 = this.heightMap[i1 + iY];
-                    double d2 = this.heightMap[j1 + iY];
-                    double d3 = this.heightMap[k1 + iY];
-                    double d4 = this.heightMap[l1 + iY];
+                    double d1 = this.heightMapTop[i1 + iY];
+                    double d2 = this.heightMapTop[j1 + iY];
+                    double d3 = this.heightMapTop[k1 + iY];
+                    double d4 = this.heightMapTop[l1 + iY];
 
                     // Lerp values.
-                    double d5 = (this.heightMap[i1 + iY + 1] - d1) * 0.125D;
-                    double d6 = (this.heightMap[j1 + iY + 1] - d2) * 0.125D;
-                    double d7 = (this.heightMap[k1 + iY + 1] - d3) * 0.125D;
-                    double d8 = (this.heightMap[l1 + iY + 1] - d4) * 0.125D;
+                    double d5 = (this.heightMapTop[i1 + iY + 1] - d1) * 0.125D;
+                    double d6 = (this.heightMapTop[j1 + iY + 1] - d2) * 0.125D;
+                    double d7 = (this.heightMapTop[k1 + iY + 1] - d3) * 0.125D;
+                    double d8 = (this.heightMapTop[l1 + iY + 1] - d4) * 0.125D;
 
                     // Loop through each Y level in the subchunk
                     for (int jY = 0; jY < 8; ++jY) {
@@ -174,7 +160,7 @@ public class ChunkGeneratorFire implements IChunkGenerator {
                                     primer.setBlockState(iX * 4 + jX, iY * 8 + jY, iZ * 4 + jZ, this.fillBlock);
                                 }
                                 // If block is below sealevel, set to lava.
-                                else if (iY * 8 + jY < this.seaLevel) {
+                                else if (iY * 8 + jY < 0) {
                                     primer.setBlockState(iX * 4 + jX, iY * 8 + jY, iZ * 4 + jZ, this.oceanBlock);
                                 }
                             }
@@ -206,7 +192,7 @@ public class ChunkGeneratorFire implements IChunkGenerator {
                 Biome biome = biomesIn[iZ + iX * 16];
 
                 // Use the biome to replace blocks at this x, z coord (full y column).
-                biome.genTerrainBlocks(this.world, this.rand, primer, x * 16 + iX, z * 16 + iZ, this.depthBuffer[iZ + iX * 16]);
+                biome.genTerrainBlocks(this.world, this.rand1, primer, x * 16 + iX, z * 16 + iZ, this.depthBuffer[iZ + iX * 16]);
             }
         }
     }
@@ -214,62 +200,55 @@ public class ChunkGeneratorFire implements IChunkGenerator {
     /**
      * Generates the chunk at the specified position, from scratch
      */
-    public Chunk generateChunk(int chunkX, int chunkZ) {
-        this.rand.setSeed((long) chunkX * 341873128712L + (long) chunkZ * 132897987541L);
+    public Chunk generateChunk(int x, int z) {
 
+        this.rand1.setSeed((long) x * 341873128712L + (long) z * 132897987541L);
         ChunkPrimer chunkprimer = new ChunkPrimer();
+        this.generateTerrain(x, z, chunkprimer);
+        this.biomesForGeneration = this.world.getBiomeProvider().getBiomes(this.biomesForGeneration, x * 16, z * 16, 16, 16);
+        this.replaceBiomeBlocks(x, z, chunkprimer, this.biomesForGeneration);
 
-        this.generateTerrain(chunkX, chunkZ, chunkprimer);
+        this.caveGenerator.generate(this.world, x, z, chunkprimer);
 
-        this.biomesForGeneration = this.world.getBiomeProvider().getBiomes(this.biomesForGeneration, chunkX * 16, chunkZ * 16, 16, 16);
+        Chunk chunk = new Chunk(this.world, chunkprimer, x, z);
+        byte[] abyte = chunk.getBiomeArray();
 
-        this.replaceBiomeBlocks(chunkX, chunkZ, chunkprimer, this.biomesForGeneration);
-
-        this.caveGenerator.generate(this.world, chunkX, chunkZ, chunkprimer);
-        this.ravineGenerator.generate(this.world, chunkX, chunkZ, chunkprimer);
-        this.mineshaftGenerator.generate(this.world, chunkX, chunkZ, chunkprimer);
-
-
-        Chunk chunk = new Chunk(this.world, chunkprimer, chunkX, chunkZ);
-        byte[] aByte = chunk.getBiomeArray();
-
-        for (int i = 0; i < aByte.length; ++i) {
-            aByte[i] = (byte) Biome.getIdForBiome(this.biomesForGeneration[i]);
+        for (int i = 0; i < abyte.length; ++i) {
+            abyte[i] = (byte) Biome.getIdForBiome(this.biomesForGeneration[i]);
         }
 
         chunk.generateSkylightMap();
         return chunk;
     }
 
-    private void generateHeightmap(int offsetX, int offsetY, int offsetZ) {
-        // Get perlin noise for 5 chunk by 5 chunk area.
+    private double[] generateHeightmap(int x, int y, int z, Random random) {
+        double[] heightMap = new double[825];
+        NoiseGeneratorOctaves minLimitPerlinNoise = new NoiseGeneratorOctaves(random, 16);
+        NoiseGeneratorOctaves maxLimitPerlinNoise = new NoiseGeneratorOctaves(random, 16);
+        NoiseGeneratorOctaves mainPerlinNoise = new NoiseGeneratorOctaves(random, 8);
+        depthNoise = new NoiseGeneratorOctaves(random, 16);
 
-        // Noise         // Offset  // Size         // Scale
-        this.depthRegion = this.depthNoise.generateNoiseOctaves(this.depthRegion, offsetX, offsetZ, 5, 5, (double) this.depthNoiseScaleX, (double) this.depthNoiseScaleZ, (double) this.depthNoiseScaleExponent);
-        float coordScale = this.coordScale;
-        float heightScale = this.heightScale;
-        this.mainNoiseRegion = this.mainPerlinNoise.generateNoiseOctaves(this.mainNoiseRegion, offsetX, offsetY, offsetZ, 5, 33, 5, (double) (coordScale / this.mainNoiseScaleX), (double) (heightScale / this.mainNoiseScaleY), (double) (coordScale / this.mainNoiseScaleZ));
-        this.minLimitRegion = this.minLimitPerlinNoise.generateNoiseOctaves(this.minLimitRegion, offsetX, offsetY, offsetZ, 5, 33, 5, (double) coordScale, (double) heightScale, (double) coordScale);
-        this.maxLimitRegion = this.maxLimitPerlinNoise.generateNoiseOctaves(this.maxLimitRegion, offsetX, offsetY, offsetZ, 5, 33, 5, (double) coordScale, (double) heightScale, (double) coordScale);
+
+        this.depthRegion = this.depthNoise.generateNoiseOctaves(this.depthRegion, x, z, 5, 5, (double) this.depthNoiseScaleX, (double) this.depthNoiseScaleZ, (double) this.depthNoiseScaleExponent);
+        float f = this.coordScale;
+        float f1 = this.heightScale;
+        this.mainNoiseRegion = mainPerlinNoise.generateNoiseOctaves(this.mainNoiseRegion, x, y, z, 5, 33, 5, (double) (f / this.mainNoiseScaleX), (double) (f1 / this.mainNoiseScaleY), (double) (f / this.mainNoiseScaleZ));
+        this.minLimitRegion = minLimitPerlinNoise.generateNoiseOctaves(this.minLimitRegion, x, y, z, 5, 33, 5, (double) f, (double) f1, (double) f);
+        this.maxLimitRegion = maxLimitPerlinNoise.generateNoiseOctaves(this.maxLimitRegion, x, y, z, 5, 33, 5, (double) f, (double) f1, (double) f);
         int i = 0;
         int j = 0;
 
-        // Iterate through each chunk along X
-        for (int iX = 0; iX < 5; ++iX) {
-            // Iterate through each chunk along Z
-            for (int iZ = 0; iZ < 5; ++iZ) {
+        for (int k = 0; k < 5; ++k) {
+            for (int l = 0; l < 5; ++l) {
                 float f2 = 0.0F;
                 float f3 = 0.0F;
                 float f4 = 0.0F;
                 int i1 = 2;
+                Biome biome = this.biomesForGeneration[k + 2 + (l + 2) * 10];
 
-                // Get biome for this chunk
-                Biome biome = this.biomesForGeneration[iX + 2 + (iZ + 2) * 10];
-
-                // Scale for biomes
                 for (int j1 = -2; j1 <= 2; ++j1) {
                     for (int k1 = -2; k1 <= 2; ++k1) {
-                        Biome biome1 = this.biomesForGeneration[iX + j1 + 2 + (iZ + k1 + 2) * 10];
+                        Biome biome1 = this.biomesForGeneration[k + j1 + 2 + (l + k1 + 2) * 10];
                         float f5 = this.biomeDepthOffSet + biome1.getBaseHeight() * this.biomeDepthWeight;
                         float f6 = this.biomeScaleOffset + biome1.getHeightVariation() * this.biomeScaleWeight;
 
@@ -326,8 +305,8 @@ public class ChunkGeneratorFire implements IChunkGenerator {
                 d8 = d8 * (double) this.baseSize / 8.0D;
                 double d0 = (double) this.baseSize + d8 * 4.0D;
 
-                for (int iY = 0; iY < 33; ++iY) {
-                    double d1 = ((double) iY - d0) * (double) this.heightStretch * 128.0D / 256.0D / d9;
+                for (int l1 = 0; l1 < 33; ++l1) {
+                    double d1 = ((double) l1 - d0) * (double) this.heightStretch * 128.0D / 256.0D / d9;
 
                     if (d1 < 0.0D) {
                         d1 *= 4.0D;
@@ -338,42 +317,44 @@ public class ChunkGeneratorFire implements IChunkGenerator {
                     double d4 = (this.mainNoiseRegion[i] / 10.0D + 1.0D) / 2.0D;
                     double d5 = MathHelper.clampedLerp(d2, d3, d4) - d1;
 
-                    if (iY > 29) {
-                        double d6 = (double) ((float) (iY - 29) / 3.0F);
+                    if (l1 > 29) {
+                        double d6 = (double) ((float) (l1 - 29) / 3.0F);
                         d5 = d5 * (1.0D - d6) + -10.0D * d6;
                     }
 
-                    this.heightMap[i] = d5;
+                    heightMap[i] = d5;
                     ++i;
                 }
             }
         }
+        return heightMap;
     }
-
 
     /**
      * Generate initial structures in this chunk, e.g. mineshafts, temples, lakes, and dungeons
      */
-    public void populate(int chunkX, int chunkZ) {
+    public void populate(int x, int z) {
         BlockFalling.fallInstantly = true;
-        int worldX = chunkX * 16;
-        int worldZ = chunkZ * 16;
-        BlockPos blockpos = new BlockPos(worldX, 0, worldZ);
+        int i = x * 16;
+        int j = z * 16;
+        BlockPos blockpos = new BlockPos(i, 0, j);
         Biome biome = this.world.getBiome(blockpos.add(16, 0, 16));
-        this.rand.setSeed(this.world.getSeed());
-        long k = this.rand.nextLong() / 2L * 2L + 1L;
-        long l = this.rand.nextLong() / 2L * 2L + 1L;
-        this.rand.setSeed((long) chunkX * k + (long) chunkZ * l ^ this.world.getSeed());
-        ChunkPos chunkpos = new ChunkPos(chunkX, chunkZ);
+        this.rand1.setSeed(this.world.getSeed());
+        long k = this.rand1.nextLong() / 2L * 2L + 1L;
+        long l = this.rand1.nextLong() / 2L * 2L + 1L;
+        this.rand1.setSeed((long) x * k + (long) z * l ^ this.world.getSeed());
+        boolean flag = false;
+        ChunkPos chunkpos = new ChunkPos(x, z);
 
-        this.mineshaftGenerator.generateStructure(this.world, this.rand, chunkpos);
+        net.minecraftforge.event.ForgeEventFactory.onChunkPopulate(true, this, this.world, this.rand1, x, z, flag);
 
-        int i2 = this.rand.nextInt(16) + 8;
-        int l2 = this.rand.nextInt(this.rand.nextInt(248) + 8);
-        int k3 = this.rand.nextInt(16) + 8;
 
-        (new WorldGenLakes(Blocks.LAVA)).generate(this.world, this.rand, blockpos.add(i2, l2, k3));
-        biome.decorate(this.world, this.rand, new BlockPos(worldX, 0, worldZ));
+        biome.decorate(this.world, this.rand1, new BlockPos(i, 0, j));
+        if (net.minecraftforge.event.terraingen.TerrainGen.populate(this, this.world, this.rand1, x, z, flag, net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.ANIMALS))
+            WorldEntitySpawner.performWorldGenSpawning(this.world, biome, i + 8, j + 8, 16, 16, this.rand1);
+        blockpos = blockpos.add(8, 0, 8);
+
+        net.minecraftforge.event.ForgeEventFactory.onChunkPopulate(false, this, this.world, this.rand1, x, z, flag);
 
         BlockFalling.fallInstantly = false;
     }
@@ -388,47 +369,21 @@ public class ChunkGeneratorFire implements IChunkGenerator {
     // TODO: 16/04/2018 Mobs
     public List<Biome.SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos) {
         Biome biome = this.world.getBiome(pos);
-
-//        if (this.mapFeaturesEnabled) {
-//            if (creatureType == EnumCreatureType.MONSTER && this.scatteredFeatureGenerator.isSwampHut(pos)) {
-//                return this.scatteredFeatureGenerator.getMonsters();
-//            }
-//
-//            if (creatureType == EnumCreatureType.MONSTER && this.useMonuments && this.oceanMonumentGenerator.isPositionInStructure(this.world, pos)) {
-//                return this.oceanMonumentGenerator.getMonsters();
-//            }
-//        }
-//        return null;
         return biome.getSpawnableList(creatureType);
     }
 
     public boolean isInsideStructure(World worldIn, String structureName, BlockPos pos) {
-        if (!this.mapFeaturesEnabled) {
-            return false;
-        } else if ("Mineshaft".equals(structureName) && this.mineshaftGenerator != null) {
-            return this.mineshaftGenerator.isInsideStructure(pos);
-        } else {
-            return "Temple".equals(structureName) && this.scatteredFeatureGenerator != null ? this.scatteredFeatureGenerator.isInsideStructure(pos) : false;
-        }
+        return false;
     }
 
     @Nullable
     public BlockPos getNearestStructurePos(World worldIn, String structureName, BlockPos position, boolean findUnexplored) {
-        if (!this.mapFeaturesEnabled) {
-            return null;
-        } else if ("Mineshaft".equals(structureName) && this.mineshaftGenerator != null) {
-            return this.mineshaftGenerator.getNearestStructurePos(worldIn, position, findUnexplored);
-        } else {
-            return "Temple".equals(structureName) && this.scatteredFeatureGenerator != null ? this.scatteredFeatureGenerator.getNearestStructurePos(worldIn, position, findUnexplored) : null;
-        }
+        return null;
     }
 
-    /**
-     * Recreates data about structures intersecting given chunk (used for example by getPossibleCreatures), without
-     * placing any blocks. When called for the first time before any chunk is generated - also initializes the internal
-     * state needed by getPossibleCreatures.
-     */
+    @Override
     public void recreateStructures(Chunk chunkIn, int x, int z) {
-        this.mineshaftGenerator.generate(this.world, x, z, (ChunkPrimer) null);
+
     }
+
 }
