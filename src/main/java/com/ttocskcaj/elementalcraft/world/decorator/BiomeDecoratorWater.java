@@ -2,13 +2,10 @@ package com.ttocskcaj.elementalcraft.world.decorator;
 
 import com.ttocskcaj.elementalcraft.init.ModBlocks;
 import com.ttocskcaj.elementalcraft.world.generation.WorldGenPatches;
-import com.ttocskcaj.elementalcraft.world.generation.WorldGenerationOre;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeDecorator;
-import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
 import java.util.Random;

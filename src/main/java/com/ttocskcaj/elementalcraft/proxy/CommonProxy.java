@@ -9,10 +9,13 @@ import com.ttocskcaj.elementalcraft.init.ModBlocks;
 import com.ttocskcaj.elementalcraft.init.ModDimensions;
 import com.ttocskcaj.elementalcraft.init.ModItems;
 import com.ttocskcaj.elementalcraft.util.Config;
-import com.ttocskcaj.elementalcraft.world.generation.WorldGenerationOre;
+import com.ttocskcaj.elementalcraft.world.generation.WorldGenOre;
 import com.ttocskcaj.elementalcraft.world.type.WorldTypeWater;
 import net.minecraft.block.Block;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.Biome;
 
@@ -43,13 +46,16 @@ public class CommonProxy {
         config = new Configuration(new File(directory.getPath(), "elementalcraft.cfg"));
         Config.readConfig();
 
-        GameRegistry.registerWorldGenerator(new WorldGenerationOre(), 3);
+        GameRegistry.registerWorldGenerator(new WorldGenOre(), 3);
     }
 
     public void init() {
         ElementalCraft.logger.info("Common init");
         ModDimensions.init();
 
+        // Vanilla Furnace Recipes
+        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ModBlocks.AETHER_ORE), new ItemStack(ModItems.AETHER_SHARD), 1f);
+        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ModBlocks.GOLD_ORE), new ItemStack(Items.GOLD_INGOT), 1f);
     }
 
     public void postInit(FMLPostInitializationEvent event) {
