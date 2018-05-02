@@ -1,0 +1,73 @@
+package com.ttocskcaj.elementalcraft.world.gen;
+
+import com.google.common.base.Predicate;
+import com.ttocskcaj.elementalcraft.init.ModBlocks;
+import com.ttocskcaj.elementalcraft.util.Config;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
+import net.minecraft.world.gen.feature.WorldGenMinable;
+import net.minecraftforge.fml.common.IWorldGenerator;
+
+import java.util.Random;
+
+public class WorldGenerationOre implements IWorldGenerator {
+    private ElementalStoneTypesPredicate elementalStoneTypesPredicate;
+
+    public WorldGenerationOre() {
+        elementalStoneTypesPredicate = new ElementalStoneTypesPredicate();
+    }
+
+    @Override
+    public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
+        if (world.provider.getDimension() == 0) {
+            generateOverworld(random, chunkX, chunkZ, world, chunkGenerator, chunkProvider);
+        }
+        if (world.provider.getDimension() == Config.fireDimensionID) {
+            generateFirePlane(random, chunkX, chunkZ, world, chunkGenerator, chunkProvider);
+        }
+    }
+
+    private void generateOverworld(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
+        generateOre(ModBlocks.AETHER_ORE.getDefaultState(), world, random, chunkX * 16, chunkZ * 16, 3, 20, 1 + random.nextInt(4), 6);
+    }
+
+
+    private void generateFirePlane(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
+        generateOre(ModBlocks.GARNET_ORE.getDefaultState(), world, random, chunkX * 16, chunkZ * 16, 3, 250, 1 + random.nextInt(4), 5);
+        generateOre(ModBlocks.BLOODSTONE_ORE.getDefaultState(), world, random, chunkX * 16, chunkZ * 16, 3, 250, 1 + random.nextInt(4), 6);
+        generateOre(ModBlocks.FIRE_ENERGY_ORE.getDefaultState(), world, random, chunkX * 16, chunkZ * 16, 3, 250, 8 + random.nextInt(8), 2);
+        generateOre(ModBlocks.NICKEL_ORE.getDefaultState(), world, random, chunkX * 16, chunkZ * 16, 3, 250, 2 + random.nextInt(3), 8);
+        generateOre(ModBlocks.GOLD_ORE.getDefaultState(), world, random, chunkX * 16, chunkZ * 16, 3, 250, 2 + random.nextInt(3), 9);
+    }
+
+
+    private void generateOre(IBlockState ore, World world, Random random, int x, int z, int minY, int maxY, int size, int chances) {
+        int deltaY = maxY - minY;
+
+        for (int i = 0; i < chances; i++) {
+            BlockPos pos = new BlockPos(x + random.nextInt(16), minY + random.nextInt(deltaY), z + random.nextInt(16));
+
+            WorldGenMinable generator = new WorldGenMinable(ore, size, elementalStoneTypesPredicate);
+            generator.generate(world, random, pos);
+        }
+    }
+
+
+    static class ElementalStoneTypesPredicate implements Predicate<IBlockState> {
+        private ElementalStoneTypesPredicate() {
+        }
+
+        public boolean apply(IBlockState inputState) {
+            if (inputState != null && inputState.getBlock() == ModBlocks.FIRE_STONE) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
+}

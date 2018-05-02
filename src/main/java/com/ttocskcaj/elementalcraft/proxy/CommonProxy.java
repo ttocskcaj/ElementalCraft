@@ -1,16 +1,18 @@
 package com.ttocskcaj.elementalcraft.proxy;
 
 import com.ttocskcaj.elementalcraft.ElementalCraft;
-import com.ttocskcaj.elementalcraft.world.fire.WorldTypeFire;
+import com.ttocskcaj.elementalcraft.world.type.WorldTypeAir;
+import com.ttocskcaj.elementalcraft.world.type.WorldTypeEarth;
+import com.ttocskcaj.elementalcraft.world.type.WorldTypeFire;
 import com.ttocskcaj.elementalcraft.init.ModBiomes;
 import com.ttocskcaj.elementalcraft.init.ModBlocks;
 import com.ttocskcaj.elementalcraft.init.ModDimensions;
 import com.ttocskcaj.elementalcraft.init.ModItems;
 import com.ttocskcaj.elementalcraft.util.Config;
-import com.ttocskcaj.elementalcraft.util.ModWorldGeneration;
+import com.ttocskcaj.elementalcraft.world.generation.WorldGenerationOre;
+import com.ttocskcaj.elementalcraft.world.type.WorldTypeWater;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.Biome;
 
@@ -29,7 +31,10 @@ public class CommonProxy {
     // Config instance
     public static Configuration config;
 
-    public static WorldType elementalPlane = new WorldTypeFire();
+    public static WorldType firePlane = new WorldTypeFire();
+    public static WorldType earthPlane = new WorldTypeEarth();
+    public static WorldType airPlane = new WorldTypeAir();
+    public static WorldType waterPlane = new WorldTypeWater();
 
     public void preInit(FMLPreInitializationEvent event) {
         ElementalCraft.logger.info("Common preInit");
@@ -38,9 +43,7 @@ public class CommonProxy {
         config = new Configuration(new File(directory.getPath(), "elementalcraft.cfg"));
         Config.readConfig();
 
-        GameRegistry.registerWorldGenerator(new ModWorldGeneration(), 3);
-
-
+        GameRegistry.registerWorldGenerator(new WorldGenerationOre(), 3);
     }
 
     public void init() {
@@ -75,6 +78,7 @@ public class CommonProxy {
         event.getRegistry().register(ModBiomes.BIOME_FIRE);
         event.getRegistry().register(ModBiomes.BIOME_EARTH);
         event.getRegistry().register(ModBiomes.BIOME_AIR);
+        event.getRegistry().register(ModBiomes.BIOME_WATER);
         ModBiomes.init();
     }
 

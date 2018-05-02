@@ -24,7 +24,7 @@ public class BlockTinOre extends Block {
     @SideOnly(Side.CLIENT)
     public BlockRenderLayer getBlockLayer()
     {
-        return BlockRenderLayer.SOLID;
+        return BlockRenderLayer.TRANSLUCENT;
     }
 
     @SideOnly(Side.CLIENT)

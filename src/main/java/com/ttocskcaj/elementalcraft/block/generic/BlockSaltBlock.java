@@ -2,6 +2,7 @@ package com.ttocskcaj.elementalcraft.block.generic;
 
 import com.ttocskcaj.elementalcraft.ElementalCraft;
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -19,6 +20,7 @@ public class BlockSaltBlock extends Block {
         setCreativeTab(ElementalCraft.creativeTab);
         setHardness(0.5f);
         setHarvestLevel("shovel", 0);
+        setSoundType(SoundType.SAND);
     }
 
     @SideOnly(Side.CLIENT)
