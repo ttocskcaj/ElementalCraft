@@ -2,6 +2,7 @@ package com.ttocskcaj.elementalcraft.block.generic;
 
 import com.ttocskcaj.elementalcraft.ElementalCraft;
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -20,7 +21,8 @@ public class BlockAirStone extends Block {
         setHardness(1f);
         setResistance(1f);
         setHarvestLevel("pickaxe", 0);
-//        setLightLevel(0.01f);
+        setSoundType(SoundType.CLOTH);
+
     }
 
     @SideOnly(Side.CLIENT)

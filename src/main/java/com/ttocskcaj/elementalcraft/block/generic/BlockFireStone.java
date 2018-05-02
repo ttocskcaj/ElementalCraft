@@ -20,7 +20,6 @@ public class BlockFireStone extends Block {
         setHardness(5f);
         setResistance(3f);
         setHarvestLevel("pickaxe", 0);
-//        setLightLevel(0.01f);
     }
 
     @SideOnly(Side.CLIENT)
@@ -33,4 +32,5 @@ public class BlockFireStone extends Block {
     public void initModel() {
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), 0, new ModelResourceLocation(getRegistryName(), "inventory"));
     }
+
 }

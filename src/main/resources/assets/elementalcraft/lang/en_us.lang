@@ -8,7 +8,7 @@ item.ring_of_the_elements.name=Ring of the Elements
 # Tools
 
 # Misc
-itemGroup.elementalcraft.name=ElementalCraft
+itemGroup.elementalcraft=ElementalCraft
 
 # Air Gems
 tile.citrine_ore.name=Citrine Ore
@@ -62,6 +62,7 @@ tile.crushed_aether.name=Crushed Aether
 tile.rarefied_stone.name=Rarefied Stone
 tile.fire_stone.name=Fire Stone
 tile.ash_block.name=Ash Block
+tile.charred_stone.name=Charred Stone
 tile.air_stone.name=Air Stone
 tile.water_stone.name=Water Stone
 tile.earth_stone.name=Earth Stone

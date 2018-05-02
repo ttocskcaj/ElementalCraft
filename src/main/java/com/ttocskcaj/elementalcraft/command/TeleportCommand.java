@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import com.sun.istack.internal.Nullable;
 import com.ttocskcaj.elementalcraft.ElementalCraft;
 import com.ttocskcaj.elementalcraft.util.Config;
-import com.ttocskcaj.elementalcraft.world.TeleporterEP;
+import com.ttocskcaj.elementalcraft.util.TeleporterEP;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
@@ -65,8 +65,6 @@ public class TeleportCommand extends CommandBase {
                     case "water":
                         dimension = Config.waterDimensionID;
                         break;
-                    default:
-                        dimension = 0;
                 }
                 try {
                     TeleporterEP.gotToDimension((EntityPlayer) sender, dimension);

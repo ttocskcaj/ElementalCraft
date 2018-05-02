@@ -7,7 +7,10 @@ import net.minecraft.item.ItemStack;
 
 public class ElementalCraftTab extends CreativeTabs {
     public ElementalCraftTab() {
-        super(ElementalCraft.MOD_ID);    }
+        super("elementalcraft");
+
+
+    }
 
     @Override
     public ItemStack getTabIconItem() {

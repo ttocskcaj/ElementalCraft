@@ -20,7 +20,6 @@ public class BlockWaterStone extends Block {
         setHardness(5f);
         setResistance(3f);
         setHarvestLevel("pickaxe", 0);
-//        setLightLevel(0.01f);
     }
 
     @SideOnly(Side.CLIENT)

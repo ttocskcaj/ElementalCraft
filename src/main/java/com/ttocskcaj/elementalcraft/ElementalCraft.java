@@ -3,6 +3,9 @@ package com.ttocskcaj.elementalcraft;
 import com.ttocskcaj.elementalcraft.command.TeleportCommand;
 import com.ttocskcaj.elementalcraft.proxy.CommonProxy;
 import com.ttocskcaj.elementalcraft.util.ElementalCraftTab;
+import net.minecraft.block.BlockFire;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -33,6 +36,7 @@ public class ElementalCraft {
     public void preInit(FMLPreInitializationEvent event) {
         logger = event.getModLog();
         proxy.preInit(event);
+
     }
 
     @EventHandler
