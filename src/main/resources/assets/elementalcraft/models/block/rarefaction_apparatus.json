@@ -1,0 +1,9 @@
+{
+  "parent": "block/orientable",
+  "textures":
+  {
+    "top": "elementalcraft:blocks/rarefaction_apparatus_top",
+    "front": "elementalcraft:blocks/rarefaction_apparatus_front_off",
+    "side": "elementalcraft:blocks/rarefaction_apparatus_side1"
+  }
+}

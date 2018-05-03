@@ -3,6 +3,7 @@ package com.ttocskcaj.elementalcraft.init;
 import com.ttocskcaj.elementalcraft.ElementalCraft;
 import com.ttocskcaj.elementalcraft.block.energy.*;
 import com.ttocskcaj.elementalcraft.block.generic.*;
+import com.ttocskcaj.elementalcraft.block.machine.BlockMachineBase;
 import com.ttocskcaj.elementalcraft.block.metal.BlockLead;
 import com.ttocskcaj.elementalcraft.block.metal.BlockNickel;
 import com.ttocskcaj.elementalcraft.block.metal.BlockSilver;
@@ -68,6 +69,8 @@ public class ModBlocks {
     public static final BlockBurntBush BURNT_BUSH = new BlockBurntBush();
     public static final BlockFireCactus FIRE_CACTUS = new BlockFireCactus();
 
+    // Machines
+    public static final BlockMachineBase RAREFACTION_APPARATUS = (BlockMachineBase) new BlockMachineBase().setRegistryName("rarefaction_apparatus").setUnlocalizedName("rarefaction_apparatus");
 
     @SideOnly(Side.CLIENT)
     public static void initModels() {
@@ -121,6 +124,8 @@ public class ModBlocks {
         BURNT_BUSH.initModel();
         FIRE_CACTUS.initModel();
 
+        // Machines
+        RAREFACTION_APPARATUS.initModel();
     }
 
     public static void register(IForgeRegistry<Block> registry) {
@@ -175,6 +180,9 @@ public class ModBlocks {
         // Plants
         registry.register(BURNT_BUSH);
         registry.register(FIRE_CACTUS);
+
+        // Machines
+        registry.register(RAREFACTION_APPARATUS);
 
     }
 }

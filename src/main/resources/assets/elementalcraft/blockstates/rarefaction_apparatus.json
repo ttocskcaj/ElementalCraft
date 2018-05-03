@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "normal": {
+      "model": "elementalcraft:rarefaction_apparatus"
+    },
+    "facing=north": {
+      "model": "elementalcraft:rarefaction_apparatus"
+    },
+    "facing=south": {
+      "model": "elementalcraft:rarefaction_apparatus",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "elementalcraft:rarefaction_apparatus",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "elementalcraft:rarefaction_apparatus",
+      "y": 90
+    }
+  }
+}

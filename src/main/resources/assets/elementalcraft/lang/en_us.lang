@@ -104,6 +104,9 @@ tile.silver_block.name=Silver Block
 tile.tin_block.name=Tin Block
 tile.steel_block.name=Steel Block
 
+# Machines
+tile.rarefaction_apparatus=Rarefaction Apparatus
+
 # Error Messages
 must_enter_world=You must enter a world to teleport to!
 dimension_not_found=Could not find dimension. Please ensure ID in config doesn't conflict with other mods.

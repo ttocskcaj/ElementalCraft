@@ -143,5 +143,9 @@ public class ModItems {
         registry.register(new ItemBlock(ModBlocks.BURNT_BUSH).setRegistryName(ModBlocks.BURNT_BUSH.getRegistryName()));
         registry.register(new ItemBlock(ModBlocks.FIRE_CACTUS).setRegistryName(ModBlocks.FIRE_CACTUS.getRegistryName()));
 
+        // Machines
+        registry.register(new ItemBlock(ModBlocks.RAREFACTION_APPARATUS).setRegistryName(ModBlocks.RAREFACTION_APPARATUS.getRegistryName()));
+
+
     }
 }
