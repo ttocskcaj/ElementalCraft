@@ -118,9 +118,6 @@ public class ModItems {
         registry.register(new ItemBlock(ModBlocks.SILVER_BLOCK).setRegistryName(ModBlocks.SILVER_BLOCK.getRegistryName()));
         registry.register(new ItemBlock(ModBlocks.TIN_BLOCK).setRegistryName(ModBlocks.TIN_BLOCK.getRegistryName()));
 
-        // Ores
-        registry.register(new ItemBlock(ModBlocks.AETHER_ORE).setRegistryName(ModBlocks.AETHER_ORE.getRegistryName()));
-
         // Plants
         registry.register(new ItemBlock(ModBlocks.BURNT_BUSH).setRegistryName(ModBlocks.BURNT_BUSH.getRegistryName()));
         registry.register(new ItemBlock(ModBlocks.FIRE_CACTUS).setRegistryName(ModBlocks.FIRE_CACTUS.getRegistryName()));

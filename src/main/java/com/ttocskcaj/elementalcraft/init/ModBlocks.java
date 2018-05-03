@@ -22,7 +22,7 @@ public class ModBlocks {
     public static BlockAirOre airOre;
     public static BlockFireOre fireOre;
     public static BlockWaterOre waterOre;
-    public static final BlockAetherOre AETHER_ORE = new BlockAetherOre();
+    public static BlockOverworldOre overworldOre;
 
     // Energy Blocks
     public static final BlockAether AETHER_BLOCK = new BlockAether();
@@ -70,6 +70,9 @@ public class ModBlocks {
 
         waterOre = new BlockWaterOre();
         waterOre.preInit();
+
+        overworldOre = new BlockOverworldOre();
+        overworldOre.preInit();
     }
 
     public static void init(){
@@ -77,6 +80,7 @@ public class ModBlocks {
         earthOre.init();
         fireOre.init();
         waterOre.init();
+        overworldOre.init();
     }
 
     @SideOnly(Side.CLIENT)
@@ -86,7 +90,7 @@ public class ModBlocks {
         earthOre.initModels();
         fireOre.initModels();
         waterOre.initModels();
-        AETHER_ORE.initModel();
+        overworldOre.initModels();
 
         // Energy
         AETHER_BLOCK.initModel();
@@ -123,9 +127,6 @@ public class ModBlocks {
 
     public static void register(IForgeRegistry<Block> registry) {
         ElementalCraft.logger.info("Registering Blocks");
-
-        // Ores
-        registry.register(AETHER_ORE);
 
         // Energy
         registry.register(AETHER_BLOCK);

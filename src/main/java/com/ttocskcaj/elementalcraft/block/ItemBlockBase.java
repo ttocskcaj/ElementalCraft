@@ -1,9 +1,6 @@
 package com.ttocskcaj.elementalcraft.block;
 
-import com.ttocskcaj.elementalcraft.block.ore.BlockAirOre;
-import com.ttocskcaj.elementalcraft.block.ore.BlockEarthOre;
-import com.ttocskcaj.elementalcraft.block.ore.BlockFireOre;
-import com.ttocskcaj.elementalcraft.block.ore.BlockWaterOre;
+import com.ttocskcaj.elementalcraft.block.ore.*;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -30,6 +27,9 @@ public class ItemBlockBase extends ItemBlock {
 
             case "elementalcraft:water_ore":
                 return "tile.ore." + BlockWaterOre.Type.byMetadata(stack.getMetadata()).getName();
+
+            case "elementalcraft:ore":
+                return "tile.ore." + BlockOverworldOre.Type.byMetadata(stack.getMetadata()).getName();
         }
         return null;
     }

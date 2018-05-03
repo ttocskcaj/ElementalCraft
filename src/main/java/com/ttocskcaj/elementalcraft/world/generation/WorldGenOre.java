@@ -1,10 +1,8 @@
 package com.ttocskcaj.elementalcraft.world.generation;
 
-import com.google.common.base.Predicate;
+import com.ttocskcaj.elementalcraft.block.ore.BlockOverworldOre;
 import com.ttocskcaj.elementalcraft.init.ModBlocks;
-import com.ttocskcaj.elementalcraft.util.Config;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -14,13 +12,15 @@ import net.minecraftforge.fml.common.IWorldGenerator;
 
 import java.util.Random;
 
+import static com.ttocskcaj.elementalcraft.block.ore.BlockOverworldOre.VARIANT;
+
 public class WorldGenOre implements IWorldGenerator {
 
 
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
         if (world.provider.getDimension() == 0) {
-            generateOre(ModBlocks.AETHER_ORE.getDefaultState(), world, random, chunkX * 16, chunkZ * 16, 3, 20, 8, 3);
+            generateOre(ModBlocks.overworldOre.getDefaultState().withProperty(VARIANT, BlockOverworldOre.Type.AETHER), world, random, chunkX * 16, chunkZ * 16, 3, 20, 8, 3);
         }
     }
 

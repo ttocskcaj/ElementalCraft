@@ -1,6 +1,6 @@
 package com.ttocskcaj.elementalcraft.block.ore;
 
-import com.ttocskcaj.elementalcraft.block.BlockBase;
+import com.ttocskcaj.elementalcraft.block.BlockVariantsBase;
 import com.ttocskcaj.elementalcraft.init.ModItems;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
@@ -8,17 +8,12 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
@@ -27,7 +22,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.Random;
 
-public class BlockFireOre extends BlockBase {
+public class BlockFireOre extends BlockVariantsBase {
     public static final PropertyEnum<Type> VARIANT = PropertyEnum.create("type", Type.class);
     public static ItemStack oreBloodstone;
     public static ItemStack oreGarnet;
@@ -35,12 +30,6 @@ public class BlockFireOre extends BlockBase {
     public static ItemStack oreNickel;
     public static ItemStack oreFireEnergy;
 
-
-    @Override
-    public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-        IBlockState newState = getStateFromMeta(stack.getMetadata());
-        worldIn.setBlockState(pos, newState);
-    }
 
     public BlockFireOre() {
         super(Material.ROCK);
@@ -69,7 +58,6 @@ public class BlockFireOre extends BlockBase {
         }
     }
 
-    /* TYPE METHODS */
     @Override
     public IBlockState getStateFromMeta(int meta) {
         return this.getDefaultState().withProperty(VARIANT, Type.byMetadata(meta));
@@ -143,25 +131,11 @@ public class BlockFireOre extends BlockBase {
     public int quantityDropped(IBlockState state, int fortune, Random random) {
         Type variant = state.getValue(VARIANT);
         if (variant.dropsGem()) {
-            if (fortune > 0) {
-                int i = random.nextInt(fortune + 2) - 1;
-                if (i < 0) {
-                    i = 0;
-                }
-
-                return this.quantityDropped(random) * (i + 1);
-            } else {
-                return this.quantityDropped(random);
-            }
+            return this.quantityDroppedWithBonus(fortune, random);
         }
-        return super.quantityDropped(state, fortune, random);
+        return 1;
     }
 
-    @Override
-    public int getExpDrop(IBlockState state, IBlockAccess world, BlockPos pos, int fortune) {
-        Random rand = world instanceof World ? ((World) world).rand : new Random();
-        return MathHelper.getInt(rand, 1, 3);
-    }
     public enum Type implements IStringSerializable {
         BLOODSTONE(0, "bloodstone", true),
         GARNET(1, "garnet", true),

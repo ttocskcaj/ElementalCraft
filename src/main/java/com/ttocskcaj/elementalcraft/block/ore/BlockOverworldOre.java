@@ -1,7 +1,6 @@
 package com.ttocskcaj.elementalcraft.block.ore;
 
 import com.ttocskcaj.elementalcraft.block.BlockVariantsBase;
-import com.ttocskcaj.elementalcraft.init.ModItems;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -10,7 +9,6 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.client.model.ModelLoader;
@@ -21,27 +19,18 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.Random;
 
-public class BlockEarthOre extends BlockVariantsBase {
+public class BlockOverworldOre extends BlockVariantsBase {
     public static final PropertyEnum<Type> VARIANT = PropertyEnum.create("type", Type.class);
-    public static ItemStack oreJade;
-    public static ItemStack oreOnyx;
-    public static ItemStack oreFluorite;
-    public static ItemStack oreLead;
-    public static ItemStack oreEarthEnergy;
+    public static ItemStack oreAether;
 
-    public BlockEarthOre() {
+    public BlockOverworldOre() {
         super(Material.ROCK);
-        setUnlocalizedName("earth_ore");
+        setUnlocalizedName("ore");
         setHardness(3.0F);
         setResistance(5.0F);
 
-        setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, Type.JADE));
-
-        setHarvestLevel("pickaxe", 1, getStateFromMeta(Type.JADE.getMetadata()));
-        setHarvestLevel("pickaxe", 1, getStateFromMeta(Type.ONYX.getMetadata()));
-        setHarvestLevel("pickaxe", 1, getStateFromMeta(Type.FLUORITE.getMetadata()));
-        setHarvestLevel("pickaxe", 1, getStateFromMeta(Type.LEAD.getMetadata()));
-        setHarvestLevel("pickaxe", 2, getStateFromMeta(Type.EARTH_ENERGY.getMetadata()));
+        setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, Type.AETHER));
+        setHarvestLevel("pickaxe", 1, getStateFromMeta(Type.AETHER.getMetadata()));
     }
 
     @Override
@@ -79,70 +68,35 @@ public class BlockEarthOre extends BlockVariantsBase {
     }
 
     public boolean preInit() {
-        this.setRegistryName("earth_ore");
+        this.setRegistryName("ore");
         ForgeRegistries.BLOCKS.register(this);
 
         ItemBlockOre itemBlock = new ItemBlockOre(this);
         itemBlock.setRegistryName(this.getRegistryName());
         ForgeRegistries.ITEMS.register(itemBlock);
 
-        oreJade = new ItemStack(this, 1, Type.JADE.getMetadata());
-        oreOnyx = new ItemStack(this, 1, Type.ONYX.getMetadata());
-        oreFluorite = new ItemStack(this, 1, Type.FLUORITE.getMetadata());
-        oreLead = new ItemStack(this, 1, Type.LEAD.getMetadata());
-        oreEarthEnergy = new ItemStack(this, 1, Type.EARTH_ENERGY.getMetadata());
+        oreAether = new ItemStack(this, 1, Type.AETHER.getMetadata());
 
-        OreDictionary.registerOre("oreJade", oreJade);
-        OreDictionary.registerOre("oreOnyx", oreOnyx);
-        OreDictionary.registerOre("oreFluorite", oreFluorite);
-        OreDictionary.registerOre("oreLead", oreLead);
-        OreDictionary.registerOre("oreEarthEnergy", oreEarthEnergy);
-
+        OreDictionary.registerOre("oreAether", oreAether);
 
         return true;
     }
 
     public boolean init() {
-        FurnaceRecipes.instance().addSmeltingRecipe(oreJade, new ItemStack(ModItems.JADE), 0.5f);
-        FurnaceRecipes.instance().addSmeltingRecipe(oreOnyx, new ItemStack(ModItems.ONYX), 0.5f);
-        FurnaceRecipes.instance().addSmeltingRecipe(oreFluorite, new ItemStack(ModItems.FLUORITE), 0.5f);
-//        FurnaceRecipes.instance().addSmeltingRecipe(oreLead, new ItemStack(ModItems.LE), 0.5f); TODO: Lead ingot.
-
         return true;
-    }
-
-    @Override
-    public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-        Type variant = state.getValue(VARIANT);
-        if (variant.dropsGem()) {
-            switch (variant) {
-                case JADE:
-                    return ModItems.JADE;
-                case ONYX:
-                    return ModItems.ONYX;
-                case FLUORITE:
-                    return ModItems.FLUORITE;
-            }
-        }
-        return super.getItemDropped(state, rand, fortune);
     }
 
     @Override
     public int quantityDropped(IBlockState state, int fortune, Random random) {
         Type variant = state.getValue(VARIANT);
         if (variant.dropsGem()) {
-            return this.quantityDroppedWithBonus(fortune, random);
+            return quantityDroppedWithBonus(fortune, random);
         }
         return 1;
     }
 
     public enum Type implements IStringSerializable {
-        JADE(0, "jade", true),
-        ONYX(1, "onyx", true),
-        FLUORITE(2, "fluorite", true),
-        LEAD(3, "lead", false),
-        EARTH_ENERGY(4, "earth_energy", false);
-
+        AETHER(0, "aether", false);
         private static final Type[] METADATA_LOOKUP = new Type[values().length];
         private final int metadata;
         private final String name;
@@ -165,8 +119,8 @@ public class BlockEarthOre extends BlockVariantsBase {
             return this.name;
         }
 
-        public Boolean dropsGem(){
-            return dropsGem;
+        public Boolean dropsGem() {
+            return this.dropsGem;
         }
 
         public static Type byMetadata(int metadata) {
@@ -183,5 +137,4 @@ public class BlockEarthOre extends BlockVariantsBase {
             }
         }
     }
-
 }

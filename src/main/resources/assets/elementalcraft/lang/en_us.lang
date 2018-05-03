@@ -4,6 +4,7 @@ item.ring_of_the_elements.name=Ring of the Elements
 
 # Misc
 itemGroup.elementalcraft=ElementalCraft
+tile.ore.aether.name=Aether Ore
 
 # Air Ore
 tile.ore.citrine.name=Citrine Ore
@@ -77,7 +78,6 @@ tile.earth_stone.name=Earth Stone
 tile.fertile_dirt.name=Fertile Dirt
 tile.fertile_grass.name=Fertile Grass
 tile.salt_block.name=Salt Block
-
 
 # Crushed Metals
 item.crushed_lead.name=Crushed Lead
