@@ -1,38 +1,53 @@
-# Machines
-
-
 # Magic Items
 item.crescentwand.name=CrescentWand
 item.ring_of_the_elements.name=Ring of the Elements
 
-# Tools
-
 # Misc
 itemGroup.elementalcraft=ElementalCraft
 
+# Air Ore
+tile.ore.citrine.name=Citrine Ore
+tile.ore.azurite.name=Azurite Ore
+tile.ore.iron.name=Iron Ore
+tile.ore.tin.name=Tin Ore
+tile.ore.air_energy.name=Air Energy Ore
+
 # Air Gems
-tile.citrine_ore.name=Citrine Ore
 item.citrine.name=Citrine
-tile.azurite_ore.name=Azurite Ore
 item.azurite.name=Azurite
 
+# Earth Ore
+tile.ore.jade.name=Jade Ore
+tile.ore.onyx.name=Onyx Ore
+tile.ore.fluorite.name=Fluorite Ore
+tile.ore.lead.name=Lead Ore
+tile.ore.earth_energy.name=Earth Energy Ore
+
 # Earth Gems
-tile.jade_ore.name=Jade Ore
 item.jade.name=Jade
-tile.fluorite_ore.name=Fluorite Ore
 item.fluorite.name=Fluorite
-tile.onyx_ore.name=Onyx Ore
 item.onyx.name=Onyx
 
+# Fire Ore
+tile.ore.bloodstone.name=Bloodstone Ore
+tile.ore.garnet.name=Garnet Ore
+tile.ore.gold.name=Gold Ore
+tile.ore.nickel.name=Nickel Ore
+tile.ore.fire_energy.name=Fire Energy Ore
+
 # Fire Gems
-tile.bloodstone_ore.name=Bloodstone Ore
-item.bloodstone.name=Bloodstone
-tile.garnet_ore.name=Garnet Ore
 item.garnet.name=Garnet
+item.bloodstone.name=Bloodstone
+
+# Water Ore
+tile.ore.aquamarine.name=Aquamarine Ore
+tile.ore.beryl.name=Beryl Ore
+tile.ore.silver.name=Silver Ore
+tile.ore.water_energy.name=Water Energy Ore
 
 # Water Gems
-tile.aquamarine_ore.name=Aquamarine Ore
-tile.beryl_ore.name=Beryl Ore
+item.aquamarine.name=Aquamarine
+item.beryl.name=Beryl
 
 # Elemental Energy
 tile.air_energy_block.name=Air Energy Block
@@ -47,13 +62,6 @@ item.air_energy_shard.name=Air Energy Shard
 item.earth_energy_shard.name=Earth Energy Shard
 item.fire_energy_shard.name=Fire Energy Shard
 item.water_energy_shard.name=Water Energy Shard
-
-# Elemental Ores
-tile.air_energy_ore.name=Air Energy Ore
-tile.earth_energy_ore.name=Earth Energy Ore
-tile.fire_energy_ore.name=Fire Energy Ore
-tile.water_energy_ore.name=Water Energy Ore
-tile.aether_ore.name=Elemental Ore
 
 # Crushed Elemental
 tile.crushed_aether.name=Crushed Aether
@@ -70,11 +78,6 @@ tile.fertile_dirt.name=Fertile Dirt
 tile.fertile_grass.name=Fertile Grass
 tile.salt_block.name=Salt Block
 
-# Metal Ores
-tile.lead_ore.name=Lead Ore
-tile.nickel_ore.name=Nickel Ore
-tile.silver_ore.name=Silver Ore
-tile.tin_ore.name=Tin Ore
 
 # Crushed Metals
 item.crushed_lead.name=Crushed Lead

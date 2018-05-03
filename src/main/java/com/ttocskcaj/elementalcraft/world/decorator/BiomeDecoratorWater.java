@@ -1,5 +1,6 @@
 package com.ttocskcaj.elementalcraft.world.decorator;
 
+import com.ttocskcaj.elementalcraft.block.ore.BlockWaterOre;
 import com.ttocskcaj.elementalcraft.init.ModBlocks;
 import com.ttocskcaj.elementalcraft.world.generation.WorldGenPatches;
 import net.minecraft.init.Blocks;
@@ -9,6 +10,9 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
 import java.util.Random;
+
+import static com.ttocskcaj.elementalcraft.block.ore.BlockWaterOre.Type.*;
+import static com.ttocskcaj.elementalcraft.block.ore.BlockWaterOre.VARIANT;
 
 public class BiomeDecoratorWater extends BiomeDecoratorBase {
     /**
@@ -26,10 +30,10 @@ public class BiomeDecoratorWater extends BiomeDecoratorBase {
             this.chunkPos = pos;
 
             generateOre(Blocks.GLOWSTONE.getDefaultState(), worldIn, random, 1, 36, 3, 50);
-            generateOre(ModBlocks.BERYL_ORE.getDefaultState(), worldIn, random, 1, 50, 5, 4);
-            generateOre(ModBlocks.SILVER_ORE.getDefaultState(), worldIn, random, 1, 50, 5, 4);
-            generateOre(ModBlocks.AQUAMARINE_ORE.getDefaultState(), worldIn, random, 1, 50, 5, 4);
-            generateOre(ModBlocks.WATER_ENERGY_ORE.getDefaultState(), worldIn, random, 1, 30, 5, 2);
+            generateOre(ModBlocks.waterOre.getDefaultState().withProperty(VARIANT, BERYL), worldIn, random, 1, 50, 5, 4);
+            generateOre(ModBlocks.waterOre.getDefaultState().withProperty(VARIANT, SILVER), worldIn, random, 1, 50, 5, 4);
+            generateOre(ModBlocks.waterOre.getDefaultState().withProperty(VARIANT, AQUAMARINE), worldIn, random, 1, 50, 5, 4);
+            generateOre(ModBlocks.waterOre.getDefaultState().withProperty(VARIANT, WATER_ENERGY), worldIn, random, 1, 30, 5, 2);
 
             if (random.nextInt(2) == 1) {
                 int j = random.nextInt(16) + 8;

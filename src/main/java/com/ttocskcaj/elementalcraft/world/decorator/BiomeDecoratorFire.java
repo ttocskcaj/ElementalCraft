@@ -1,5 +1,6 @@
 package com.ttocskcaj.elementalcraft.world.decorator;
 
+import com.ttocskcaj.elementalcraft.block.ore.BlockFireOre;
 import com.ttocskcaj.elementalcraft.init.ModBlocks;
 import com.ttocskcaj.elementalcraft.world.generation.*;
 import net.minecraft.init.Blocks;
@@ -12,6 +13,8 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 
 
 import java.util.Random;
+
+import static com.ttocskcaj.elementalcraft.block.ore.BlockFireOre.VARIANT;
 
 public class BiomeDecoratorFire extends BiomeDecoratorBase{
     public WorldGenBigFire fireGen = new WorldGenBigFire(8);
@@ -27,18 +30,18 @@ public class BiomeDecoratorFire extends BiomeDecoratorBase{
         } else {
             this.chunkPos = pos;
             // First pass, light scattered ores.
-            generateOre(ModBlocks.GARNET_ORE.getDefaultState(), worldIn, random, 3, 250, 9, 6);
-            generateOre(ModBlocks.BLOODSTONE_ORE.getDefaultState(), worldIn, random, 3, 250, 9, 6);
-            generateOre(ModBlocks.FIRE_ENERGY_ORE.getDefaultState(), worldIn, random, 3, 250, 8, 6);
-            generateOre(ModBlocks.NICKEL_ORE.getDefaultState(), worldIn, random, 3, 250, 8, 6);
-            generateOre(ModBlocks.GOLD_ORE.getDefaultState(), worldIn, random, 3, 250, 9, 6);
+            generateOre(ModBlocks.fireOre.getDefaultState().withProperty(VARIANT, BlockFireOre.Type.GARNET), worldIn, random, 3, 250, 9, 6);
+            generateOre(ModBlocks.fireOre.getDefaultState().withProperty(VARIANT, BlockFireOre.Type.BLOODSTONE), worldIn, random, 3, 250, 9, 6);
+            generateOre(ModBlocks.fireOre.getDefaultState().withProperty(VARIANT, BlockFireOre.Type.FIRE_ENERGY), worldIn, random, 3, 250, 8, 6);
+            generateOre(ModBlocks.fireOre.getDefaultState().withProperty(VARIANT, BlockFireOre.Type.NICKEL), worldIn, random, 3, 250, 8, 6);
+            generateOre(ModBlocks.fireOre.getDefaultState().withProperty(VARIANT, BlockFireOre.Type.GOLD), worldIn, random, 3, 250, 9, 6);
 
             // Second pass, heavy middle band.
-            generateOre(ModBlocks.GARNET_ORE.getDefaultState(), worldIn, random, 80, 100, 5, 8);
-            generateOre(ModBlocks.BLOODSTONE_ORE.getDefaultState(), worldIn, random, 90, 120, 5, 8);
-            generateOre(ModBlocks.FIRE_ENERGY_ORE.getDefaultState(), worldIn, random, 100, 140, 5, 8);
-            generateOre(ModBlocks.NICKEL_ORE.getDefaultState(), worldIn, random, 120, 160, 5, 8);
-            generateOre(ModBlocks.GOLD_ORE.getDefaultState(), worldIn, random, 130, 180, 5, 8);
+            generateOre(ModBlocks.fireOre.getDefaultState().withProperty(VARIANT, BlockFireOre.Type.GARNET), worldIn, random, 80, 100, 5, 8);
+            generateOre(ModBlocks.fireOre.getDefaultState().withProperty(VARIANT, BlockFireOre.Type.BLOODSTONE), worldIn, random, 90, 120, 5, 8);
+            generateOre(ModBlocks.fireOre.getDefaultState().withProperty(VARIANT, BlockFireOre.Type.FIRE_ENERGY), worldIn, random, 100, 140, 5, 8);
+            generateOre(ModBlocks.fireOre.getDefaultState().withProperty(VARIANT, BlockFireOre.Type.NICKEL), worldIn, random, 120, 160, 5, 8);
+            generateOre(ModBlocks.fireOre.getDefaultState().withProperty(VARIANT, BlockFireOre.Type.GOLD), worldIn, random, 130, 180, 5, 8);
 
             // Random chance of fire patch
             if (random.nextInt(100) < firePatchChance) {

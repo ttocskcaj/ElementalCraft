@@ -1,5 +1,6 @@
 package com.ttocskcaj.elementalcraft.world.decorator;
 
+import com.ttocskcaj.elementalcraft.block.ore.BlockEarthOre;
 import com.ttocskcaj.elementalcraft.init.ModBlocks;
 import com.ttocskcaj.elementalcraft.world.generation.WorldGenPatches;
 import net.minecraft.init.Blocks;
@@ -11,6 +12,8 @@ import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
 import java.util.Random;
+
+import static com.ttocskcaj.elementalcraft.block.ore.BlockEarthOre.VARIANT;
 
 public class BiomeDecoratorEarth extends BiomeDecoratorBase {
     private int treesPerChunk = 64;
@@ -24,11 +27,13 @@ public class BiomeDecoratorEarth extends BiomeDecoratorBase {
             throw new RuntimeException("Already decorating");
         } else {
             this.chunkPos = pos;
-            generateOre(ModBlocks.JADE_ORE.getDefaultState(), worldIn, random, 3, 150, 6, 3);
-            generateOre(ModBlocks.ONYX_ORE.getDefaultState(), worldIn, random, 3, 150, 6, 3);
-            generateOre(ModBlocks.FLUORITE_ORE.getDefaultState(), worldIn, random, 3, 150, 6, 2);
-            generateOre(ModBlocks.LEAD_ORE.getDefaultState(), worldIn, random, 3, 150, 6, 8);
-            generateOre(ModBlocks.EARTH_ENERGY_ORE.getDefaultState(), worldIn, random, 45, 60, 5, 2);
+
+            generateOre(ModBlocks.earthOre.getDefaultState().withProperty(VARIANT, BlockEarthOre.Type.JADE ), worldIn, random, 3, 150, 6, 3);
+            generateOre(ModBlocks.earthOre.getDefaultState().withProperty(VARIANT, BlockEarthOre.Type.ONYX ), worldIn, random, 3, 150, 6, 3);
+            generateOre(ModBlocks.earthOre.getDefaultState().withProperty(VARIANT, BlockEarthOre.Type.FLUORITE ), worldIn, random, 3, 150, 6, 2);
+            generateOre(ModBlocks.earthOre.getDefaultState().withProperty(VARIANT, BlockEarthOre.Type.LEAD ), worldIn, random, 3, 150, 6, 8);
+            generateOre(ModBlocks.earthOre.getDefaultState().withProperty(VARIANT, BlockEarthOre.Type.EARTH_ENERGY ), worldIn, random, 35, 80, 6, 1);
+
             for (int i3 = 0; i3 < this.grassPerChunk; ++i3)
             {
                 int j7 = random.nextInt(16) + 8;

@@ -18,27 +18,13 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 public class ModBlocks {
     // Ores
+    public static BlockEarthOre earthOre;
+    public static BlockAirOre airOre;
+    public static BlockFireOre fireOre;
+    public static BlockWaterOre waterOre;
     public static final BlockAetherOre AETHER_ORE = new BlockAetherOre();
-    public static final BlockAirEnergyOre AIR_ENERGY_ORE = new BlockAirEnergyOre();
-    public static final BlockGemOre AQUAMARINE_ORE = new BlockGemOre("aquamarine_ore", ModItems.AQUAMARINE, false);
-    public static final BlockGemOre AZURITE_ORE = new BlockGemOre("azurite_ore", ModItems.AZURITE, true);
-    public static final BlockGemOre BERYL_ORE = new BlockGemOre("beryl_ore", ModItems.BERYL, false);
-    public static final BlockGemOre BLOODSTONE_ORE = new BlockGemOre("bloodstone_ore", ModItems.BLOODSTONE, false);
-    public static final BlockGemOre CITRINE_ORE = new BlockGemOre("citrine_ore", ModItems.CITRINE, true);
-    public static final BlockEarthEnergyOre EARTH_ENERGY_ORE = new BlockEarthEnergyOre();
-    public static final BlockFireEnergyOre FIRE_ENERGY_ORE = new BlockFireEnergyOre();
-    public static final BlockGemOre FLUORITE_ORE = new BlockGemOre("fluorite_ore", ModItems.FLUORITE, false);
-    public static final BlockGemOre GARNET_ORE = new BlockGemOre("garnet_ore", ModItems.GARNET, false);
-    public static final BlockGoldOre GOLD_ORE = new BlockGoldOre();
-    public static final BlockGemOre JADE_ORE = new BlockGemOre("jade_ore", ModItems.JADE, false);
-    public static final BlockLeadOre LEAD_ORE = new BlockLeadOre();
-    public static final BlockNickelOre NICKEL_ORE = new BlockNickelOre();
-    public static final BlockGemOre ONYX_ORE = new BlockGemOre("onyx_ore", ModItems.ONYX, false);
-    public static final BlockSilverOre SILVER_ORE = new BlockSilverOre();
-    public static final BlockTinOre TIN_ORE = new BlockTinOre();
-    public static final BlockWaterEnergyOre WATER_ENERGY_ORE = new BlockWaterEnergyOre();
 
-    // Energy
+    // Energy Blocks
     public static final BlockAether AETHER_BLOCK = new BlockAether();
     public static final BlockAirEnergy AIR_ENERGY_BLOCK = new BlockAirEnergy();
     public static final BlockEarthEnergy EARTH_ENERGY_BLOCK = new BlockEarthEnergy();
@@ -59,7 +45,7 @@ public class ModBlocks {
 
 
 
-    // Metal
+    // Metal Blocks
     public static final BlockLead LEAD_BLOCK = new BlockLead();
     public static final BlockNickel NICKEL_BLOCK = new BlockNickel();
     public static final BlockSilver SILVER_BLOCK = new BlockSilver();
@@ -72,28 +58,35 @@ public class ModBlocks {
     // Machines
     public static final BlockMachineBase RAREFACTION_APPARATUS = (BlockMachineBase) new BlockMachineBase().setRegistryName("rarefaction_apparatus").setUnlocalizedName("rarefaction_apparatus");
 
+    public static void preInit(){
+        airOre = new BlockAirOre();
+        airOre.preInit();
+
+        earthOre = new BlockEarthOre();
+        earthOre.preInit();
+
+        fireOre = new BlockFireOre();
+        fireOre.preInit();
+
+        waterOre = new BlockWaterOre();
+        waterOre.preInit();
+    }
+
+    public static void init(){
+        airOre.init();
+        earthOre.init();
+        fireOre.init();
+        waterOre.init();
+    }
+
     @SideOnly(Side.CLIENT)
     public static void initModels() {
-        // Ores
+        // Ore
+        airOre.initModels();
+        earthOre.initModels();
+        fireOre.initModels();
+        waterOre.initModels();
         AETHER_ORE.initModel();
-        AIR_ENERGY_ORE.initModel();
-        AQUAMARINE_ORE.initModel();
-        AZURITE_ORE.initModel();
-        BERYL_ORE.initModel();
-        BLOODSTONE_ORE.initModel();
-        CITRINE_ORE.initModel();
-        EARTH_ENERGY_ORE.initModel();
-        FIRE_ENERGY_ORE.initModel();
-        FLUORITE_ORE.initModel();
-        GARNET_ORE.initModel();
-        GOLD_ORE.initModel();
-        JADE_ORE.initModel();
-        LEAD_ORE.initModel();
-        NICKEL_ORE.initModel();
-        ONYX_ORE.initModel();
-        SILVER_ORE.initModel();
-        TIN_ORE.initModel();
-        WATER_ENERGY_ORE.initModel();
 
         // Energy
         AETHER_BLOCK.initModel();
@@ -133,24 +126,6 @@ public class ModBlocks {
 
         // Ores
         registry.register(AETHER_ORE);
-        registry.register(AIR_ENERGY_ORE);
-        registry.register(AQUAMARINE_ORE);
-        registry.register(AZURITE_ORE);
-        registry.register(BERYL_ORE);
-        registry.register(BLOODSTONE_ORE);
-        registry.register(CITRINE_ORE);
-        registry.register(EARTH_ENERGY_ORE);
-        registry.register(FIRE_ENERGY_ORE);
-        registry.register(FLUORITE_ORE);
-        registry.register(GARNET_ORE);
-        registry.register(GOLD_ORE);
-        registry.register(JADE_ORE);
-        registry.register(LEAD_ORE);
-        registry.register(NICKEL_ORE);
-        registry.register(ONYX_ORE);
-        registry.register(SILVER_ORE);
-        registry.register(TIN_ORE);
-        registry.register(WATER_ENERGY_ORE);
 
         // Energy
         registry.register(AETHER_BLOCK);
