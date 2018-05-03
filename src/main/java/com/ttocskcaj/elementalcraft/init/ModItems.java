@@ -112,11 +112,6 @@ public class ModItems {
         registry.register(new ItemBlock(ModBlocks.SALT_BLOCK).setRegistryName(ModBlocks.SALT_BLOCK.getRegistryName()));
         registry.register(new ItemBlock(ModBlocks.WATER_STONE).setRegistryName(ModBlocks.WATER_STONE.getRegistryName()));
 
-        // Metal Blocks
-        registry.register(new ItemBlock(ModBlocks.LEAD_BLOCK).setRegistryName(ModBlocks.LEAD_BLOCK.getRegistryName()));
-        registry.register(new ItemBlock(ModBlocks.NICKEL_BLOCK).setRegistryName(ModBlocks.NICKEL_BLOCK.getRegistryName()));
-        registry.register(new ItemBlock(ModBlocks.SILVER_BLOCK).setRegistryName(ModBlocks.SILVER_BLOCK.getRegistryName()));
-        registry.register(new ItemBlock(ModBlocks.TIN_BLOCK).setRegistryName(ModBlocks.TIN_BLOCK.getRegistryName()));
 
         // Plants
         registry.register(new ItemBlock(ModBlocks.BURNT_BUSH).setRegistryName(ModBlocks.BURNT_BUSH.getRegistryName()));

@@ -4,10 +4,7 @@ import com.ttocskcaj.elementalcraft.ElementalCraft;
 import com.ttocskcaj.elementalcraft.block.energy.*;
 import com.ttocskcaj.elementalcraft.block.generic.*;
 import com.ttocskcaj.elementalcraft.block.machine.BlockMachineBase;
-import com.ttocskcaj.elementalcraft.block.metal.BlockLead;
-import com.ttocskcaj.elementalcraft.block.metal.BlockNickel;
-import com.ttocskcaj.elementalcraft.block.metal.BlockSilver;
-import com.ttocskcaj.elementalcraft.block.metal.BlockTin;
+import com.ttocskcaj.elementalcraft.block.metal.BlockMetal;
 import com.ttocskcaj.elementalcraft.block.ore.*;
 import com.ttocskcaj.elementalcraft.block.plant.BlockBurntBush;
 import com.ttocskcaj.elementalcraft.block.plant.BlockFireCactus;
@@ -23,6 +20,9 @@ public class ModBlocks {
     public static BlockFireOre fireOre;
     public static BlockWaterOre waterOre;
     public static BlockOverworldOre overworldOre;
+
+    // Blocks of metal
+    public static BlockMetal metal;
 
     // Energy Blocks
     public static final BlockAether AETHER_BLOCK = new BlockAether();
@@ -43,14 +43,6 @@ public class ModBlocks {
     public static final BlockSaltBlock SALT_BLOCK = new BlockSaltBlock();
     public static final BlockWaterStone WATER_STONE = new BlockWaterStone();
 
-
-
-    // Metal Blocks
-    public static final BlockLead LEAD_BLOCK = new BlockLead();
-    public static final BlockNickel NICKEL_BLOCK = new BlockNickel();
-    public static final BlockSilver SILVER_BLOCK = new BlockSilver();
-    public static final BlockTin TIN_BLOCK = new BlockTin();
-
     // Plants
     public static final BlockBurntBush BURNT_BUSH = new BlockBurntBush();
     public static final BlockFireCactus FIRE_CACTUS = new BlockFireCactus();
@@ -59,28 +51,33 @@ public class ModBlocks {
     public static final BlockMachineBase RAREFACTION_APPARATUS = (BlockMachineBase) new BlockMachineBase().setRegistryName("rarefaction_apparatus").setUnlocalizedName("rarefaction_apparatus");
 
     public static void preInit(){
+        // Instantiate and preinit ores.
         airOre = new BlockAirOre();
         airOre.preInit();
-
         earthOre = new BlockEarthOre();
         earthOre.preInit();
-
         fireOre = new BlockFireOre();
         fireOre.preInit();
-
         waterOre = new BlockWaterOre();
         waterOre.preInit();
-
         overworldOre = new BlockOverworldOre();
         overworldOre.preInit();
+
+        // Instantiate and preinit metal blocks
+        metal = new BlockMetal();
+        metal.preInit();
     }
 
     public static void init(){
+        // Initialize ores.
         airOre.init();
         earthOre.init();
         fireOre.init();
         waterOre.init();
         overworldOre.init();
+
+        // Initialize metal blocks.
+        metal.init();
     }
 
     @SideOnly(Side.CLIENT)
@@ -91,6 +88,9 @@ public class ModBlocks {
         fireOre.initModels();
         waterOre.initModels();
         overworldOre.initModels();
+
+        // Metal Blocks
+        metal.initModels();
 
         // Energy
         AETHER_BLOCK.initModel();
@@ -110,12 +110,6 @@ public class ModBlocks {
         CHARRED_STONE.initModel();
         EARTH_STONE.initModel();
         FIRE_STONE.initModel();
-
-        // Metal
-        LEAD_BLOCK.initModel();
-        NICKEL_BLOCK.initModel();
-        SILVER_BLOCK.initModel();
-        TIN_BLOCK.initModel();
 
         // Plants
         BURNT_BUSH.initModel();
@@ -146,12 +140,6 @@ public class ModBlocks {
         registry.register(WATER_STONE);
         registry.register(CHARRED_STONE);
         registry.register(EARTH_STONE);
-
-        // Metal
-        registry.register(LEAD_BLOCK);
-        registry.register(NICKEL_BLOCK);
-        registry.register(SILVER_BLOCK);
-        registry.register(TIN_BLOCK);
 
         // Plants
         registry.register(BURNT_BUSH);

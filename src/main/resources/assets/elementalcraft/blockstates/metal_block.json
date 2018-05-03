@@ -1,0 +1,36 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_all",
+    "transform": "forge:default-block"
+  },
+  "variants": {
+    "type": {
+      "lead": {
+        "textures": {
+          "all": "elementalcraft:blocks/metal/lead_block"
+        }
+      },
+      "nickel": {
+        "textures": {
+          "all": "elementalcraft:blocks/metal/nickel_block"
+        }
+      },
+      "silver": {
+        "textures": {
+          "all": "elementalcraft:blocks/metal/silver_block"
+        }
+      },
+      "steel": {
+        "textures": {
+          "all": "elementalcraft:blocks/metal/steel_block"
+        }
+      },
+      "tin": {
+        "textures": {
+          "all": "elementalcraft:blocks/metal/tin_block"
+        }
+      }
+    }
+  }
+}

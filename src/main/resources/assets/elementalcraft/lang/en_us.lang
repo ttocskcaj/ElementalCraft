@@ -101,11 +101,11 @@ item.tin_nugget.name=Tin Nugget
 item.steel_nugget.name=Steel Nugget
 
 # Metal Blocks
-tile.lead_block.name=Lead Block
-tile.nickel_block.name=Nickel Block
-tile.silver_block.name=Silver Block
-tile.tin_block.name=Tin Block
-tile.steel_block.name=Steel Block
+tile.block.lead.name=Lead Block
+tile.block.nickel.name=Nickel Block
+tile.block.silver.name=Silver Block
+tile.block.steel.name=Steel Block
+tile.block.tin.name=Tin Block
 
 # Machines
 tile.rarefaction_apparatus=Rarefaction Apparatus
