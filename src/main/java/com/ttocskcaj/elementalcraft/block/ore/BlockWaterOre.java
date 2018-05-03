@@ -1,6 +1,7 @@
 package com.ttocskcaj.elementalcraft.block.ore;
 
 import com.ttocskcaj.elementalcraft.block.BlockBase;
+import com.ttocskcaj.elementalcraft.init.ModItems;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -13,12 +14,16 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
+
+import java.util.Random;
 
 public class BlockWaterOre extends BlockBase {
     public static final PropertyEnum<Type> VARIANT = PropertyEnum.create("type", Type.class);
@@ -110,35 +115,75 @@ public class BlockWaterOre extends BlockBase {
         return true;
     }
 
+    @Override
+    public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+        Type variant = state.getValue(VARIANT);
+        if (variant.dropsGem()) {
+            switch (variant) {
+                case AQUAMARINE:
+                    return ModItems.AQUAMARINE;
+                case BERYL:
+                    return ModItems.BERYL;
+            }
+        }
+        return super.getItemDropped(state, rand, fortune);
+    }
+
+    @Override
+    public int quantityDropped(IBlockState state, int fortune, Random random) {
+        Type variant = state.getValue(VARIANT);
+        if (variant.dropsGem()) {
+            if (fortune > 0) {
+                int i = random.nextInt(fortune + 2) - 1;
+                if (i < 0) {
+                    i = 0;
+                }
+
+                return this.quantityDropped(random) * (i + 1);
+            } else {
+                return this.quantityDropped(random);
+            }
+        }
+        return super.quantityDropped(state, fortune, random);
+    }
+
+    @Override
+    public int getExpDrop(IBlockState state, IBlockAccess world, BlockPos pos, int fortune) {
+        Random rand = world instanceof World ? ((World) world).rand : new Random();
+        return MathHelper.getInt(rand, 1, 3);
+    }
 
     public enum Type implements IStringSerializable {
-        AQUAMARINE(0, "aquamarine"),
-        BERYL(1, "beryl"),
-        SILVER(2, "silver"),
-        WATER_ENERGY(3, "water_energy");
+        AQUAMARINE(0, "aquamarine", true),
+        BERYL(1, "beryl", true),
+        SILVER(2, "silver", false),
+        WATER_ENERGY(3, "water_energy", false);
 
         private static final Type[] METADATA_LOOKUP = new Type[values().length];
         private final int metadata;
         private final String name;
+        private final Boolean dropsGem;
 
-        Type(int metadata, String name) {
+        Type(int metadata, String name, Boolean dropsGem) {
             this.metadata = metadata;
             this.name = name;
+            this.dropsGem = dropsGem;
         }
 
         public int getMetadata() {
-
             return this.metadata;
         }
 
         @Override
         public String getName() {
-
             return this.name;
         }
 
-        public static Type byMetadata(int metadata) {
+        public Boolean dropsGem() {
+            return this.dropsGem;
+        }
 
+        public static Type byMetadata(int metadata) {
             if (metadata < 0 || metadata >= METADATA_LOOKUP.length) {
                 metadata = 0;
             }

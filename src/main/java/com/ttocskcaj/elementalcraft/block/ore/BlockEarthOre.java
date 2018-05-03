@@ -15,12 +15,17 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
+
+import java.util.Random;
 
 public class BlockEarthOre extends BlockBase {
     public static final PropertyEnum<Type> VARIANT = PropertyEnum.create("type", Type.class);
@@ -119,21 +124,61 @@ public class BlockEarthOre extends BlockBase {
         return true;
     }
 
+    @Override
+    public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+        Type variant = state.getValue(VARIANT);
+        if (variant.dropsGems()) {
+            switch (variant) {
+                case JADE:
+                    return ModItems.JADE;
+                case ONYX:
+                    return ModItems.ONYX;
+                case FLUORITE:
+                    return ModItems.FLUORITE;
+            }
+        }
+        return super.getItemDropped(state, rand, fortune);
+    }
 
+    @Override
+    public int quantityDropped(IBlockState state, int fortune, Random random) {
+        Type variant = state.getValue(VARIANT);
+        if (variant.dropsGems()) {
+            if (fortune > 0) {
+                int i = random.nextInt(fortune + 2) - 1;
+                if (i < 0) {
+                    i = 0;
+                }
+
+                return this.quantityDropped(random) * (i + 1);
+            } else {
+                return this.quantityDropped(random);
+            }
+        }
+        return super.quantityDropped(state, fortune, random);
+    }
+
+    @Override
+    public int getExpDrop(IBlockState state, IBlockAccess world, BlockPos pos, int fortune) {
+        Random rand = world instanceof World ? ((World) world).rand : new Random();
+        return MathHelper.getInt(rand, 1, 3);
+    }
     public enum Type implements IStringSerializable {
-        JADE(0, "jade"),
-        ONYX(1, "onyx"),
-        FLUORITE(2, "fluorite"),
-        LEAD(3, "lead"),
-        EARTH_ENERGY(4, "earth_energy");
+        JADE(0, "jade", true),
+        ONYX(1, "onyx", true),
+        FLUORITE(2, "fluorite", true),
+        LEAD(3, "lead", false),
+        EARTH_ENERGY(4, "earth_energy", false);
 
         private static final Type[] METADATA_LOOKUP = new Type[values().length];
         private final int metadata;
         private final String name;
+        private final Boolean dropsGems;
 
-        Type(int metadata, String name) {
+        Type(int metadata, String name, Boolean dropsGems) {
             this.metadata = metadata;
             this.name = name;
+            this.dropsGems = dropsGems;
         }
 
         public int getMetadata() {
@@ -145,6 +190,10 @@ public class BlockEarthOre extends BlockBase {
         public String getName() {
 
             return this.name;
+        }
+
+        public Boolean dropsGems(){
+            return dropsGems;
         }
 
         public static Type byMetadata(int metadata) {

@@ -16,12 +16,16 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
+
+import java.util.Random;
 
 public class BlockFireOre extends BlockBase {
     public static final PropertyEnum<Type> VARIANT = PropertyEnum.create("type", Type.class);
@@ -121,21 +125,59 @@ public class BlockFireOre extends BlockBase {
         return true;
     }
 
+    @Override
+    public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+        Type variant = state.getValue(VARIANT);
+        if (variant.dropsGem()) {
+            switch (variant) {
+                case BLOODSTONE:
+                    return ModItems.BLOODSTONE;
+                case GARNET:
+                    return ModItems.GARNET;
+            }
+        }
+        return super.getItemDropped(state, rand, fortune);
+    }
 
+    @Override
+    public int quantityDropped(IBlockState state, int fortune, Random random) {
+        Type variant = state.getValue(VARIANT);
+        if (variant.dropsGem()) {
+            if (fortune > 0) {
+                int i = random.nextInt(fortune + 2) - 1;
+                if (i < 0) {
+                    i = 0;
+                }
+
+                return this.quantityDropped(random) * (i + 1);
+            } else {
+                return this.quantityDropped(random);
+            }
+        }
+        return super.quantityDropped(state, fortune, random);
+    }
+
+    @Override
+    public int getExpDrop(IBlockState state, IBlockAccess world, BlockPos pos, int fortune) {
+        Random rand = world instanceof World ? ((World) world).rand : new Random();
+        return MathHelper.getInt(rand, 1, 3);
+    }
     public enum Type implements IStringSerializable {
-        BLOODSTONE(0, "bloodstone"),
-        GARNET(1, "garnet"),
-        GOLD(2, "gold"),
-        NICKEL(3, "nickel"),
-        FIRE_ENERGY(4, "fire_energy");
+        BLOODSTONE(0, "bloodstone", true),
+        GARNET(1, "garnet", true),
+        GOLD(2, "gold", false),
+        NICKEL(3, "nickel", false),
+        FIRE_ENERGY(4, "fire_energy", false);
 
         private static final Type[] METADATA_LOOKUP = new Type[values().length];
         private final int metadata;
         private final String name;
+        private final Boolean dropsGem;
 
-        Type(int metadata, String name) {
+        Type(int metadata, String name, Boolean dropsGem) {
             this.metadata = metadata;
             this.name = name;
+            this.dropsGem = dropsGem;
         }
 
         public int getMetadata() {
@@ -149,6 +191,9 @@ public class BlockFireOre extends BlockBase {
             return this.name;
         }
 
+        public Boolean dropsGem(){
+            return dropsGem;
+        }
         public static Type byMetadata(int metadata) {
 
             if (metadata < 0 || metadata >= METADATA_LOOKUP.length) {
