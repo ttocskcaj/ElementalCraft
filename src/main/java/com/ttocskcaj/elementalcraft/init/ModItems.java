@@ -120,24 +120,6 @@ public class ModItems {
 
         // Ores
         registry.register(new ItemBlock(ModBlocks.AETHER_ORE).setRegistryName(ModBlocks.AETHER_ORE.getRegistryName()));
-        registry.register(new ItemBlock(ModBlocks.AIR_ENERGY_ORE).setRegistryName(ModBlocks.AIR_ENERGY_ORE.getRegistryName()));
-        registry.register(new ItemBlock(ModBlocks.AQUAMARINE_ORE).setRegistryName(ModBlocks.AQUAMARINE_ORE.getRegistryName()));
-        registry.register(new ItemBlock(ModBlocks.AZURITE_ORE).setRegistryName(ModBlocks.AZURITE_ORE.getRegistryName()));
-        registry.register(new ItemBlock(ModBlocks.BERYL_ORE).setRegistryName(ModBlocks.BERYL_ORE.getRegistryName()));
-        registry.register(new ItemBlock(ModBlocks.BLOODSTONE_ORE).setRegistryName(ModBlocks.BLOODSTONE_ORE.getRegistryName()));
-        registry.register(new ItemBlock(ModBlocks.CITRINE_ORE).setRegistryName(ModBlocks.CITRINE_ORE.getRegistryName()));
-        registry.register(new ItemBlock(ModBlocks.EARTH_ENERGY_ORE).setRegistryName(ModBlocks.EARTH_ENERGY_ORE.getRegistryName()));
-        registry.register(new ItemBlock(ModBlocks.FIRE_ENERGY_ORE).setRegistryName(ModBlocks.FIRE_ENERGY_ORE.getRegistryName()));
-        registry.register(new ItemBlock(ModBlocks.FLUORITE_ORE).setRegistryName(ModBlocks.FLUORITE_ORE.getRegistryName()));
-        registry.register(new ItemBlock(ModBlocks.GARNET_ORE).setRegistryName(ModBlocks.GARNET_ORE.getRegistryName()));
-        registry.register(new ItemBlock(ModBlocks.GOLD_ORE).setRegistryName(ModBlocks.GOLD_ORE.getRegistryName()));
-        registry.register(new ItemBlock(ModBlocks.JADE_ORE).setRegistryName(ModBlocks.JADE_ORE.getRegistryName()));
-        registry.register(new ItemBlock(ModBlocks.LEAD_ORE).setRegistryName(ModBlocks.LEAD_ORE.getRegistryName()));
-        registry.register(new ItemBlock(ModBlocks.NICKEL_ORE).setRegistryName(ModBlocks.NICKEL_ORE.getRegistryName()));
-        registry.register(new ItemBlock(ModBlocks.ONYX_ORE).setRegistryName(ModBlocks.ONYX_ORE.getRegistryName()));
-        registry.register(new ItemBlock(ModBlocks.SILVER_ORE).setRegistryName(ModBlocks.SILVER_ORE.getRegistryName()));
-        registry.register(new ItemBlock(ModBlocks.TIN_ORE).setRegistryName(ModBlocks.TIN_ORE.getRegistryName()));
-        registry.register(new ItemBlock(ModBlocks.WATER_ENERGY_ORE).setRegistryName(ModBlocks.WATER_ENERGY_ORE.getRegistryName()));
 
         // Plants
         registry.register(new ItemBlock(ModBlocks.BURNT_BUSH).setRegistryName(ModBlocks.BURNT_BUSH.getRegistryName()));

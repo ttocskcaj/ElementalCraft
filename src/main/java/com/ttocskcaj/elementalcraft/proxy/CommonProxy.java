@@ -34,11 +34,6 @@ public class CommonProxy {
     // Config instance
     public static Configuration config;
 
-    public static WorldType firePlane = new WorldTypeFire();
-    public static WorldType earthPlane = new WorldTypeEarth();
-    public static WorldType airPlane = new WorldTypeAir();
-    public static WorldType waterPlane = new WorldTypeWater();
-
     public void preInit(FMLPreInitializationEvent event) {
         ElementalCraft.logger.info("Common preInit");
 
@@ -47,15 +42,14 @@ public class CommonProxy {
         Config.readConfig();
 
         GameRegistry.registerWorldGenerator(new WorldGenOre(), 3);
+
+        ModBlocks.preInit();
     }
 
     public void init() {
         ElementalCraft.logger.info("Common init");
         ModDimensions.init();
-
-        // Vanilla Furnace Recipes
-        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ModBlocks.AETHER_ORE), new ItemStack(ModItems.AETHER_SHARD), 1f);
-        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ModBlocks.GOLD_ORE), new ItemStack(Items.GOLD_INGOT), 1f);
+        ModBlocks.init();
     }
 
     public void postInit(FMLPostInitializationEvent event) {
