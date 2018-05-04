@@ -1,0 +1,36 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_all",
+    "transform": "forge:default-block"
+  },
+  "variants": {
+    "type": {
+      "aether": {
+        "textures": {
+          "all": "elementalcraft:blocks/energy/aether_block"
+        }
+      },
+      "air": {
+        "textures": {
+          "all": "elementalcraft:blocks/energy/air_energy_block"
+        }
+      },
+      "earth": {
+        "textures": {
+          "all": "elementalcraft:blocks/energy/earth_energy_block"
+        }
+      },
+      "fire": {
+        "textures": {
+          "all": "elementalcraft:blocks/energy/fire_energy_block"
+        }
+      },
+      "water": {
+        "textures": {
+          "all": "elementalcraft:blocks/energy/water_energy_block"
+        }
+      }
+    }
+  }
+}

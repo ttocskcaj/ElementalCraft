@@ -1,6 +1,7 @@
 {
   "result": {
-    "item": "elementalcraft:aether_block"
+    "item": "elementalcraft:energy_block",
+    "data" : 0
   },
   "pattern": [
     "aaa",

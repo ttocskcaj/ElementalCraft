@@ -24,12 +24,8 @@ public class ModBlocks {
     // Blocks of metal
     public static BlockMetal metal;
 
-    // Energy Blocks
-    public static final BlockAether AETHER_BLOCK = new BlockAether();
-    public static final BlockAirEnergy AIR_ENERGY_BLOCK = new BlockAirEnergy();
-    public static final BlockEarthEnergy EARTH_ENERGY_BLOCK = new BlockEarthEnergy();
-    public static final BlockFireEnergy FIRE_ENERGY_BLOCK = new BlockFireEnergy();
-    public static final BlockWaterEnergy WATER_ENERGY_BLOCK = new BlockWaterEnergy();
+    // Blocks of energy
+    public static BlockEnergy energy;
 
     // Generic
     public static final BlockAirStone AIR_STONE = new BlockAirStone();
@@ -51,7 +47,7 @@ public class ModBlocks {
     public static final BlockMachineBase RAREFACTION_APPARATUS = (BlockMachineBase) new BlockMachineBase().setRegistryName("rarefaction_apparatus").setUnlocalizedName("rarefaction_apparatus");
 
     public static void preInit(){
-        // Instantiate and preinit ores.
+        // Instantiate and preInit ores.
         airOre = new BlockAirOre();
         airOre.preInit();
         earthOre = new BlockEarthOre();
@@ -63,9 +59,14 @@ public class ModBlocks {
         overworldOre = new BlockOverworldOre();
         overworldOre.preInit();
 
-        // Instantiate and preinit metal blocks
+        // Instantiate and preInit metal blocks
         metal = new BlockMetal();
         metal.preInit();
+
+        // Instantiate and preInit energy blocks
+        energy = new BlockEnergy();
+        energy.preInit();
+
     }
 
     public static void init(){
@@ -78,6 +79,9 @@ public class ModBlocks {
 
         // Initialize metal blocks.
         metal.init();
+
+        // Initialize energy blocks.
+        energy.init();
     }
 
     @SideOnly(Side.CLIENT)
@@ -93,11 +97,7 @@ public class ModBlocks {
         metal.initModels();
 
         // Energy
-        AETHER_BLOCK.initModel();
-        AIR_ENERGY_BLOCK.initModel();
-        EARTH_ENERGY_BLOCK.initModel();
-        FIRE_ENERGY_BLOCK.initModel();
-        WATER_ENERGY_BLOCK.initModel();
+        energy.initModels();
 
         // Generic
         AIR_STONE.initModel();
@@ -121,13 +121,6 @@ public class ModBlocks {
 
     public static void register(IForgeRegistry<Block> registry) {
         ElementalCraft.logger.info("Registering Blocks");
-
-        // Energy
-        registry.register(AETHER_BLOCK);
-        registry.register(AIR_ENERGY_BLOCK);
-        registry.register(EARTH_ENERGY_BLOCK);
-        registry.register(FIRE_ENERGY_BLOCK);
-        registry.register(WATER_ENERGY_BLOCK);
 
         // Generic
         registry.register(AIR_STONE);

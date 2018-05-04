@@ -51,11 +51,11 @@ item.aquamarine.name=Aquamarine
 item.beryl.name=Beryl
 
 # Elemental Energy
-tile.air_energy_block.name=Air Energy Block
-tile.earth_energy_block.name=Earth Energy Block
-tile.fire_energy_block.name=Fire Energy Block
-tile.water_energy_block.name=Water Energy Block
-tile.aether_block.name=Aether Block
+tile.energy.air.name=Air Energy Block
+tile.energy.earth.name=Earth Energy Block
+tile.energy.fire.name=Fire Energy Block
+tile.energy.water.name=Water Energy Block
+tile.energy.aether.name=Aether Block
 
 # Elemental Shards
 item.aether_shard.name=Aether Shard
@@ -101,11 +101,11 @@ item.tin_nugget.name=Tin Nugget
 item.steel_nugget.name=Steel Nugget
 
 # Metal Blocks
-tile.block.lead.name=Lead Block
-tile.block.nickel.name=Nickel Block
-tile.block.silver.name=Silver Block
-tile.block.steel.name=Steel Block
-tile.block.tin.name=Tin Block
+tile.metal.lead.name=Lead Block
+tile.metal.nickel.name=Nickel Block
+tile.metal.silver.name=Silver Block
+tile.metal.steel.name=Steel Block
+tile.metal.tin.name=Tin Block
 
 # Machines
 tile.rarefaction_apparatus=Rarefaction Apparatus

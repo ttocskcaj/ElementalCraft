@@ -1,5 +1,6 @@
 package com.ttocskcaj.elementalcraft.block;
 
+import com.ttocskcaj.elementalcraft.block.energy.BlockEnergy;
 import com.ttocskcaj.elementalcraft.block.metal.BlockMetal;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
@@ -17,7 +18,10 @@ public class ItemBlockBase extends ItemBlock {
     public String getUnlocalizedName(ItemStack stack) {
         switch (getRegistryName().toString()) {
             case "elementalcraft:metal_block":
-                return "tile.block." + BlockMetal.Type.byMetadata(stack.getMetadata()).getName();
+                return "tile.metal." + BlockMetal.Type.byMetadata(stack.getMetadata()).getName();
+
+            case "elementalcraft:energy_block":
+                return "tile.energy." + BlockEnergy.Type.byMetadata(stack.getMetadata()).getName();
         }
         return "unknown";
     }

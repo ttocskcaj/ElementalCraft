@@ -93,13 +93,6 @@ public class ModItems {
     public static void registerItemBlocks(IForgeRegistry<Item> registry) {
         ElementalCraft.logger.info("Creating and registering ItemBlocks");
 
-        // Energy Blocks
-        registry.register(new ItemBlock(ModBlocks.AETHER_BLOCK).setRegistryName(ModBlocks.AETHER_BLOCK.getRegistryName()));
-        registry.register(new ItemBlock(ModBlocks.AIR_ENERGY_BLOCK).setRegistryName(ModBlocks.AIR_ENERGY_BLOCK.getRegistryName()));
-        registry.register(new ItemBlock(ModBlocks.EARTH_ENERGY_BLOCK).setRegistryName(ModBlocks.EARTH_ENERGY_BLOCK.getRegistryName()));
-        registry.register(new ItemBlock(ModBlocks.FIRE_ENERGY_BLOCK).setRegistryName(ModBlocks.FIRE_ENERGY_BLOCK.getRegistryName()));
-        registry.register(new ItemBlock(ModBlocks.WATER_ENERGY_BLOCK).setRegistryName(ModBlocks.WATER_ENERGY_BLOCK.getRegistryName()));
-
         // Generic Blocks
         registry.register(new ItemBlock(ModBlocks.AIR_STONE).setRegistryName(ModBlocks.AIR_STONE.getRegistryName()));
         registry.register(new ItemBlock(ModBlocks.ASH_BLOCK).setRegistryName(ModBlocks.ASH_BLOCK.getRegistryName()));
