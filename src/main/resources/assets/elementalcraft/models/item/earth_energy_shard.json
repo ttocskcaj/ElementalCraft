@@ -1,6 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "elementalcraft:items/earth_energy_shard"
-  }
-}

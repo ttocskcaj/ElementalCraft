@@ -1,0 +1,14 @@
+{
+  "type": "forge:ore_shapeless",
+  "ingredients": [
+    {
+      "type": "forge:ore_dict",
+      "ore": "ingotSteel"
+    }
+  ],
+  "result": {
+    "item": "elementalcraft:material",
+    "data" : 63,
+    "count" : 9
+  }
+}

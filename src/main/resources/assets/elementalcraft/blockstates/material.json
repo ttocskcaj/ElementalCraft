@@ -1,0 +1,184 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "builtin/generated",
+    "textures": {
+      "layer0": "blocks/dirt"
+    },
+    "transform": "forge:default-item"
+  },
+  "variants": {
+    "type": {
+      "crushedaether": {
+        "textures": {
+          "layer0": "elementalcraft:items/material/crushed_aether"
+        }
+      },
+      "crushedgold": {
+        "textures": {
+          "layer0": "elementalcraft:items/material/crushed_gold"
+        }
+      },
+      "crushediron": {
+        "textures": {
+          "layer0": "elementalcraft:items/material/crushed_iron"
+        }
+      },
+      "crushedlead": {
+        "textures": {
+          "layer0": "elementalcraft:items/material/crushed_lead"
+        }
+      },
+      "crushednickel": {
+        "textures": {
+          "layer0": "elementalcraft:items/material/crushed_nickel"
+        }
+      },
+      "crushedsilver": {
+        "textures": {
+          "layer0": "elementalcraft:items/material/crushed_silver"
+        }
+      },
+      "crushedsteel": {
+        "textures": {
+          "layer0": "elementalcraft:items/material/crushed_steel"
+        }
+      },
+      "crushedtin": {
+        "textures": {
+          "layer0": "elementalcraft:items/material/crushed_tin"
+        }
+      },
+
+
+      "gemaquamarine": {
+        "textures": {
+          "layer0": "elementalcraft:items/material/gem_aquamarine"
+        }
+      },
+      "gemazurite": {
+        "textures": {
+          "layer0": "elementalcraft:items/material/gem_azurite"
+        }
+      },
+      "gemberyl": {
+        "textures": {
+          "layer0": "elementalcraft:items/material/gem_beryl"
+        }
+      },
+      "gembloodstone": {
+        "textures": {
+          "layer0": "elementalcraft:items/material/gem_bloodstone"
+        }
+      },
+      "gemcitrine": {
+        "textures": {
+          "layer0": "elementalcraft:items/material/gem_citrine"
+        }
+      },
+      "gemfluorite": {
+        "textures": {
+          "layer0": "elementalcraft:items/material/gem_fluorite"
+        }
+      },
+      "gemgarnet": {
+        "textures": {
+          "layer0": "elementalcraft:items/material/gem_garnet"
+        }
+      },
+      "gemjade": {
+        "textures": {
+          "layer0": "elementalcraft:items/material/gem_jade"
+        }
+      },
+      "gemonyx": {
+        "textures": {
+          "layer0": "elementalcraft:items/material/gem_onyx"
+        }
+      },
+
+      
+      "ingotlead": {
+        "textures": {
+          "layer0": "elementalcraft:items/material/ingot_lead"
+        }
+      },
+      "ingotnickel": {
+        "textures": {
+          "layer0": "elementalcraft:items/material/ingot_nickel"
+        }
+      },
+      "ingotsilver": {
+        "textures": {
+          "layer0": "elementalcraft:items/material/ingot_silver"
+        }
+      },
+      "ingotsteel": {
+        "textures": {
+          "layer0": "elementalcraft:items/material/ingot_steel"
+        }
+      },
+      "ingottin": {
+        "textures": {
+          "layer0": "elementalcraft:items/material/ingot_tin"
+        }
+      },
+
+
+      "nuggetlead": {
+        "textures": {
+          "layer0": "elementalcraft:items/material/nugget_lead"
+        }
+      },
+      "nuggetnickel": {
+        "textures": {
+          "layer0": "elementalcraft:items/material/nugget_nickel"
+        }
+      },
+      "nuggetsilver": {
+        "textures": {
+          "layer0": "elementalcraft:items/material/nugget_silver"
+        }
+      },
+      "nuggetsteel": {
+        "textures": {
+          "layer0": "elementalcraft:items/material/nugget_steel"
+        }
+      },
+      "nuggettin": {
+        "textures": {
+          "layer0": "elementalcraft:items/material/nugget_tin"
+        }
+      },
+      
+      
+      "shardaether": {
+        "textures": {
+          "layer0": "elementalcraft:items/material/shard_aether"
+        }
+      },
+      "shardairenergy": {
+        "textures": {
+          "layer0": "elementalcraft:items/material/shard_air_energy"
+        }
+      },
+      "shardearthenergy": {
+        "textures": {
+          "layer0": "elementalcraft:items/material/shard_earth_energy"
+        }
+      },
+      "shardfireenergy": {
+        "textures": {
+          "layer0": "elementalcraft:items/material/shard_fire_energy"
+        }
+      },
+      "shardwaterenergy": {
+        "textures": {
+          "layer0": "elementalcraft:items/material/shard_water_energy"
+        }
+      }
+      
+      
+    }
+  }
+}

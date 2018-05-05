@@ -1,7 +1,9 @@
 package com.ttocskcaj.elementalcraft.block.ore;
 
 import com.ttocskcaj.elementalcraft.block.BlockVariantsBase;
-import com.ttocskcaj.elementalcraft.init.ModItems;
+import com.ttocskcaj.elementalcraft.item.ItemMaterial;
+import com.ttocskcaj.elementalcraft.util.IGetsInitialized;
+import com.ttocskcaj.elementalcraft.util.IHasModels;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -15,6 +17,7 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
@@ -23,7 +26,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.Random;
 
-public class BlockAirOre extends BlockVariantsBase {
+public class BlockAirOre extends BlockVariantsBase implements IHasModels, IGetsInitialized {
     public static final PropertyEnum<Type> VARIANT = PropertyEnum.create("type", Type.class);
     public static ItemStack oreCitrine;
     public static ItemStack oreAzurite;
@@ -80,12 +83,13 @@ public class BlockAirOre extends BlockVariantsBase {
     }
 
     @SideOnly(Side.CLIENT)
-    public void initModels() {
+    public void registerModels() {
         for (int i = 0; i < Type.values().length; i++) {
             ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), i, new ModelResourceLocation(getRegistryName(), "type=" + Type.byMetadata(i).getName()));
         }
     }
 
+    @Override
     public boolean preInit() {
         this.setRegistryName("air_ore");
         ForgeRegistries.BLOCKS.register(this);
@@ -110,25 +114,31 @@ public class BlockAirOre extends BlockVariantsBase {
         return true;
     }
 
+    @Override
     public boolean init() {
         FurnaceRecipes.instance().addSmeltingRecipe(oreIron, new ItemStack(Items.IRON_INGOT), 0.5f);
-        //TODO: Tin ingot.
+        FurnaceRecipes.instance().addSmeltingRecipe(oreTin, ItemMaterial.ingotTin,0.5f);
         return true;
     }
 
-    @SuppressWarnings("NullableProblems")
     @Override
-    public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+    public ItemStack getDroppedItemStack(IBlockState state, BlockPos pos, Random rand, int fortune){
         Type variant = state.getValue(VARIANT);
+        ItemStack itemStack = ItemStack.EMPTY;
+
         if (variant.dropsGem()) {
-            switch (variant) {
-                case CITRINE:
-                    return ModItems.CITRINE;
-                case AZURITE:
-                    return ModItems.AZURITE;
+            // Get an ItemStack of the gem that is being dropped.
+            if (variant.dropsGem()) {
+                if (variant == Type.CITRINE)
+                    itemStack = ItemMaterial.gemCitrine;
+                if (variant == Type.AZURITE)
+                    itemStack = ItemMaterial.gemAzurite;
             }
+        } else {
+            // Get the default item to drop (if no gems)
+            itemStack = new ItemStack(getItemDropped(state, rand, fortune), 1, getMetaFromState(state));
         }
-        return super.getItemDropped(state, rand, fortune);
+        return itemStack;
     }
 
     @Override

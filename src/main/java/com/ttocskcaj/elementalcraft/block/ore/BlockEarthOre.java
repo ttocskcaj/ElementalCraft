@@ -1,7 +1,9 @@
 package com.ttocskcaj.elementalcraft.block.ore;
 
 import com.ttocskcaj.elementalcraft.block.BlockVariantsBase;
-import com.ttocskcaj.elementalcraft.init.ModItems;
+import com.ttocskcaj.elementalcraft.item.ItemMaterial;
+import com.ttocskcaj.elementalcraft.util.IGetsInitialized;
+import com.ttocskcaj.elementalcraft.util.IHasModels;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -13,6 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
@@ -21,7 +24,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.Random;
 
-public class BlockEarthOre extends BlockVariantsBase {
+public class BlockEarthOre extends BlockVariantsBase implements IGetsInitialized, IHasModels {
     public static final PropertyEnum<Type> VARIANT = PropertyEnum.create("type", Type.class);
     public static ItemStack oreJade;
     public static ItemStack oreOnyx;
@@ -71,13 +74,15 @@ public class BlockEarthOre extends BlockVariantsBase {
         return state.getValue(VARIANT).getMetadata();
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
-    public void initModels() {
+    public void registerModels() {
         for (int i = 0; i < Type.values().length; i++) {
             ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), i, new ModelResourceLocation(getRegistryName(), "type=" + Type.byMetadata(i).getName()));
         }
     }
 
+    @Override
     public boolean preInit() {
         this.setRegistryName("earth_ore");
         ForgeRegistries.BLOCKS.register(this);
@@ -98,34 +103,39 @@ public class BlockEarthOre extends BlockVariantsBase {
         OreDictionary.registerOre("oreLead", oreLead);
         OreDictionary.registerOre("oreEarthEnergy", oreEarthEnergy);
 
-
         return true;
     }
 
+    @Override
     public boolean init() {
-        FurnaceRecipes.instance().addSmeltingRecipe(oreJade, new ItemStack(ModItems.JADE), 0.5f);
-        FurnaceRecipes.instance().addSmeltingRecipe(oreOnyx, new ItemStack(ModItems.ONYX), 0.5f);
-        FurnaceRecipes.instance().addSmeltingRecipe(oreFluorite, new ItemStack(ModItems.FLUORITE), 0.5f);
-//        FurnaceRecipes.instance().addSmeltingRecipe(oreLead, new ItemStack(ModItems.LE), 0.5f); TODO: Lead ingot.
+
+        FurnaceRecipes.instance().addSmeltingRecipe(oreLead, ItemMaterial.ingotLead,0.8f);
 
         return true;
     }
 
     @Override
-    public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+    public ItemStack getDroppedItemStack(IBlockState state, BlockPos pos, Random rand, int fortune){
         Type variant = state.getValue(VARIANT);
+        ItemStack itemStack = ItemStack.EMPTY;
+
         if (variant.dropsGem()) {
-            switch (variant) {
-                case JADE:
-                    return ModItems.JADE;
-                case ONYX:
-                    return ModItems.ONYX;
-                case FLUORITE:
-                    return ModItems.FLUORITE;
+            // Get an ItemStack of the gem that is being dropped.
+            if (variant.dropsGem()) {
+                if (variant == Type.JADE)
+                    itemStack = ItemMaterial.gemJade;
+                if (variant == Type.ONYX)
+                    itemStack = ItemMaterial.gemOnyx;
+                if (variant == Type.FLUORITE)
+                    itemStack = ItemMaterial.gemFluorite;
             }
+        } else {
+            // Get the default item to drop (if no gems)
+            itemStack = new ItemStack(getItemDropped(state, rand, fortune), 1, getMetaFromState(state));
         }
-        return super.getItemDropped(state, rand, fortune);
+        return itemStack;
     }
+
 
     @Override
     public int quantityDropped(IBlockState state, int fortune, Random random) {
@@ -165,7 +175,7 @@ public class BlockEarthOre extends BlockVariantsBase {
             return this.name;
         }
 
-        public Boolean dropsGem(){
+        public Boolean dropsGem() {
             return dropsGem;
         }
 

@@ -1,7 +1,9 @@
 package com.ttocskcaj.elementalcraft.block.ore;
 
 import com.ttocskcaj.elementalcraft.block.BlockVariantsBase;
-import com.ttocskcaj.elementalcraft.init.ModItems;
+import com.ttocskcaj.elementalcraft.item.ItemMaterial;
+import com.ttocskcaj.elementalcraft.util.IGetsInitialized;
+import com.ttocskcaj.elementalcraft.util.IHasModels;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -14,6 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
@@ -22,7 +25,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.Random;
 
-public class BlockFireOre extends BlockVariantsBase {
+public class BlockFireOre extends BlockVariantsBase implements IHasModels, IGetsInitialized {
     public static final PropertyEnum<Type> VARIANT = PropertyEnum.create("type", Type.class);
     public static ItemStack oreBloodstone;
     public static ItemStack oreGarnet;
@@ -73,13 +76,15 @@ public class BlockFireOre extends BlockVariantsBase {
         return state.getValue(VARIANT).getMetadata();
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
-    public void initModels() {
+    public void registerModels() {
         for (int i = 0; i < Type.values().length; i++) {
             ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), i, new ModelResourceLocation(getRegistryName(), "type=" + Type.byMetadata(i).getName()));
         }
     }
 
+    @Override
     public boolean preInit() {
         this.setRegistryName("fire_ore");
         ForgeRegistries.BLOCKS.register(this);
@@ -99,32 +104,35 @@ public class BlockFireOre extends BlockVariantsBase {
         OreDictionary.registerOre("oreGold", oreGold);
         OreDictionary.registerOre("oreNickel", oreNickel);
         OreDictionary.registerOre("oreFireEnergy", oreFireEnergy);
-
-
-        return true;
-    }
-
-    public boolean init() {
-        FurnaceRecipes.instance().addSmeltingRecipe(oreBloodstone, new ItemStack(ModItems.BLOODSTONE), 0.5f);
-        FurnaceRecipes.instance().addSmeltingRecipe(oreGarnet, new ItemStack(ModItems.GARNET), 0.5f);
-        FurnaceRecipes.instance().addSmeltingRecipe(oreGold, new ItemStack(Items.GOLD_INGOT), 0.5f);
-//        FurnaceRecipes.instance().addSmeltingRecipe(oreNickel, new ItemStack(ModItems.LE), 0.5f); TODO: Nickel ingot.
-
         return true;
     }
 
     @Override
-    public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+    public boolean init() {
+        FurnaceRecipes.instance().addSmeltingRecipe(oreNickel, ItemMaterial.ingotNickel,0.6f);
+        FurnaceRecipes.instance().addSmeltingRecipe(oreGold, new ItemStack(Items.GOLD_INGOT),0.8f);
+        return true;
+    }
+
+
+    @Override
+    public ItemStack getDroppedItemStack(IBlockState state, BlockPos pos, Random rand, int fortune){
         Type variant = state.getValue(VARIANT);
+        ItemStack itemStack = ItemStack.EMPTY;
+
         if (variant.dropsGem()) {
-            switch (variant) {
-                case BLOODSTONE:
-                    return ModItems.BLOODSTONE;
-                case GARNET:
-                    return ModItems.GARNET;
+            // Get an ItemStack of the gem that is being dropped.
+            if (variant.dropsGem()) {
+                if (variant == Type.BLOODSTONE)
+                    itemStack = ItemMaterial.gemBloodstone;
+                if (variant == Type.GARNET)
+                    itemStack = ItemMaterial.gemGarnet;
             }
+        } else {
+            // Get the default item to drop (if no gems)
+            itemStack = new ItemStack(getItemDropped(state, rand, fortune), 1, getMetaFromState(state));
         }
-        return super.getItemDropped(state, rand, fortune);
+        return itemStack;
     }
 
     @Override

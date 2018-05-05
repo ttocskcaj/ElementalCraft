@@ -1,6 +1,7 @@
 package com.ttocskcaj.elementalcraft.init;
 
 import com.ttocskcaj.elementalcraft.ElementalCraft;
+import com.ttocskcaj.elementalcraft.item.ItemMaterial;
 import com.ttocskcaj.elementalcraft.item.magical.ItemGoldAthame;
 import com.ttocskcaj.elementalcraft.item.magical.ItemPentacle;
 import com.ttocskcaj.elementalcraft.item.magical.ItemWandCitrine;
@@ -15,6 +16,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.registries.IForgeRegistry;
 
 public class ModItems {
+    public static ItemMaterial itemMaterial;
 
     // Magic
     public static final ItemRingOfTheElements RING_OF_THE_ELEMENTS = new ItemRingOfTheElements();
@@ -22,52 +24,27 @@ public class ModItems {
     public static final ItemGoldAthame GOLD_ATHAME = new ItemGoldAthame();
     public static final ItemWandCitrine WAND_CITRINE = new ItemWandCitrine();
 
-    // Materials
-    public static final ItemAetherShard AETHER_SHARD = new ItemAetherShard();
-    public static final ItemAirEnergyShard AIR_ENERGY_SHARD = new ItemAirEnergyShard();
-    public static final ItemAquamarine AQUAMARINE = new ItemAquamarine();
-    public static final ItemAzurite AZURITE = new ItemAzurite();
-    public static final ItemBeryl BERYL = new ItemBeryl();
-    public static final ItemBloodstone BLOODSTONE = new ItemBloodstone();
-    public static final ItemCitrine CITRINE = new ItemCitrine();
-    public static final ItemCrushedAether CRUSHED_AETHER = new ItemCrushedAether();
-    public static final ItemEarthEnergyShard EARTH_ENERGY_SHARD = new ItemEarthEnergyShard();
-    public static final ItemFireEnergyShard FIRE_ENERGY_SHARD = new ItemFireEnergyShard();
-    public static final ItemFluorite FLUORITE = new ItemFluorite();
-    public static final ItemGarnet GARNET = new ItemGarnet();
-    public static final ItemJade JADE = new ItemJade();
-    public static final ItemOnyx ONYX = new ItemOnyx();
-    public static final ItemWaterEnergyShard WATER_ENERGY_SHARD = new ItemWaterEnergyShard();
-
     // Tools
     public static final ItemCrescentWand CRESCENT_WAND = new ItemCrescentWand();
     public static final ItemChalice CHALICE = new ItemChalice();
 
+    public static void preInit(){
+        itemMaterial = new ItemMaterial();
+        itemMaterial.preInit();
+    }
+    public static void init(){
+        itemMaterial.init();
+    }
 
     @SideOnly(Side.CLIENT)
     public static void initModels() {
+        itemMaterial.registerModels();
+
         // Magic
         PENTACLE.initModel();
         GOLD_ATHAME.initModel();
         RING_OF_THE_ELEMENTS.initModel();
         WAND_CITRINE.initModel();
-
-        // Materials
-        AETHER_SHARD.initModel();
-        AIR_ENERGY_SHARD.initModel();
-        AQUAMARINE.initModel();
-        AZURITE.initModel();
-        BERYL.initModel();
-        BLOODSTONE.initModel();
-        CITRINE.initModel();
-        CRUSHED_AETHER.initModel();
-        EARTH_ENERGY_SHARD.initModel();
-        FLUORITE.initModel();
-        GARNET.initModel();
-        JADE.initModel();
-        ONYX.initModel();
-        FIRE_ENERGY_SHARD.initModel();
-        WATER_ENERGY_SHARD.initModel();
 
         // Tools
         CRESCENT_WAND.initModel();
@@ -82,9 +59,6 @@ public class ModItems {
         registry.register(PENTACLE);
         registry.register(GOLD_ATHAME);
         registry.register(WAND_CITRINE);
-
-        // Materials
-        registry.registerAll(AETHER_SHARD, AIR_ENERGY_SHARD, AQUAMARINE, AZURITE, BERYL, BLOODSTONE, CITRINE, CRUSHED_AETHER, EARTH_ENERGY_SHARD, FIRE_ENERGY_SHARD, FLUORITE, GARNET, JADE, ONYX, WATER_ENERGY_SHARD);
 
         // Tools
         registry.register(CRESCENT_WAND);

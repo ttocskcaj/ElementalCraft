@@ -1,6 +1,8 @@
 package com.ttocskcaj.elementalcraft.block.ore;
 
 import com.ttocskcaj.elementalcraft.block.BlockVariantsBase;
+import com.ttocskcaj.elementalcraft.util.IGetsInitialized;
+import com.ttocskcaj.elementalcraft.util.IHasModels;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -19,7 +21,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.Random;
 
-public class BlockOverworldOre extends BlockVariantsBase {
+public class BlockOverworldOre extends BlockVariantsBase implements IGetsInitialized, IHasModels {
     public static final PropertyEnum<Type> VARIANT = PropertyEnum.create("type", Type.class);
     public static ItemStack oreAether;
 
@@ -61,12 +63,13 @@ public class BlockOverworldOre extends BlockVariantsBase {
     }
 
     @SideOnly(Side.CLIENT)
-    public void initModels() {
+    public void registerModels() {
         for (int i = 0; i < Type.values().length; i++) {
             ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), i, new ModelResourceLocation(getRegistryName(), "type=" + Type.byMetadata(i).getName()));
         }
     }
 
+    @Override
     public boolean preInit() {
         this.setRegistryName("ore");
         ForgeRegistries.BLOCKS.register(this);
@@ -82,6 +85,7 @@ public class BlockOverworldOre extends BlockVariantsBase {
         return true;
     }
 
+    @Override
     public boolean init() {
         return true;
     }

@@ -1,0 +1,18 @@
+{
+  "result": {
+    "item": "elementalcraft:material",
+    "data" : 43
+  },
+  "pattern": [
+    "xxx",
+    "xxx",
+    "xxx"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "x": {
+      "type": "forge:ore_dict",
+      "ore": "nuggetSteel"
+    }
+  }
+}

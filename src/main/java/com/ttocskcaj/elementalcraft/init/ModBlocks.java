@@ -87,17 +87,17 @@ public class ModBlocks {
     @SideOnly(Side.CLIENT)
     public static void initModels() {
         // Ore
-        airOre.initModels();
-        earthOre.initModels();
-        fireOre.initModels();
-        waterOre.initModels();
-        overworldOre.initModels();
+        airOre.registerModels();
+        earthOre.registerModels();
+        fireOre.registerModels();
+        waterOre.registerModels();
+        overworldOre.registerModels();
 
         // Metal Blocks
-        metal.initModels();
+        metal.registerModels();
 
         // Energy
-        energy.initModels();
+        energy.registerModels();
 
         // Generic
         AIR_STONE.initModel();

@@ -2,6 +2,8 @@ package com.ttocskcaj.elementalcraft.block.energy;
 
 import com.ttocskcaj.elementalcraft.block.BlockVariantsBase;
 import com.ttocskcaj.elementalcraft.block.ItemBlockBase;
+import com.ttocskcaj.elementalcraft.util.IGetsInitialized;
+import com.ttocskcaj.elementalcraft.util.IHasModels;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
@@ -20,7 +22,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 
 
-public class BlockEnergy extends BlockVariantsBase {
+public class BlockEnergy extends BlockVariantsBase implements IHasModels, IGetsInitialized {
     public static final PropertyEnum<Type> VARIANT = PropertyEnum.create("type", Type.class);
     public static ItemStack energyAether;
     public static ItemStack energyAir;
@@ -66,13 +68,15 @@ public class BlockEnergy extends BlockVariantsBase {
         return state.getValue(VARIANT).getMetadata();
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
-    public void initModels() {
+    public void registerModels() {
         for (int i = 0; i < Type.values().length; i++) {
             ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), i, new ModelResourceLocation(getRegistryName(), "type=" + Type.byMetadata(i).getName()));
         }
     }
 
+    @Override
     public boolean preInit() {
         this.setRegistryName("energy_block");
         ForgeRegistries.BLOCKS.register(this);
@@ -97,6 +101,7 @@ public class BlockEnergy extends BlockVariantsBase {
         return true;
     }
 
+    @Override
     public boolean init() {
         return true;
     }

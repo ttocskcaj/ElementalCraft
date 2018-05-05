@@ -1,0 +1,14 @@
+{
+  "type": "forge:ore_shapeless",
+  "ingredients": [
+    {
+      "item": "elementalcraft:metal_block",
+      "data" : 2
+    }
+  ],
+  "result": {
+    "item": "elementalcraft:material",
+    "data": 42,
+    "count": 9
+  }
+}

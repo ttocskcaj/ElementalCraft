@@ -2,72 +2,101 @@
 item.crescentwand.name=CrescentWand
 item.ring_of_the_elements.name=Ring of the Elements
 
+
 # Misc
 itemGroup.elementalcraft=ElementalCraft
 tile.ore.aether.name=Aether Ore
 
-# Air Ore
+
+# Ores
 tile.ore.citrine.name=Citrine Ore
 tile.ore.azurite.name=Azurite Ore
 tile.ore.iron.name=Iron Ore
 tile.ore.tin.name=Tin Ore
 tile.ore.air_energy.name=Air Energy Ore
 
-# Air Gems
-item.citrine.name=Citrine
-item.azurite.name=Azurite
-
-# Earth Ore
 tile.ore.jade.name=Jade Ore
 tile.ore.onyx.name=Onyx Ore
 tile.ore.fluorite.name=Fluorite Ore
 tile.ore.lead.name=Lead Ore
 tile.ore.earth_energy.name=Earth Energy Ore
 
-# Earth Gems
-item.jade.name=Jade
-item.fluorite.name=Fluorite
-item.onyx.name=Onyx
-
-# Fire Ore
 tile.ore.bloodstone.name=Bloodstone Ore
 tile.ore.garnet.name=Garnet Ore
 tile.ore.gold.name=Gold Ore
 tile.ore.nickel.name=Nickel Ore
 tile.ore.fire_energy.name=Fire Energy Ore
 
-# Fire Gems
-item.garnet.name=Garnet
-item.bloodstone.name=Bloodstone
-
-# Water Ore
 tile.ore.aquamarine.name=Aquamarine Ore
 tile.ore.beryl.name=Beryl Ore
 tile.ore.silver.name=Silver Ore
 tile.ore.water_energy.name=Water Energy Ore
 
-# Water Gems
-item.aquamarine.name=Aquamarine
-item.beryl.name=Beryl
 
-# Elemental Energy
+# Metal Blocks
+tile.metal.lead.name=Lead Block
+tile.metal.nickel.name=Nickel Block
+tile.metal.silver.name=Silver Block
+tile.metal.steel.name=Steel Block
+tile.metal.tin.name=Tin Block
+
+
+# Elemental Energy Blocks
 tile.energy.air.name=Air Energy Block
 tile.energy.earth.name=Earth Energy Block
 tile.energy.fire.name=Fire Energy Block
 tile.energy.water.name=Water Energy Block
 tile.energy.aether.name=Aether Block
 
-# Elemental Shards
-item.aether_shard.name=Aether Shard
-item.air_energy_shard.name=Air Energy Shard
-item.earth_energy_shard.name=Earth Energy Shard
-item.fire_energy_shard.name=Fire Energy Shard
-item.water_energy_shard.name=Water Energy Shard
 
-# Crushed Elemental
-tile.crushed_aether.name=Crushed Aether
+# Crushed
+item.material.crushedAether.name=Crushed Aether
+item.material.crushedGold.name=Crushed Gold
+item.material.crushedIron.name=Crushed Iron
+item.material.crushedLead.name=Crushed Lead
+item.material.crushedNickel.name=Crushed Nickel
+item.material.crushedSilver.name=Crushed Silver
+item.material.crushedSteel.name=Crushed Steel
+item.material.crushedTin.name=Crushed Tin
 
-# Biome Blocks
+
+# Gems
+item.material.gemAquamarine.name=Aquamarine
+item.material.gemAzurite.name=Azurite
+item.material.gemBeryl.name=Beryl
+item.material.gemBloodstone.name=Bloodstone
+item.material.gemCitrine.name=Citrine
+item.material.gemFluorite.name=Fluorite
+item.material.gemGarnet.name=Garnet
+item.material.gemJade.name=Jade
+item.material.gemOnyx.name=Onyx
+
+
+# Ingots
+item.material.ingotLead.name=Lead Ingot
+item.material.ingotNickel.name=Nickel Ingot
+item.material.ingotSilver.name=Silver Ingot
+item.material.ingotSteel.name=Steel Ingot
+item.material.ingotTin.name=Tin Ingot
+
+
+# Nuggets
+item.material.nuggetLead.name=Lead Nugget
+item.material.nuggetNickel.name=Nickel Nugget
+item.material.nuggetSilver.name=Silver Nugget
+item.material.nuggetSteel.name=Steel Nugget
+item.material.nuggetTin.name=Tin Nugget
+
+
+# Shards
+item.material.shardAether.name=Aether Shard
+item.material.shardAirEnergy.name=Air Energy Shard
+item.material.shardEarthEnergy.name=Earth Energy Shard
+item.material.shardFireEnergy.name=Fire Energy Shard
+item.material.shardWaterEnergy.name=Water Energy Shard
+
+
+# Generic Blocks
 tile.rarefied_stone.name=Rarefied Stone
 tile.fire_stone.name=Fire Stone
 tile.ash_block.name=Ash Block
@@ -79,36 +108,15 @@ tile.fertile_dirt.name=Fertile Dirt
 tile.fertile_grass.name=Fertile Grass
 tile.salt_block.name=Salt Block
 
-# Crushed Metals
-item.crushed_lead.name=Crushed Lead
-item.crushed_nickel.name=Crushed Nickel
-item.crushed_silver.name=Crushed Silver
-item.crushed_tin.name=Crushed Tin
-item.crushed_steel.name=Crushed Steel
-
-# Metal Ingots
-item.lead_ingot.name=Lead Ingot
-item.nickel_ingot.name=Nickel Ingot
-item.silver_ingot.name=Silver Ingot
-item.tin_ingot.name=Tin Ingot
-item.steel_ingot.name=Steel Ingot
-
-# Metal Nuggets
-item.lead_nugget.name=Lead Nugget
-item.nickel_nugget.name=Nickel Nugget
-item.silver_nugget.name=Silver Nugget
-item.tin_nugget.name=Tin Nugget
-item.steel_nugget.name=Steel Nugget
-
-# Metal Blocks
-tile.metal.lead.name=Lead Block
-tile.metal.nickel.name=Nickel Block
-tile.metal.silver.name=Silver Block
-tile.metal.steel.name=Steel Block
-tile.metal.tin.name=Tin Block
 
 # Machines
-tile.rarefaction_apparatus=Rarefaction Apparatus
+tile.rarefaction_apparatus.name=Rarefaction Apparatus
+
+
+# Plants
+tile.burnt_bush.name=Burnt Bush
+tile.fire_cactus.name=Fire Cactus
+
 
 # Error Messages
 must_enter_world=You must enter a world to teleport to!

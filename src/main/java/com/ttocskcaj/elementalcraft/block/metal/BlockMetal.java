@@ -2,6 +2,8 @@ package com.ttocskcaj.elementalcraft.block.metal;
 
 import com.ttocskcaj.elementalcraft.block.BlockVariantsBase;
 import com.ttocskcaj.elementalcraft.block.ItemBlockBase;
+import com.ttocskcaj.elementalcraft.util.IGetsInitialized;
+import com.ttocskcaj.elementalcraft.util.IHasModels;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
@@ -20,7 +22,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 
 
-public class BlockMetal extends BlockVariantsBase {
+public class BlockMetal extends BlockVariantsBase implements IGetsInitialized, IHasModels {
     public static final PropertyEnum<Type> VARIANT = PropertyEnum.create("type", Type.class);
     public static ItemStack metalLead;
     public static ItemStack metalNickel;
@@ -67,12 +69,13 @@ public class BlockMetal extends BlockVariantsBase {
     }
 
     @SideOnly(Side.CLIENT)
-    public void initModels() {
+    public void registerModels() {
         for (int i = 0; i < Type.values().length; i++) {
             ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), i, new ModelResourceLocation(getRegistryName(), "type=" + Type.byMetadata(i).getName()));
         }
     }
 
+    @Override
     public boolean preInit() {
         this.setRegistryName("metal_block");
         ForgeRegistries.BLOCKS.register(this);
@@ -97,6 +100,7 @@ public class BlockMetal extends BlockVariantsBase {
         return true;
     }
 
+    @Override
     public boolean init() {
         return true;
     }

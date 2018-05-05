@@ -1,7 +1,9 @@
 package com.ttocskcaj.elementalcraft.block.ore;
 
 import com.ttocskcaj.elementalcraft.block.BlockVariantsBase;
-import com.ttocskcaj.elementalcraft.init.ModItems;
+import com.ttocskcaj.elementalcraft.item.ItemMaterial;
+import com.ttocskcaj.elementalcraft.util.IGetsInitialized;
+import com.ttocskcaj.elementalcraft.util.IHasModels;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -10,8 +12,10 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
@@ -20,7 +24,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.Random;
 
-public class BlockWaterOre extends BlockVariantsBase {
+public class BlockWaterOre extends BlockVariantsBase implements IGetsInitialized, IHasModels {
     public static final PropertyEnum<Type> VARIANT = PropertyEnum.create("type", Type.class);
     public static ItemStack oreAquamarine;
     public static ItemStack oreBeryl;
@@ -69,12 +73,13 @@ public class BlockWaterOre extends BlockVariantsBase {
     }
 
     @SideOnly(Side.CLIENT)
-    public void initModels() {
+    public void registerModels() {
         for (int i = 0; i < Type.values().length; i++) {
             ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), i, new ModelResourceLocation(getRegistryName(), "type=" + Type.byMetadata(i).getName()));
         }
     }
 
+    @Override
     public boolean preInit() {
         this.setRegistryName("water_ore");
         ForgeRegistries.BLOCKS.register(this);
@@ -97,24 +102,32 @@ public class BlockWaterOre extends BlockVariantsBase {
         return true;
     }
 
+    @Override
     public boolean init() {
-        //TODO: Silver ingot.
+        FurnaceRecipes.instance().addSmeltingRecipe(oreSilver, ItemMaterial.ingotSilver,0.8f);
         return true;
     }
 
     @Override
-    public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+    public ItemStack getDroppedItemStack(IBlockState state, BlockPos pos, Random rand, int fortune) {
         Type variant = state.getValue(VARIANT);
+        ItemStack itemStack = ItemStack.EMPTY;
+
         if (variant.dropsGem()) {
-            switch (variant) {
-                case AQUAMARINE:
-                    return ModItems.AQUAMARINE;
-                case BERYL:
-                    return ModItems.BERYL;
+            // Get an ItemStack of the gem that is being dropped.
+            if (variant.dropsGem()) {
+                if (variant == Type.AQUAMARINE)
+                    itemStack = ItemMaterial.gemAquamarine;
+                if (variant == Type.BERYL)
+                    itemStack = ItemMaterial.gemBeryl;
             }
+        } else {
+            // Get the default item to drop (if no gems)
+            itemStack = new ItemStack(getItemDropped(state, rand, fortune), 1, getMetaFromState(state));
         }
-        return super.getItemDropped(state, rand, fortune);
+        return itemStack;
     }
+
 
     @Override
     public int quantityDropped(IBlockState state, int fortune, Random random) {
@@ -124,6 +137,7 @@ public class BlockWaterOre extends BlockVariantsBase {
         }
         return 1;
     }
+
     public enum Type implements IStringSerializable {
         AQUAMARINE(0, "aquamarine", true),
         BERYL(1, "beryl", true),

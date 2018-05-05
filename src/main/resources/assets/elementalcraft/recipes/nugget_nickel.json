@@ -1,0 +1,14 @@
+{
+  "type": "forge:ore_shapeless",
+  "ingredients": [
+    {
+      "type": "forge:ore_dict",
+      "ore": "ingotNickel"
+    }
+  ],
+  "result": {
+    "item": "elementalcraft:material",
+    "data" : 61,
+    "count" : 9
+  }
+}

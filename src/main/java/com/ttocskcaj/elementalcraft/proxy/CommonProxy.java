@@ -35,25 +35,23 @@ public class CommonProxy {
     public static Configuration config;
 
     public void preInit(FMLPreInitializationEvent event) {
-        ElementalCraft.logger.info("Common preInit");
-
         File directory = event.getModConfigurationDirectory();
         config = new Configuration(new File(directory.getPath(), "elementalcraft.cfg"));
         Config.readConfig();
 
         GameRegistry.registerWorldGenerator(new WorldGenOre(), 3);
 
+        ModItems.preInit();
         ModBlocks.preInit();
     }
 
     public void init() {
-        ElementalCraft.logger.info("Common init");
         ModDimensions.init();
+        ModItems.init();
         ModBlocks.init();
     }
 
     public void postInit(FMLPostInitializationEvent event) {
-        ElementalCraft.logger.info("Common postInit");
         if (config.hasChanged()) {
             config.save();
         }
