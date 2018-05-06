@@ -1,5 +1,16 @@
 {
+  "forge_marker": 1,
+  "defaults": {
+    "textures":{
+      "cross": "elementalcraft:blocks/plant/plant_burnt_bush"
+    }
+  },
   "variants": {
-    "normal": { "model": "elementalcraft:burnt_bush" }
+    "normal": {
+      "model": "cross"
+    },
+    "inventory": {
+      "model": "cross"
+    }
   }
 }

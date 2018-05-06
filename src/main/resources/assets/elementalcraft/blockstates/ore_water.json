@@ -1,0 +1,31 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_all",
+    "transform": "forge:default-block"
+  },
+  "variants": {
+    "type": {
+      "aquamarine": {
+        "textures": {
+          "all": "elementalcraft:blocks/ore/ore_aquamarine"
+        }
+      },
+      "beryl": {
+        "textures": {
+          "all": "elementalcraft:blocks/ore/ore_beryl"
+        }
+      },
+      "silver": {
+        "textures": {
+          "all": "elementalcraft:blocks/ore/ore_silver"
+        }
+      },
+      "water_energy": {
+        "textures": {
+          "all": "elementalcraft:blocks/ore/ore_water_energy"
+        }
+      }
+    }
+  }
+}

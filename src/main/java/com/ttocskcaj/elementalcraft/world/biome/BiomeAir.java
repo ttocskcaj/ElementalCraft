@@ -5,7 +5,6 @@ import com.ttocskcaj.elementalcraft.init.ModBlocks;
 import com.ttocskcaj.elementalcraft.world.decorator.BiomeDecoratorAir;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -21,8 +20,8 @@ public class BiomeAir extends Biome {
                 .setHeightVariation(30F));
         setRegistryName("air_biome");
 
-        this.topBlock = ModBlocks.AIR_STONE.getDefaultState();
-        this.fillerBlock = ModBlocks.AIR_STONE.getDefaultState();
+        this.topBlock = ModBlocks.stoneAir.getDefaultState();
+        this.fillerBlock = ModBlocks.stoneAir.getDefaultState();
 
         // Remove all mobs.
         spawnableMonsterList.clear();
@@ -49,7 +48,7 @@ public class BiomeAir extends Biome {
             }
 
             // Replace only airstone.
-            else if (originalBlockState.getBlock() == ModBlocks.AIR_STONE) {
+            else if (originalBlockState.getBlock() == ModBlocks.stoneAir) {
                 // Set top layer
                 if (lastBlockWasAir) {
                     chunkPrimerIn.setBlockState(worldZ, yLevel, worldX, this.topBlock);

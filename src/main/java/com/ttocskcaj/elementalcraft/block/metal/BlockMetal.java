@@ -1,7 +1,7 @@
 package com.ttocskcaj.elementalcraft.block.metal;
 
-import com.ttocskcaj.elementalcraft.block.BlockVariantsBase;
-import com.ttocskcaj.elementalcraft.block.ItemBlockBase;
+import com.ttocskcaj.elementalcraft.block.BlockMultiBase;
+import com.ttocskcaj.elementalcraft.block.ItemBlockMulti;
 import com.ttocskcaj.elementalcraft.util.IGetsInitialized;
 import com.ttocskcaj.elementalcraft.util.IHasModels;
 import net.minecraft.block.SoundType;
@@ -22,7 +22,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 
 
-public class BlockMetal extends BlockVariantsBase implements IGetsInitialized, IHasModels {
+public class BlockMetal extends BlockMultiBase implements IGetsInitialized, IHasModels {
     public static final PropertyEnum<Type> VARIANT = PropertyEnum.create("type", Type.class);
     public static ItemStack metalLead;
     public static ItemStack metalNickel;
@@ -32,7 +32,7 @@ public class BlockMetal extends BlockVariantsBase implements IGetsInitialized, I
 
     public BlockMetal() {
         super(Material.IRON);
-        setUnlocalizedName("metal_block");
+        setUnlocalizedName("block_metal");
         setHardness(2.5F);
         setResistance(2F);
         setSoundType(SoundType.METAL);
@@ -77,10 +77,10 @@ public class BlockMetal extends BlockVariantsBase implements IGetsInitialized, I
 
     @Override
     public boolean preInit() {
-        this.setRegistryName("metal_block");
+        this.setRegistryName("block_metal");
         ForgeRegistries.BLOCKS.register(this);
 
-        ItemBlockBase itemBlock = new ItemBlockBase(this);
+        ItemBlockMulti itemBlock = new ItemBlockMulti(this);
         itemBlock.setRegistryName(this.getRegistryName());
         ForgeRegistries.ITEMS.register(itemBlock);
 

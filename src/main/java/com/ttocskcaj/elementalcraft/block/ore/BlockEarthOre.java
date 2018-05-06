@@ -1,6 +1,6 @@
 package com.ttocskcaj.elementalcraft.block.ore;
 
-import com.ttocskcaj.elementalcraft.block.BlockVariantsBase;
+import com.ttocskcaj.elementalcraft.block.BlockMultiBase;
 import com.ttocskcaj.elementalcraft.item.ItemMaterial;
 import com.ttocskcaj.elementalcraft.util.IGetsInitialized;
 import com.ttocskcaj.elementalcraft.util.IHasModels;
@@ -24,7 +24,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.Random;
 
-public class BlockEarthOre extends BlockVariantsBase implements IGetsInitialized, IHasModels {
+public class BlockEarthOre extends BlockMultiBase implements IGetsInitialized, IHasModels {
     public static final PropertyEnum<Type> VARIANT = PropertyEnum.create("type", Type.class);
     public static ItemStack oreJade;
     public static ItemStack oreOnyx;
@@ -34,7 +34,7 @@ public class BlockEarthOre extends BlockVariantsBase implements IGetsInitialized
 
     public BlockEarthOre() {
         super(Material.ROCK);
-        setUnlocalizedName("earth_ore");
+        setUnlocalizedName("ore_earth");
         setHardness(3.0F);
         setResistance(5.0F);
 
@@ -84,7 +84,7 @@ public class BlockEarthOre extends BlockVariantsBase implements IGetsInitialized
 
     @Override
     public boolean preInit() {
-        this.setRegistryName("earth_ore");
+        this.setRegistryName("ore_earth");
         ForgeRegistries.BLOCKS.register(this);
 
         ItemBlockOre itemBlock = new ItemBlockOre(this);

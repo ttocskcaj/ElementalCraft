@@ -1,44 +1,25 @@
 package com.ttocskcaj.elementalcraft.block.generic;
 
-import com.ttocskcaj.elementalcraft.ElementalCraft;
-import net.minecraft.block.Block;
+import com.ttocskcaj.elementalcraft.block.BlockSingleBase;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.item.Item;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockAsh extends Block {
+public class BlockAsh extends BlockSingleBase {
 
     public BlockAsh(){
-        super(Material.ROCK);
-        setUnlocalizedName("ash_block");
-        setRegistryName("ash_block");
-        setCreativeTab(ElementalCraft.creativeTab);
+        super("block_ash", Material.SAND);
         setHardness(1f);
         setResistance(3f);
         setHarvestLevel("pickaxe", 0);
-//        setLightLevel(0.01f);
-    }
-
-    @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
-    {
-        return BlockRenderLayer.SOLID;
-    }
-
-    @SideOnly(Side.CLIENT)
-    public void initModel() {
-        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), 0, new ModelResourceLocation(getRegistryName(), "inventory"));
+        setSoundType(SoundType.SAND);
     }
 
     @Override
     public boolean isFireSource(World world, BlockPos pos, EnumFacing side) {
         return true;
     }
+
 }

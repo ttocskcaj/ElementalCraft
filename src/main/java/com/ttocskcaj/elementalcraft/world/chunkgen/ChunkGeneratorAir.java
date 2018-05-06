@@ -21,7 +21,7 @@ public class ChunkGeneratorAir extends ChunkGeneratorBase {
     public ChunkGeneratorAir(World worldIn, long seed) {
         super(worldIn, seed);
 
-        this.fillBlock = ModBlocks.AIR_STONE.getDefaultState();
+        this.fillBlock = ModBlocks.stoneAir.getDefaultState();
         this.oceanBlock = Blocks.LAVA.getDefaultState();
         this.seaLevel = 0;
         worldIn.setSeaLevel(this.seaLevel);

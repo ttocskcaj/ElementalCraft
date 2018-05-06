@@ -1,0 +1,36 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_all",
+    "transform": "forge:default-block"
+  },
+  "variants": {
+    "type": {
+      "citrine": {
+        "textures": {
+          "all": "elementalcraft:blocks/ore/ore_citrine"
+        }
+      },
+      "azurite": {
+        "textures": {
+          "all": "elementalcraft:blocks/ore/ore_azurite"
+        }
+      },
+      "iron": {
+        "textures": {
+          "all": "elementalcraft:blocks/ore/ore_iron"
+        }
+      },
+      "tin": {
+        "textures": {
+          "all": "elementalcraft:blocks/ore/ore_tin"
+        }
+      },
+      "air_energy": {
+        "textures": {
+          "all": "elementalcraft:blocks/ore/ore_air_energy"
+        }
+      }
+    }
+  }
+}

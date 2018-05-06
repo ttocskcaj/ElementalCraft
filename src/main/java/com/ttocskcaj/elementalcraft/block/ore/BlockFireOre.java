@@ -1,6 +1,6 @@
 package com.ttocskcaj.elementalcraft.block.ore;
 
-import com.ttocskcaj.elementalcraft.block.BlockVariantsBase;
+import com.ttocskcaj.elementalcraft.block.BlockMultiBase;
 import com.ttocskcaj.elementalcraft.item.ItemMaterial;
 import com.ttocskcaj.elementalcraft.util.IGetsInitialized;
 import com.ttocskcaj.elementalcraft.util.IHasModels;
@@ -25,7 +25,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.Random;
 
-public class BlockFireOre extends BlockVariantsBase implements IHasModels, IGetsInitialized {
+public class BlockFireOre extends BlockMultiBase implements IHasModels, IGetsInitialized {
     public static final PropertyEnum<Type> VARIANT = PropertyEnum.create("type", Type.class);
     public static ItemStack oreBloodstone;
     public static ItemStack oreGarnet;
@@ -36,7 +36,7 @@ public class BlockFireOre extends BlockVariantsBase implements IHasModels, IGets
 
     public BlockFireOre() {
         super(Material.ROCK);
-        setUnlocalizedName("fire_ore");
+        setUnlocalizedName("ore_fire");
         setHardness(3.0F);
         setResistance(5.0F);
 
@@ -86,7 +86,7 @@ public class BlockFireOre extends BlockVariantsBase implements IHasModels, IGets
 
     @Override
     public boolean preInit() {
-        this.setRegistryName("fire_ore");
+        this.setRegistryName("ore_fire");
         ForgeRegistries.BLOCKS.register(this);
 
         ItemBlockOre itemBlock = new ItemBlockOre(this);

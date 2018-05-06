@@ -1,6 +1,6 @@
 package com.ttocskcaj.elementalcraft.block.ore;
 
-import com.ttocskcaj.elementalcraft.block.BlockVariantsBase;
+import com.ttocskcaj.elementalcraft.block.BlockMultiBase;
 import com.ttocskcaj.elementalcraft.util.IGetsInitialized;
 import com.ttocskcaj.elementalcraft.util.IHasModels;
 import net.minecraft.block.material.Material;
@@ -21,7 +21,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.Random;
 
-public class BlockOverworldOre extends BlockVariantsBase implements IGetsInitialized, IHasModels {
+public class BlockOverworldOre extends BlockMultiBase implements IGetsInitialized, IHasModels {
     public static final PropertyEnum<Type> VARIANT = PropertyEnum.create("type", Type.class);
     public static ItemStack oreAether;
 

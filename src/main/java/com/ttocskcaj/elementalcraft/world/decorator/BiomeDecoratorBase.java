@@ -1,6 +1,7 @@
 package com.ttocskcaj.elementalcraft.world.decorator;
 
 import com.google.common.base.Predicate;
+import com.ttocskcaj.elementalcraft.block.generic.BlockStone;
 import com.ttocskcaj.elementalcraft.init.ModBlocks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
@@ -9,6 +10,8 @@ import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 
 import java.util.Random;
+
+import static com.ttocskcaj.elementalcraft.block.generic.BlockStone.VARIANT;
 
 public class BiomeDecoratorBase extends BiomeDecorator {
     private ElementalStoneTypesPredicate elementalStoneTypesPredicate;
@@ -31,9 +34,12 @@ public class BiomeDecoratorBase extends BiomeDecorator {
         }
 
         public boolean apply(IBlockState inputState) {
-            boolean value = inputState != null && (inputState.getBlock() == ModBlocks.FIRE_STONE || inputState.getBlock() == ModBlocks.AIR_STONE || inputState.getBlock() == ModBlocks.WATER_STONE || inputState.getBlock() == ModBlocks.EARTH_STONE);
-//            System.out.printf("Tested [%s] for ore generation and returned [%s]\n", inputState, value);
-            return value;
+            if(inputState == null) return false;
+            if(inputState == ModBlocks.stone.getDefaultState().withProperty(VARIANT, BlockStone.Type.EARTH)) return true;
+            if(inputState == ModBlocks.stone.getDefaultState().withProperty(VARIANT, BlockStone.Type.FIRE)) return true;
+            if(inputState == ModBlocks.stone.getDefaultState().withProperty(VARIANT, BlockStone.Type.WATER)) return true;
+            if(inputState == ModBlocks.stoneAir.getDefaultState()) return true;
+            return false;
         }
     }
 }

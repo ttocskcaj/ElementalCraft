@@ -1,9 +1,7 @@
 package com.ttocskcaj.elementalcraft.init;
 
-import com.ttocskcaj.elementalcraft.ElementalCraft;
 import com.ttocskcaj.elementalcraft.block.energy.*;
 import com.ttocskcaj.elementalcraft.block.generic.*;
-import com.ttocskcaj.elementalcraft.block.machine.BlockMachineBase;
 import com.ttocskcaj.elementalcraft.block.metal.BlockMetal;
 import com.ttocskcaj.elementalcraft.block.ore.*;
 import com.ttocskcaj.elementalcraft.block.plant.BlockBurntBush;
@@ -27,26 +25,24 @@ public class ModBlocks {
     // Blocks of energy
     public static BlockEnergy energy;
 
+    // Stone
+    public static BlockStone stone;
+    public static BlockStoneAir stoneAir;
+
     // Generic
-    public static final BlockAirStone AIR_STONE = new BlockAirStone();
-    public static final BlockAsh ASH_BLOCK = new BlockAsh();
-    public static final BlockCharredStone CHARRED_STONE = new BlockCharredStone();
-    public static final BlockEarthStone EARTH_STONE = new BlockEarthStone();
-    public static final BlockFertileDirt FERTILE_DIRT = new BlockFertileDirt();
-    public static final BlockFertileGrass FERTILE_GRASS = new BlockFertileGrass();
-    public static final BlockFireStone FIRE_STONE = new BlockFireStone();
-    public static final BlockRarefiedStone RAREFIED_STONE = new BlockRarefiedStone();
-    public static final BlockSaltBlock SALT_BLOCK = new BlockSaltBlock();
-    public static final BlockWaterStone WATER_STONE = new BlockWaterStone();
+    public static BlockAsh ash;
+    public static BlockFertileDirt fertileDirt;
+    public static BlockFertileGrass fertileGrass;
+    public static BlockSalt salt;
 
     // Plants
-    public static final BlockBurntBush BURNT_BUSH = new BlockBurntBush();
-    public static final BlockFireCactus FIRE_CACTUS = new BlockFireCactus();
+    public static BlockBurntBush burntBush;
+    public static BlockFireCactus fireCactus;
 
     // Machines
-    public static final BlockMachineBase RAREFACTION_APPARATUS = (BlockMachineBase) new BlockMachineBase().setRegistryName("rarefaction_apparatus").setUnlocalizedName("rarefaction_apparatus");
+//    public static final BlockMachineBase RAREFACTION_APPARATUS = (BlockMachineBase) new BlockMachineBase().setRegistryName("rarefaction_apparatus").setUnlocalizedName("rarefaction_apparatus");
 
-    public static void preInit(){
+    public static void preInit() {
         // Instantiate and preInit ores.
         airOre = new BlockAirOre();
         airOre.preInit();
@@ -67,9 +63,31 @@ public class ModBlocks {
         energy = new BlockEnergy();
         energy.preInit();
 
+        // Instantiate and preInit stone
+        stone = new BlockStone();
+        stone.preInit();
+        stoneAir = new BlockStoneAir();
+        stoneAir.preInit();
+
+        // Instantiate and preInit other generic blocks
+        ash = new BlockAsh();
+        ash.preInit();
+        fertileDirt = new BlockFertileDirt();
+        fertileDirt.preInit();
+        fertileGrass = new BlockFertileGrass();
+        fertileGrass.preInit();
+        salt = new BlockSalt();
+        salt.preInit();
+
+        // Instantiate and preInit plants
+        fireCactus = new BlockFireCactus();
+        fireCactus.preInit();
+        burntBush = new BlockBurntBush();
+        burntBush.preInit();
+
     }
 
-    public static void init(){
+    public static void init() {
         // Initialize ores.
         airOre.init();
         earthOre.init();
@@ -82,10 +100,25 @@ public class ModBlocks {
 
         // Initialize energy blocks.
         energy.init();
+
+        // Initialize stone.
+        stone.init();
+        stoneAir.init();
+
+        // Initialize other generic blocks.
+        ash.init();
+        fertileGrass.init();
+        fertileDirt.init();
+        salt.init();
+
+        // Initialize other generic blocks.
+        fireCactus.init();
+        burntBush.init();
+
     }
 
     @SideOnly(Side.CLIENT)
-    public static void initModels() {
+    public static void registerModels() {
         // Ore
         airOre.registerModels();
         earthOre.registerModels();
@@ -99,47 +132,21 @@ public class ModBlocks {
         // Energy
         energy.registerModels();
 
-        // Generic
-        AIR_STONE.initModel();
-        ASH_BLOCK.initModel();
-        FERTILE_DIRT.initModel();
-        FERTILE_GRASS.initModel();
-        RAREFIED_STONE.initModel();
-        SALT_BLOCK.initModel();
-        WATER_STONE.initModel();
-        CHARRED_STONE.initModel();
-        EARTH_STONE.initModel();
-        FIRE_STONE.initModel();
-
-        // Plants
-        BURNT_BUSH.initModel();
-        FIRE_CACTUS.initModel();
-
-        // Machines
-        RAREFACTION_APPARATUS.initModel();
-    }
-
-    public static void register(IForgeRegistry<Block> registry) {
-        ElementalCraft.logger.info("Registering Blocks");
+        // Stone
+        stone.registerModels();
+        stoneAir.registerModels();
 
         // Generic
-        registry.register(AIR_STONE);
-        registry.register(ASH_BLOCK);
-        registry.register(FERTILE_DIRT);
-        registry.register(FERTILE_GRASS);
-        registry.register(RAREFIED_STONE);
-        registry.register(SALT_BLOCK);
-        registry.register(FIRE_STONE);
-        registry.register(WATER_STONE);
-        registry.register(CHARRED_STONE);
-        registry.register(EARTH_STONE);
+        ash.registerModels();
+        fertileDirt.registerModels();
+        fertileGrass.registerModels();
+        salt.registerModels();
 
         // Plants
-        registry.register(BURNT_BUSH);
-        registry.register(FIRE_CACTUS);
+        burntBush.registerModels();
+        fireCactus.registerModels();
 
-        // Machines
-        registry.register(RAREFACTION_APPARATUS);
-
+        // Machine
+//        RAREFACTION_APPARATUS.initModel();
     }
 }

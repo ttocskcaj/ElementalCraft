@@ -1,6 +1,7 @@
 package com.ttocskcaj.elementalcraft.world.biome;
 
 
+import com.ttocskcaj.elementalcraft.block.generic.BlockStone;
 import com.ttocskcaj.elementalcraft.init.ModBlocks;
 import com.ttocskcaj.elementalcraft.world.decorator.BiomeDecoratorFire;
 import net.minecraft.block.material.Material;
@@ -14,6 +15,8 @@ import net.minecraft.world.chunk.ChunkPrimer;
 
 import java.util.Random;
 
+import static com.ttocskcaj.elementalcraft.block.generic.BlockStone.VARIANT;
+
 public class BiomeFire extends Biome {
 
     public BiomeFire() {
@@ -21,8 +24,8 @@ public class BiomeFire extends Biome {
                 .setHeightVariation(6F));
         setRegistryName("fire_biome");
 
-        this.topBlock = ModBlocks.CHARRED_STONE.getDefaultState();
-        this.fillerBlock = ModBlocks.FIRE_STONE.getDefaultState();
+        this.topBlock = ModBlocks.stone.getDefaultState().withProperty(VARIANT, BlockStone.Type.CHARRED);
+        this.fillerBlock = ModBlocks.stone.getDefaultState().withProperty(VARIANT, BlockStone.Type.FIRE);
 
         // Remove all mobs.
         spawnableMonsterList.clear();

@@ -1,22 +1,36 @@
 {
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_all",
+    "transform": "forge:default-block"
+  },
   "variants": {
-    "normal": {
-      "model": "elementalcraft:rarefaction_apparatus"
-    },
-    "facing=north": {
-      "model": "elementalcraft:rarefaction_apparatus"
-    },
-    "facing=south": {
-      "model": "elementalcraft:rarefaction_apparatus",
-      "y": 180
-    },
-    "facing=west": {
-      "model": "elementalcraft:rarefaction_apparatus",
-      "y": 270
-    },
-    "facing=east": {
-      "model": "elementalcraft:rarefaction_apparatus",
-      "y": 90
+    "facing": {
+      "north": {
+        "y": 0,
+        "textures": {
+          "all": "elementalcraft:blocks/machine/rarefaction_apparatus"
+        }
+      },
+      "south": {
+        "y": 180,
+        "textures": {
+          "all": "elementalcraft:blocks/machine/rarefaction_apparatus"
+        }
+      },
+      "west": {
+        "y": 270,
+        "textures": {
+          "all": "elementalcraft:blocks/machine/rarefaction_apparatus"
+        }
+      },
+      "east": {
+        "y": 90,
+        "textures": {
+          "all": "elementalcraft:blocks/machine/rarefaction_apparatus"
+        }
+      }
     }
   }
 }
+

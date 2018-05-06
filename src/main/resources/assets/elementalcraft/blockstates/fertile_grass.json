@@ -1,5 +1,21 @@
 {
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {
+      "up": "elementalcraft:blocks/generic/fertile_grass_top",
+      "down": "elementalcraft:blocks/generic/fertile_dirt",
+      "north": "elementalcraft:blocks/generic/fertile_grass_side",
+      "south": "elementalcraft:blocks/generic/fertile_grass_side",
+      "east": "elementalcraft:blocks/generic/fertile_grass_side",
+      "west": "elementalcraft:blocks/generic/fertile_grass_side"
+    }
+  },
   "variants": {
-    "normal": { "model": "elementalcraft:fertile_grass" }
+    "normal": {
+      "model": "cube"
+    },
+    "inventory": {
+      "model": "cube"
+    }
   }
 }

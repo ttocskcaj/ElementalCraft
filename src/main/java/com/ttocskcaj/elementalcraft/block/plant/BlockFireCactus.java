@@ -1,6 +1,6 @@
 package com.ttocskcaj.elementalcraft.block.plant;
 
-import com.ttocskcaj.elementalcraft.ElementalCraft;
+import com.ttocskcaj.elementalcraft.block.BlockSingleBase;
 import com.ttocskcaj.elementalcraft.init.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -26,19 +26,16 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.Random;
 
 
-public class BlockFireCactus extends Block implements IPlantable {
+public class BlockFireCactus extends BlockSingleBase implements IPlantable {
     public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 15);
     protected static final AxisAlignedBB CACTUS_COLLISION_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.9375D, 0.9375D);
     protected static final AxisAlignedBB CACTUS_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 1.0D, 0.9375D);
 
     public BlockFireCactus()
     {
-        super(Material.CACTUS);
-        this.setUnlocalizedName("fire_cactus");
-        this.setRegistryName("fire_cactus");
+        super("fire_cactus", Material.CACTUS);
         this.setDefaultState(this.blockState.getBaseState().withProperty(AGE, 0));
         this.setTickRandomly(true);
-        this.setCreativeTab(ElementalCraft.creativeTab);
     }
 
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
@@ -213,14 +210,19 @@ public class BlockFireCactus extends Block implements IPlantable {
         return BlockFaceShape.UNDEFINED;
     }
 
-    @SideOnly(Side.CLIENT)
-    public void initModel() {
+    @Override
+    public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, IPlantable plantable) {
+        IBlockState plant = plantable.getPlant(world, pos.offset(direction));
+        return plant.getBlock() == ModBlocks.fireCactus;
+    }
+
+    @Override
+    public void registerModels() {
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), 0, new ModelResourceLocation(getRegistryName(), "inventory"));
     }
 
     @Override
-    public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, IPlantable plantable) {
-        IBlockState plant = plantable.getPlant(world, pos.offset(direction));
-        return plant.getBlock() == ModBlocks.FIRE_CACTUS;
+    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+        return super.getActualState(state, worldIn, pos);
     }
 }

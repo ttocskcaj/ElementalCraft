@@ -5,7 +5,6 @@ import com.ttocskcaj.elementalcraft.item.ItemMaterial;
 import com.ttocskcaj.elementalcraft.item.magical.ItemGoldAthame;
 import com.ttocskcaj.elementalcraft.item.magical.ItemPentacle;
 import com.ttocskcaj.elementalcraft.item.magical.ItemWandCitrine;
-import com.ttocskcaj.elementalcraft.item.materials.*;
 import com.ttocskcaj.elementalcraft.item.tools.ItemChalice;
 import com.ttocskcaj.elementalcraft.item.tools.ItemCrescentWand;
 import com.ttocskcaj.elementalcraft.item.magical.ItemRingOfTheElements;
@@ -62,31 +61,5 @@ public class ModItems {
 
         // Tools
         registry.register(CRESCENT_WAND);
-    }
-
-    public static void registerItemBlocks(IForgeRegistry<Item> registry) {
-        ElementalCraft.logger.info("Creating and registering ItemBlocks");
-
-        // Generic Blocks
-        registry.register(new ItemBlock(ModBlocks.AIR_STONE).setRegistryName(ModBlocks.AIR_STONE.getRegistryName()));
-        registry.register(new ItemBlock(ModBlocks.ASH_BLOCK).setRegistryName(ModBlocks.ASH_BLOCK.getRegistryName()));
-        registry.register(new ItemBlock(ModBlocks.CHARRED_STONE).setRegistryName(ModBlocks.CHARRED_STONE.getRegistryName()));
-        registry.register(new ItemBlock(ModBlocks.EARTH_STONE).setRegistryName(ModBlocks.EARTH_STONE.getRegistryName()));
-        registry.register(new ItemBlock(ModBlocks.FERTILE_DIRT).setRegistryName(ModBlocks.FERTILE_DIRT.getRegistryName()));
-        registry.register(new ItemBlock(ModBlocks.FERTILE_GRASS).setRegistryName(ModBlocks.FERTILE_GRASS.getRegistryName()));
-        registry.register(new ItemBlock(ModBlocks.FIRE_STONE).setRegistryName(ModBlocks.FIRE_STONE.getRegistryName()));
-        registry.register(new ItemBlock(ModBlocks.RAREFIED_STONE).setRegistryName(ModBlocks.RAREFIED_STONE.getRegistryName()));
-        registry.register(new ItemBlock(ModBlocks.SALT_BLOCK).setRegistryName(ModBlocks.SALT_BLOCK.getRegistryName()));
-        registry.register(new ItemBlock(ModBlocks.WATER_STONE).setRegistryName(ModBlocks.WATER_STONE.getRegistryName()));
-
-
-        // Plants
-        registry.register(new ItemBlock(ModBlocks.BURNT_BUSH).setRegistryName(ModBlocks.BURNT_BUSH.getRegistryName()));
-        registry.register(new ItemBlock(ModBlocks.FIRE_CACTUS).setRegistryName(ModBlocks.FIRE_CACTUS.getRegistryName()));
-
-        // Machines
-        registry.register(new ItemBlock(ModBlocks.RAREFACTION_APPARATUS).setRegistryName(ModBlocks.RAREFACTION_APPARATUS.getRegistryName()));
-
-
     }
 }

@@ -20,8 +20,8 @@ public class WorldGenFireCactus extends WorldGenerator {
 
                     // Starting at the bottom, build the cactus one block at a time.
                     for (int iHeight = 0; iHeight < height; ++iHeight) {
-                        if (ModBlocks.FIRE_CACTUS.canBlockStay(worldIn, blockpos)) {
-                            worldIn.setBlockState(blockpos.up(iHeight), ModBlocks.FIRE_CACTUS.getDefaultState(), 2);
+                        if (ModBlocks.fireCactus.canBlockStay(worldIn, blockpos)) {
+                            worldIn.setBlockState(blockpos.up(iHeight), ModBlocks.fireCactus.getDefaultState(), 2);
                         }
                     }
                 }

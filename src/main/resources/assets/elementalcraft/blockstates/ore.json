@@ -8,9 +8,8 @@
     "type": {
       "aether": {
         "textures": {
-          "all": "elementalcraft:blocks/ore/aether_ore"
+          "all": "elementalcraft:blocks/ore/ore_aether"
         }
-
       }
     }
   }

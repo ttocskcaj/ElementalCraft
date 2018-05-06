@@ -1,6 +1,7 @@
 package com.ttocskcaj.elementalcraft.world.biome;
 
 
+import com.ttocskcaj.elementalcraft.block.generic.BlockStone;
 import com.ttocskcaj.elementalcraft.init.ModBlocks;
 import com.ttocskcaj.elementalcraft.world.decorator.BiomeDecoratorEarth;
 import net.minecraft.block.*;
@@ -15,6 +16,8 @@ import net.minecraft.world.gen.feature.*;
 
 import java.util.Random;
 
+import static com.ttocskcaj.elementalcraft.block.generic.BlockStone.VARIANT;
+
 public class BiomeEarth extends Biome {
     private WorldGenTrees worldGenOak = new WorldGenTrees(false);
     private WorldGenBirchTree worldGenBirch = new WorldGenBirchTree(false, true);
@@ -28,8 +31,8 @@ public class BiomeEarth extends Biome {
         super(new BiomeProperties("Elemental Earth").setTemperature(0.7f).setRainDisabled().setBaseHeight(5.0F).setHeightVariation(0.3f));
         setRegistryName("earth_biome");
 
-        this.topBlock = ModBlocks.FERTILE_GRASS.getDefaultState();
-        this.fillerBlock = ModBlocks.FERTILE_DIRT.getDefaultState();
+        this.topBlock = ModBlocks.fertileGrass.getDefaultState();
+        this.fillerBlock = ModBlocks.fertileDirt.getDefaultState();
 
         // Remove all mobs.
         spawnableMonsterList.clear();
@@ -48,7 +51,7 @@ public class BiomeEarth extends Biome {
         int i = 0;
         IBlockState iblockstate = topBlock;
         IBlockState iblockstate1 = fillerBlock;
-        IBlockState stone = ModBlocks.EARTH_STONE.getDefaultState();
+        IBlockState stone = ModBlocks.stone.getDefaultState().withProperty(VARIANT, BlockStone.Type.EARTH);
         int j = -1;
         int k = (int) (noiseVal / 3.0D + 3.0D + rand.nextDouble() * 0.25D);
         int l = x & 15;

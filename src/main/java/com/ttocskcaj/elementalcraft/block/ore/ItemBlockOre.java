@@ -1,10 +1,10 @@
 package com.ttocskcaj.elementalcraft.block.ore;
 
-import com.ttocskcaj.elementalcraft.block.ItemBlockBase;
+import com.ttocskcaj.elementalcraft.block.ItemBlockMulti;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 
-public class ItemBlockOre extends ItemBlockBase {
+public class ItemBlockOre extends ItemBlockMulti {
     public ItemBlockOre(Block block) {
         super(block);
     }
@@ -12,16 +12,16 @@ public class ItemBlockOre extends ItemBlockBase {
     @Override
     public String getUnlocalizedName(ItemStack stack) {
         switch (getRegistryName().toString()) {
-            case "elementalcraft:air_ore":
+            case "elementalcraft:ore_air":
                 return "tile.ore." + BlockAirOre.Type.byMetadata(stack.getMetadata()).getName();
 
-            case "elementalcraft:earth_ore":
+            case "elementalcraft:ore_earth":
                 return "tile.ore." + BlockEarthOre.Type.byMetadata(stack.getMetadata()).getName();
 
-            case "elementalcraft:fire_ore":
+            case "elementalcraft:ore_fire":
                 return "tile.ore." + BlockFireOre.Type.byMetadata(stack.getMetadata()).getName();
 
-            case "elementalcraft:water_ore":
+            case "elementalcraft:ore_water":
                 return "tile.ore." + BlockWaterOre.Type.byMetadata(stack.getMetadata()).getName();
 
             case "elementalcraft:ore":

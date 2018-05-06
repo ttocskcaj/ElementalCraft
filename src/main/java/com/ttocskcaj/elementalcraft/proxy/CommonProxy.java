@@ -61,12 +61,10 @@ public class CommonProxy {
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
         ModItems.register(event.getRegistry());
-        ModItems.registerItemBlocks(event.getRegistry());
     }
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
-        ModBlocks.register(event.getRegistry());
 
     }
 

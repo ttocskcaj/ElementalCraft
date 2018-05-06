@@ -1,0 +1,36 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_all",
+    "transform": "forge:default-block"
+  },
+  "variants": {
+    "type": {
+      "jade": {
+        "textures": {
+          "all": "elementalcraft:blocks/ore/ore_jade"
+        }
+      },
+      "onyx": {
+        "textures": {
+          "all": "elementalcraft:blocks/ore/ore_onyx"
+        }
+      },
+      "fluorite": {
+        "textures": {
+          "all": "elementalcraft:blocks/ore/ore_fluorite"
+        }
+      },
+      "lead": {
+        "textures": {
+          "all": "elementalcraft:blocks/ore/ore_lead"
+        }
+      },
+      "earth_energy": {
+        "textures": {
+          "all": "elementalcraft:blocks/ore/ore_earth_energy"
+        }
+      }
+    }
+  }
+}

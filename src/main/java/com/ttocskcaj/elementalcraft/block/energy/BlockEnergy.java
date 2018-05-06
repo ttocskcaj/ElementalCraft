@@ -1,7 +1,7 @@
 package com.ttocskcaj.elementalcraft.block.energy;
 
-import com.ttocskcaj.elementalcraft.block.BlockVariantsBase;
-import com.ttocskcaj.elementalcraft.block.ItemBlockBase;
+import com.ttocskcaj.elementalcraft.block.BlockMultiBase;
+import com.ttocskcaj.elementalcraft.block.ItemBlockMulti;
 import com.ttocskcaj.elementalcraft.util.IGetsInitialized;
 import com.ttocskcaj.elementalcraft.util.IHasModels;
 import net.minecraft.block.SoundType;
@@ -22,7 +22,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 
 
-public class BlockEnergy extends BlockVariantsBase implements IHasModels, IGetsInitialized {
+public class BlockEnergy extends BlockMultiBase implements IHasModels, IGetsInitialized {
     public static final PropertyEnum<Type> VARIANT = PropertyEnum.create("type", Type.class);
     public static ItemStack energyAether;
     public static ItemStack energyAir;
@@ -32,7 +32,7 @@ public class BlockEnergy extends BlockVariantsBase implements IHasModels, IGetsI
 
     public BlockEnergy() {
         super(Material.IRON);
-        setUnlocalizedName("energy_block");
+        setUnlocalizedName("block_energy");
         setHardness(2.5F);
         setResistance(2F);
         setSoundType(SoundType.METAL);
@@ -78,10 +78,10 @@ public class BlockEnergy extends BlockVariantsBase implements IHasModels, IGetsI
 
     @Override
     public boolean preInit() {
-        this.setRegistryName("energy_block");
+        this.setRegistryName("block_energy");
         ForgeRegistries.BLOCKS.register(this);
 
-        ItemBlockBase itemBlock = new ItemBlockBase(this);
+        ItemBlockMulti itemBlock = new ItemBlockMulti(this);
         itemBlock.setRegistryName(this.getRegistryName());
         ForgeRegistries.ITEMS.register(itemBlock);
 

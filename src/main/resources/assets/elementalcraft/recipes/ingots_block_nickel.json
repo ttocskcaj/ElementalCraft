@@ -2,7 +2,7 @@
   "type": "forge:ore_shapeless",
   "ingredients": [
     {
-      "item": "elementalcraft:metal_block",
+      "item": "elementalcraft:block_metal",
       "data" : 1
     }
   ],

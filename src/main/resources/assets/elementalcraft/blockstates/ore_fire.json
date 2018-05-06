@@ -1,0 +1,36 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_all",
+    "transform": "forge:default-block"
+  },
+  "variants": {
+    "type": {
+      "bloodstone": {
+        "textures": {
+          "all": "elementalcraft:blocks/ore/ore_bloodstone"
+        }
+      },
+      "garnet": {
+        "textures": {
+          "all": "elementalcraft:blocks/ore/ore_garnet"
+        }
+      },
+      "gold": {
+        "textures": {
+          "all": "elementalcraft:blocks/ore/ore_gold"
+        }
+      },
+      "nickel": {
+        "textures": {
+          "all": "elementalcraft:blocks/ore/ore_nickel"
+        }
+      },
+      "fire_energy": {
+        "textures": {
+          "all": "elementalcraft:blocks/ore/ore_fire_energy"
+        }
+      }
+    }
+  }
+}

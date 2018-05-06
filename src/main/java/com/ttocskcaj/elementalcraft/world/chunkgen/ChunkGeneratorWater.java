@@ -1,6 +1,7 @@
 package com.ttocskcaj.elementalcraft.world.chunkgen;
 
 
+import com.ttocskcaj.elementalcraft.block.generic.BlockStone;
 import com.ttocskcaj.elementalcraft.init.ModBlocks;
 import com.ttocskcaj.elementalcraft.world.generation.MapGenCavesEC;
 import net.minecraft.block.BlockFalling;
@@ -16,6 +17,8 @@ import net.minecraft.world.gen.*;
 import javax.annotation.Nullable;
 import java.util.List;
 
+import static com.ttocskcaj.elementalcraft.block.generic.BlockStone.VARIANT;
+
 public class ChunkGeneratorWater extends ChunkGeneratorBase {
     private MapGenCavesEC caveGenerator = new MapGenCavesEC(0);
     private MapGenBase ravineGenerator = new MapGenRavine();
@@ -29,7 +32,7 @@ public class ChunkGeneratorWater extends ChunkGeneratorBase {
     public ChunkGeneratorWater(World worldIn, long seed) {
         super(worldIn, seed);
 
-        this.fillBlock = ModBlocks.WATER_STONE.getDefaultState();
+        this.fillBlock = ModBlocks.stone.getDefaultState().withProperty(VARIANT, BlockStone.Type.WATER);
         this.oceanBlock = Blocks.WATER.getDefaultState();
         this.seaLevel = 68;
         worldIn.setSeaLevel(this.seaLevel);

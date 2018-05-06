@@ -1,0 +1,36 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_all",
+    "transform": "forge:default-block"
+  },
+  "variants": {
+    "type": {
+      "charred": {
+        "textures": {
+          "all": "elementalcraft:blocks/stone/stone_charred"
+        }
+      },
+      "earth": {
+        "textures": {
+          "all": "elementalcraft:blocks/stone/stone_earth"
+        }
+      },
+      "fire": {
+        "textures": {
+          "all": "elementalcraft:blocks/stone/stone_fire"
+        }
+      },
+      "rarefied": {
+        "textures": {
+          "all": "elementalcraft:blocks/stone/stone_rarefied"
+        }
+      },
+      "water": {
+        "textures": {
+          "all": "elementalcraft:blocks/stone/stone_water"
+        }
+      }
+    }
+  }
+}

@@ -1,6 +1,7 @@
 package com.ttocskcaj.elementalcraft.world.biome;
 
 
+import com.ttocskcaj.elementalcraft.block.generic.BlockStone;
 import com.ttocskcaj.elementalcraft.init.ModBlocks;
 import com.ttocskcaj.elementalcraft.world.decorator.BiomeDecoratorWater;
 import net.minecraft.world.World;
@@ -10,6 +11,8 @@ import net.minecraft.world.chunk.ChunkPrimer;
 
 import java.util.Random;
 
+import static com.ttocskcaj.elementalcraft.block.generic.BlockStone.VARIANT;
+
 public class BiomeWater extends Biome {
 
     public BiomeWater() {
@@ -17,8 +20,8 @@ public class BiomeWater extends Biome {
                 .setHeightVariation(0.3F));
         setRegistryName("water_biome");
 
-        this.topBlock = ModBlocks.WATER_STONE.getDefaultState();
-        this.fillerBlock = ModBlocks.WATER_STONE.getDefaultState();
+        this.topBlock = ModBlocks.stone.getDefaultState().withProperty(VARIANT, BlockStone.Type.WATER);
+        this.fillerBlock = this.topBlock;
 
         // Remove all mobs.
         spawnableMonsterList.clear();

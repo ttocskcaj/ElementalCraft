@@ -1,6 +1,5 @@
 package com.ttocskcaj.elementalcraft.world.decorator;
 
-import com.ttocskcaj.elementalcraft.block.ore.BlockWaterOre;
 import com.ttocskcaj.elementalcraft.init.ModBlocks;
 import com.ttocskcaj.elementalcraft.world.generation.WorldGenPatches;
 import net.minecraft.init.Blocks;
@@ -18,7 +17,7 @@ public class BiomeDecoratorWater extends BiomeDecoratorBase {
     /**
      * The salt generator.
      */
-    public WorldGenerator patchGen = new WorldGenPatches(ModBlocks.SALT_BLOCK, 7);
+    public WorldGenerator patchGen = new WorldGenPatches(ModBlocks.salt, 7);
 
     @Override
     public void decorate(World worldIn, Random random, Biome biome, BlockPos pos) {

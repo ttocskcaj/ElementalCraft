@@ -1,6 +1,7 @@
 package com.ttocskcaj.elementalcraft.world.chunkgen;
 
 
+import com.ttocskcaj.elementalcraft.block.generic.BlockStone;
 import com.ttocskcaj.elementalcraft.init.ModBlocks;
 import com.ttocskcaj.elementalcraft.world.generation.MapGenCavesEC;
 import com.ttocskcaj.elementalcraft.world.generation.WorldGenLake;
@@ -19,6 +20,8 @@ import net.minecraft.world.gen.structure.*;
 import javax.annotation.Nullable;
 import java.util.List;
 
+import static com.ttocskcaj.elementalcraft.block.generic.BlockStone.VARIANT;
+
 public class ChunkGeneratorFire extends ChunkGeneratorBase {
     private double[] depthBuffer = new double[256];
     private MapGenCavesEC caveGenerator;
@@ -34,7 +37,7 @@ public class ChunkGeneratorFire extends ChunkGeneratorBase {
         mineshaftGenerator = new MapGenMineshaft();
         ravineGenerator = new MapGenRavine();
 
-        fillBlock = ModBlocks.FIRE_STONE.getDefaultState();
+        fillBlock = ModBlocks.stone.getDefaultState().withProperty(VARIANT, BlockStone.Type.FIRE);
         oceanBlock = Blocks.LAVA.getDefaultState();
         seaLevel = 22;
         worldIn.setSeaLevel(seaLevel);
@@ -116,7 +119,7 @@ public class ChunkGeneratorFire extends ChunkGeneratorBase {
         int k3 = this.rand.nextInt(16) + 8;
 
         // Generate Lava Lake
-        (new WorldGenLake(Blocks.LAVA, ModBlocks.ASH_BLOCK)).generate(this.world, this.rand, blockpos.add(i2, l2, k3));
+        (new WorldGenLake(Blocks.LAVA, ModBlocks.ash)).generate(this.world, this.rand, blockpos.add(i2, l2, k3));
 
         biome.decorate(this.world, this.rand, new BlockPos(worldX, 0, worldZ));
 

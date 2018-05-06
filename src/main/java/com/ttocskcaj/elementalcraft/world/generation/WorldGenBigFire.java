@@ -39,7 +39,7 @@ public class WorldGenBigFire extends WorldGenerator {
                         Block nextBlock = worldIn.getBlockState(blockposThis.up()).getBlock();
 
                         if (nextBlock == Blocks.AIR && block != Blocks.AIR) {
-                            worldIn.setBlockState(blockposThis, ModBlocks.ASH_BLOCK.getDefaultState());
+                            worldIn.setBlockState(blockposThis, ModBlocks.ash.getDefaultState());
                             worldIn.setBlockState(blockposNext, Blocks.FIRE.getDefaultState());
                             break;
                         }

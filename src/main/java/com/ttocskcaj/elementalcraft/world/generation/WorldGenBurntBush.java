@@ -21,9 +21,9 @@ public class WorldGenBurntBush extends WorldGenerator {
         {
             BlockPos blockpos = position.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 
-            if (worldIn.isAirBlock(blockpos) && ModBlocks.BURNT_BUSH.canBlockStay(worldIn, blockpos, ModBlocks.BURNT_BUSH.getDefaultState()))
+            if (worldIn.isAirBlock(blockpos) && ModBlocks.burntBush.canBlockStay(worldIn, blockpos, ModBlocks.burntBush.getDefaultState()))
             {
-                worldIn.setBlockState(blockpos, ModBlocks.BURNT_BUSH.getDefaultState(), 2);
+                worldIn.setBlockState(blockpos, ModBlocks.burntBush.getDefaultState(), 2);
             }
         }
 

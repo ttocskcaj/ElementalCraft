@@ -21,7 +21,7 @@ public class ClientProxy extends CommonProxy {
     public static void registerModels(ModelRegistryEvent event) {
         ElementalCraft.logger.info("Registering models...");
 
-        ModBlocks.initModels();
+        ModBlocks.registerModels();
         ModItems.initModels();
     }
 }
